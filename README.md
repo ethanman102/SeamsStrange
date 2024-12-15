@@ -9,3 +9,4 @@
 3. https://www.procoding.org/jwt-token-as-httponly-cookie-in-django This resource was utilized to help understand how to set jwt tokens from simplejwt in an httponly cookie.
 4. https://www.youtube.com/watch?v=PUzgZrS_piQ&list=LL&index=7 This resource was utilized to help understand how to use JWT tokens an the importance of using an httponly cookie.
 5. https://stackoverflow.com/questions/66247988/how-to-store-jwt-tokens-in-httponly-cookies-with-drf-djangorestframework-simplej This resource was utilized to learn about overriding the given TokenObtainPairView and RefreshTokenView to store them in HTTP only cookies
+6. https://narancsblog.com/webdevelopment/creating-token-obtain-and-token-refresh-apis-in-django/ This resource was utilized to understand how to override the TokeRefreshView to customize it for httponly cookies
