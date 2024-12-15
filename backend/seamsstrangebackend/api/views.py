@@ -50,7 +50,7 @@ class LoginView(TokenObtainPairView):
             secure=settings.PRODUCTION_MODE
         )
 
-        response.data.append({"Success": "logged in User"})
+        response.data['success'] = 'Logged in user'
         return response
 
 class LogoutView(APIView):
@@ -73,11 +73,11 @@ class HttpCookieRefreshView(TokenRefreshView):
     def post(self, request, *args, **kwargs):
         refresh = request.COOKIES.get('refresh', None)
         if refresh is None:
-            raise TokenError('No refresh token provided')
+            raise ValidationError('No token provided')
         
-        serializer = self.get_serializer(data={'refesh':refresh})
+        serializer = self.get_serializer(data={'refresh':refresh})
         if not serializer.is_valid():
-            raise InvalidToken('Refresh token is not valid')
+            raise ValidationError('Refresh token is not valid')
         
         access = serializer.validated_data.pop('access')
         response = Response()
