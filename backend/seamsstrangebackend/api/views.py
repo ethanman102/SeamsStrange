@@ -48,6 +48,13 @@ class LoginView(TokenObtainPairView):
         response.data = {"Success": "logged in User"}
         return response
 
+class LogoutView(APIView):
+    def post(self, request):
+        response = Response()
+        response.delete_cookie('access')
+        response.delete_cookie('refresh')
+        response.data = {"Success" : "logged out user"}
+        return response
 
 
 
