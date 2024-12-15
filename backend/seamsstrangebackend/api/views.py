@@ -34,7 +34,7 @@ class LoginView(TokenObtainPairView):
             value=access_token,
             httponly=True,
             expires=settings.SIMPLE_JWT['ACCESS_TOKEN_LIFETIME'],
-            secure=settings.PRODUCTION
+            secure=settings.PRODUCTION_MODE
         )
 
         response.set_cookie(
@@ -42,7 +42,7 @@ class LoginView(TokenObtainPairView):
             value=refresh_token,
             httponly=True,
             expires=settings.SIMPLE_JWT['REFRESH_TOKEN_LIFETIME'],
-            secure=settings.PRODUCTION
+            secure=settings.PRODUCTION_MODE
         )
 
         response.data = {"Success": "logged in User"}
@@ -50,7 +50,8 @@ class LoginView(TokenObtainPairView):
 
 
 
-        
+
+
 
 
 
