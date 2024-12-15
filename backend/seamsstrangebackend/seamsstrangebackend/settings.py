@@ -11,6 +11,14 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+from datetime import timedelta
+import os
+import environ
+
+env = environ.Env()
+environ.Env.read_env()
+
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,6 +33,8 @@ SECRET_KEY = 'django-insecure-c(63v17m9l*^x&c$38a+hniznqy(p^kxtn0v1vl=_kzi=+&#2$
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+PRODUCTION_MODE = env.bool('PRODUCTION_MODE',default=False)
+
 ALLOWED_HOSTS = []
 
 
@@ -38,18 +48,50 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'corsheaders',
     'api',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+]
+
+CORS_ALLOW_CREDENTIALS = True
+
+REST_FRAMEWORK = {
+  'DEFAULT_AUTHENTICATION_CLASSES': (
+      'api.authenticate.CustomAuthentication',
+  ),
+}
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=1),
+    'REFRESH_TOKEN_LIFETIME' : timedelta(hours=1),
+    'ROTATE_REFESH_TOKENS' : False,
+    'BLACKLIST_AFTER_ROTATION' : True,
+    'UPDATE_LAST_LOGIN' : False,
+    'ALGORITHM' : 'HS256',
+    'SIGNING_KEY' : SECRET_KEY,
+    'VERIFYING_KEY' : None,
+    'AUDIENCE' : None,
+    'ISSUER' : None,
+    'AUTH_HEADER_TYPES' : ('Bearer',),
+    'AUTH_HEADER_NAME': 'HTTP_AUTHORIZATION',
+    'USER_ID_FIELD': 'id',
+    
+
+}
 
 ROOT_URLCONF = 'seamsstrangebackend.urls'
 
