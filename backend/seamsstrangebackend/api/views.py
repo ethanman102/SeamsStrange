@@ -1,9 +1,12 @@
 from django.shortcuts import render
 from django.contrib.auth import authenticate
+from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.exceptions import ValidationError, AuthenticationFailed
 from rest_framework_simplejwt.views import TokenObtainPairView,TokenRefreshView
+from rest_framework_simplejwt.exceptions import InvalidToken, TokenError
+from rest_framework_simplejwt.tokens import RefreshToken
 from django.conf import settings
 
 # Create your views here.
@@ -26,8 +29,10 @@ class LoginView(TokenObtainPairView):
         access_token = response.data['access']
         refresh_token = response.data['refresh']
 
-        response = Response()
-
+        # remove the tokens from the response because we want to ensure only gets sent in the cookies
+        response.data.pop('refresh',None)
+        response.data.pop('access',None)
+        
         # set the access and refresh cookies
         response.set_cookie(
             key='access',
@@ -45,16 +50,49 @@ class LoginView(TokenObtainPairView):
             secure=settings.PRODUCTION_MODE
         )
 
-        response.data = {"Success": "logged in User"}
+        response.data.append({"Success": "logged in User"})
         return response
 
 class LogoutView(APIView):
     def post(self, request):
         response = Response()
+        refresh = request.COOKIES.get('refresh',None)
+        if refresh:
+            try:
+                token = RefreshToken(refresh)
+                token.blacklist()
+            except InvalidToken:
+                pass
         response.delete_cookie('access')
         response.delete_cookie('refresh')
         response.data = {"Success" : "logged out user"}
         return response
+    
+
+class HttpCookieRefreshView(TokenRefreshView):
+    def post(self, request, *args, **kwargs):
+        refresh = request.COOKIES.get('refresh', None)
+        if refresh is None:
+            raise TokenError('No refresh token provided')
+        
+        serializer = self.get_serializer(data={'refesh':refresh})
+        if not serializer.is_valid():
+            raise InvalidToken('Refresh token is not valid')
+        
+        access = serializer.validated_data.pop('access')
+        response = Response()
+        response.set_cookie(
+            key='access',
+            value=access,
+            httponly=True,
+            expires=settings.SIMPLE_JWT['ACCESS_TOKEN_LIFETIME'],
+            secure=settings.PRODUCTION_MODE
+        )
+        response.data = {'Success': 'New access token obtained'}
+        return response
+
+        
+
 
 
 
