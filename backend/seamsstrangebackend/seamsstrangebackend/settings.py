@@ -86,8 +86,7 @@ SIMPLE_JWT = {
     'AUTH_HEADER_TYPES' : ('Bearer',),
     'AUTH_HEADER_NAME': 'HTTP_AUTHORIZATION',
     'USER_ID_FIELD': 'id',
-    
-
+    'AUTH_COOKIE_SAMESITE': 'Lax',
 }
 
 ROOT_URLCONF = 'seamsstrangebackend.urls'

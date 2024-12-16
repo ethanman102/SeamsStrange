@@ -1,13 +1,18 @@
-from django.shortcuts import render
+
+from django.middleware import csrf
 from django.contrib.auth import authenticate
-from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.exceptions import ValidationError, AuthenticationFailed
 from rest_framework_simplejwt.views import TokenObtainPairView,TokenRefreshView
-from rest_framework_simplejwt.exceptions import InvalidToken, TokenError
+from rest_framework_simplejwt.exceptions import InvalidToken
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.conf import settings
+
+
+def get_csrf_token(request):
+    csrftoken = csrf.get_token(request)
+    return csrftoken
 
 # Create your views here.
 class LoginView(TokenObtainPairView):
@@ -40,6 +45,7 @@ class LoginView(TokenObtainPairView):
             httponly=True,
             expires=settings.SIMPLE_JWT['ACCESS_TOKEN_LIFETIME'],
             secure=settings.PRODUCTION_MODE
+            samesite=settings.SIMPLE_JWT['AUTH_COOKIE_SAMESITE']
         )
 
         response.set_cookie(
@@ -48,7 +54,15 @@ class LoginView(TokenObtainPairView):
             httponly=True,
             expires=settings.SIMPLE_JWT['REFRESH_TOKEN_LIFETIME'],
             secure=settings.PRODUCTION_MODE
+            samesite=settings.SIMPLE_JWT['AUTH_COOKIE_SAMESITE']
         )
+
+        csrftoken = get_csrf_token(request)
+        response.set_cookie('csrftoken',
+                            csrftoken,
+                            secure=settings.PRODUCTION_MODE,
+                            samesite='Lax',
+                            httponly=False)
 
         response.data['success'] = 'Logged in user'
         return response
@@ -86,8 +100,17 @@ class HttpCookieRefreshView(TokenRefreshView):
             value=access,
             httponly=True,
             expires=settings.SIMPLE_JWT['ACCESS_TOKEN_LIFETIME'],
-            secure=settings.PRODUCTION_MODE
+            secure=settings.PRODUCTION_MODE,
+            samesite=settings.SIMPLE_JWT['AUTH_COOKIE_SAMESITE']
         )
+
+        csrftoken = get_csrf_token(request)
+        response.set_cookie('csrftoken',
+                            csrftoken,
+                            secure=settings.PRODUCTION_MODE,
+                            samesite='Lax',
+                            httponly=False)
+
         response.data = {'Success': 'New access token obtained'}
         return response
 
