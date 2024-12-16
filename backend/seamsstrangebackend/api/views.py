@@ -85,15 +85,26 @@ class LoginView(TokenObtainPairView):
         return response
 
 class LogoutView(APIView):
+    '''
+    LogoutView: Inherits from APIView
+    Purpose: To log out a user and delete their http only cookies storing the access and refresh jwt token pairs
+    '''
     def post(self, request):
+        '''
+        Method: post(self,request)
+        Purpose: log out user and delete their cookies.
+        Args: request: request object containing the cookies to be removed theoretically
+        '''
         response = Response()
         refresh = request.COOKIES.get('refresh',None)
+        # blacklist the token for extra security to ensure a logged out token can not be used under its expiry.
         if refresh:
             try:
                 token = RefreshToken(refresh)
                 token.blacklist()
             except InvalidToken:
                 pass
+        # delete jwt http only cookies.
         response.delete_cookie('access')
         response.delete_cookie('refresh')
         response.data = {"Success" : "logged out user"}
@@ -101,7 +112,20 @@ class LogoutView(APIView):
     
 
 class HttpCookieRefreshView(TokenRefreshView):
+    '''
+    HttpCookieRefreshView: Inherits from TokenRefreshView
+    Purpose: to generate a new access token based on a refresh token stored in an httponly cookie.
+    Restores the new access token in the http only cookie if successful.
+    '''
     def post(self, request, *args, **kwargs):
+        '''
+        Method: post(self, request, *args, **kwargs)
+        Purpose: to use the refresh token when the access token in jwt auth expired. Both tokens stored in http only cookies
+        Override allows to use the cookie system for added security.
+        Args: request: the request object theoretically containing the access and refresh cookies.
+        '''
+
+        # ensure refresh token validity.
         refresh = request.COOKIES.get('refresh', None)
         if refresh is None:
             raise ValidationError('No token provided')
@@ -110,6 +134,7 @@ class HttpCookieRefreshView(TokenRefreshView):
         if not serializer.is_valid():
             raise ValidationError('Refresh token is not valid')
         
+        # remove the access token from the response itself and store it in the http only cookie rewriting the previous.
         access = serializer.validated_data.pop('access')
         response = Response()
         response.set_cookie(
