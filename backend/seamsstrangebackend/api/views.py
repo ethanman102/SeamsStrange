@@ -11,12 +11,28 @@ from django.conf import settings
 
 
 def get_csrf_token(request):
+    '''
+    Function: get_csrf_token(request)
+    Args: request: a request object to extract the csrf token from or generate for the new user
+    Returns: a valid csrf token or the set csrf token already.
+    '''
     csrftoken = csrf.get_token(request)
     return csrftoken
 
 # Create your views here.
 class LoginView(TokenObtainPairView):
+    '''
+    LoginView: Inherits from TokenObtainPairView to ensure we can store the jwt access and refresh tokens in http only cookies instead
+    of simply being forced to store them in the session of the browser // local storage.
+    Allows for added website security.
+    '''
     def post(self, request, *args, **kwargs):
+        '''
+        Method: post(self, request, *args, **kwargs)
+        Purpose: accept a valid email and password field in the request object from the frontend. 
+        Checks to see if the user actually exists and the correct credentials were provided. If so sets a csrf token in a non httponly cookie,
+        and jwt access and refresh tokens in httponly cookies
+        '''
 
         # get the email and password fields set within the request.
         email = request.data.get('email')
@@ -44,7 +60,7 @@ class LoginView(TokenObtainPairView):
             value=access_token,
             httponly=True,
             expires=settings.SIMPLE_JWT['ACCESS_TOKEN_LIFETIME'],
-            secure=settings.PRODUCTION_MODE
+            secure=settings.PRODUCTION_MODE,
             samesite=settings.SIMPLE_JWT['AUTH_COOKIE_SAMESITE']
         )
 
@@ -53,10 +69,11 @@ class LoginView(TokenObtainPairView):
             value=refresh_token,
             httponly=True,
             expires=settings.SIMPLE_JWT['REFRESH_TOKEN_LIFETIME'],
-            secure=settings.PRODUCTION_MODE
+            secure=settings.PRODUCTION_MODE,
             samesite=settings.SIMPLE_JWT['AUTH_COOKIE_SAMESITE']
         )
 
+        # ensure the using logging in gets a valid csrf token for usage in state changing requests.
         csrftoken = get_csrf_token(request)
         response.set_cookie('csrftoken',
                             csrftoken,
@@ -104,6 +121,7 @@ class HttpCookieRefreshView(TokenRefreshView):
             samesite=settings.SIMPLE_JWT['AUTH_COOKIE_SAMESITE']
         )
 
+        # ensure a CSRF token is set and that it is NOT HTTPONLY so that JS on frontend can access.
         csrftoken = get_csrf_token(request)
         response.set_cookie('csrftoken',
                             csrftoken,
