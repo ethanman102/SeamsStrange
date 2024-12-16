@@ -36,7 +36,7 @@ class Tag(models.Model):
     name = models.CharField(unique=True,max_length=30,validators=[MinLengthValidator(1)],blank=False,null=False,default='Item')
     color = ColorField(default='#FF000')
     created_on = models.DateTimeField(auto_now_add=True)
-    icon = models.OneToOneField('Image',on_delete=models.CASCADE,null=True,blank=False)
+    
 
 
 
