@@ -2,9 +2,11 @@ from django.test import TestCase
 from django.urls import reverse
 from rest_framework.test import APIClient
 from .models import User
+from .authenticate import JWTCookieAuthentication
 from rest_framework_simplejwt.tokens import AccessToken
 from http.cookies import SimpleCookie
-from rest_framework_simplejwt.exceptions import TokenError
+from django.http import HttpRequest
+
 
 # Create your tests here.
 class JWTAuthTestCases(TestCase):
@@ -139,6 +141,33 @@ class JWTAuthTestCases(TestCase):
         self.client.cookies = SimpleCookie({'refresh':'suchabadtoken'})
         response = self.client.post(reverse('api:refresh'))
         self.assertEqual(response.status_code,400)
+
+    def test_jwt_cookie_authentication_class(self):
+        auth_class = JWTCookieAuthentication()
+
+        # log in the user.
+        response = self.client.post(reverse('api:login'),{
+            'email':'ethankeys@ualberta.ca',
+            'password':'abc123!!'
+        })
+
+        self.assertEqual(response.status_code,200)
+
+        request = HttpRequest()
+        request.COOKIES['access'] = self.client.cookies.get('access').value
+        request.COOKIES['refresh'] = self.client.cookies.get('refresh').value
+        request.COOKIES['csrftoken'] = self.client.cookies.get('csrftoken').value
+
+        # On December 16, 2024 asked OPENAI's ChatGpt why the csrf token could not be found and it stated that it needed to be sent like this in the header
+        request.META['HTTP_X_CSRFTOKEN'] = self.client.cookies.get('csrftoken').value
+
+        
+
+        # check if the authentication class method works.
+        response_tuple = auth_class.authenticate(request)
+        
+        self.assertEqual(response_tuple[0],self.user)
+
 
 
         
