@@ -2,8 +2,8 @@ from django.test import TestCase
 from django.urls import reverse
 from rest_framework.test import APIClient
 from .models import User
-from django.contrib import auth
 from rest_framework_simplejwt.tokens import AccessToken
+from http.cookies import SimpleCookie
 
 # Create your tests here.
 class JWTAuthTestCases(TestCase):
@@ -21,9 +21,10 @@ class JWTAuthTestCases(TestCase):
             'password':'abc123!!'
         })
 
+        self.assertEqual(response.status_code,200)
         # Morsel obj, first split gets the access=token; second split gets token; last slice gets token (no ;)
-        access = str(response.cookies.get('access')).split()[1].split('=')[1][:-1]
-        refresh = str(response.cookies.get('refresh')).split()[1].split('=')[1][:-1]
+        access = str(self.client.cookies.get('access')).split()[1].split('=')[1][:-1]
+        refresh = str(self.client.cookies.get('refresh')).split()[1].split('=')[1][:-1]
 
         self.assertNotEqual(refresh,access)
         self.assertNotEqual(access,None)
@@ -73,6 +74,37 @@ class JWTAuthTestCases(TestCase):
         response = self.client.post(reverse('api:login'))
 
         self.assertEqual(response.status_code,400)
+    
+    def test_logout_view(self):
+        # first log in the user to get the cookies set.
+        response = self.client.post(reverse('api:login'),{
+            'email':'ethankeys@ualberta.ca',
+            'password':'abc123!!'
+        })
+
+        # ensure actually got the cookies
+        self.assertIsNotNone(self.client.cookies.get('access'))
+        self.assertIsNotNone(self.client.cookies.get('refresh'))
+
+        refresh = str(self.client.cookies.get('refresh'))
+        access = str(self.client.cookies.get('access'))
+
+        self.assertFalse('access="";' in access)
+        self.assertFalse('refresh="";' in refresh)
+
+        # call the logout view which ultimately clears the cookies
+        response = self.client.post(reverse('api:logout'))
+
+        self.assertEqual(response.status_code,200)
+
+        # check cookie was successfully deleted and cleared.
+        refresh = str(self.client.cookies.get('refresh'))
+        access = str(self.client.cookies.get('access'))
+        
+        self.assertTrue('access="";' in access)
+        self.assertTrue('refresh="";' in refresh)
+
+        
 
 
         

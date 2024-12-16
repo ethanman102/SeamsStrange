@@ -5,7 +5,7 @@ from rest_framework import exceptions
 
 # https://www.procoding.org/jwt-token-as-httponly-cookie-in-django
 def enforce_csrf(request):
-    check = CSRFCheck()
+    check = CSRFCheck(request)
     check.process_request(request)
     reason = check.process_view(request, None, (), {})
     if reason:
