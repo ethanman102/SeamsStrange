@@ -5,7 +5,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.exceptions import ValidationError, AuthenticationFailed, NotFound
 from rest_framework_simplejwt.views import TokenObtainPairView,TokenRefreshView
-from rest_framework_simplejwt.exceptions import InvalidToken
+from rest_framework_simplejwt.exceptions import InvalidToken,TokenError
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.conf import settings
 
@@ -129,10 +129,12 @@ class HttpCookieRefreshView(TokenRefreshView):
         refresh = request.COOKIES.get('refresh', None)
         if refresh is None:
             raise ValidationError('No token provided')
-        
-        serializer = self.get_serializer(data={'refresh':refresh})
-        if not serializer.is_valid():
-            raise ValidationError('Refresh token is not valid')
+        try:
+            serializer = self.get_serializer(data={'refresh':refresh})
+            if not serializer.is_valid():
+                raise ValidationError('Refresh token is not valid')
+        except TokenError:
+                raise ValidationError('Refresh token is not valid')
         
         # remove the access token from the response itself and store it in the http only cookie rewriting the previous.
         access = serializer.validated_data.pop('access')
