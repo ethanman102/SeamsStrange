@@ -3,7 +3,7 @@ from django.middleware import csrf
 from django.contrib.auth import authenticate
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework.exceptions import ValidationError, AuthenticationFailed
+from rest_framework.exceptions import ValidationError, AuthenticationFailed, NotFound
 from rest_framework_simplejwt.views import TokenObtainPairView,TokenRefreshView
 from rest_framework_simplejwt.exceptions import InvalidToken
 from rest_framework_simplejwt.tokens import RefreshToken
@@ -43,7 +43,7 @@ class LoginView(TokenObtainPairView):
         
         user = authenticate(username=email,password=password)
         if user is None:
-            raise AuthenticationFailed('User does not exist to login')
+            raise NotFound('User does not exist to login')
         
         # case where we can now log in the user and such provide the access and refresh tokens.
         response = super().post(request, *args, **kwargs)
