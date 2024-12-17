@@ -23,6 +23,7 @@ class Item(models.Model):
     tags = models.ManyToManyField('Tag')
     created_on = models.DateTimeField(auto_now=True)
     sold_out = models.BooleanField(default=True)
+    etsy_url = models.URLField(blank=True,null=True,default=None)
 
 class Image(models.Model):
     url = models.URLField(null=False,blank=False)
