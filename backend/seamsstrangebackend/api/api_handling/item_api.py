@@ -72,7 +72,7 @@ class ItemViewSet(viewsets.ModelViewSet):
         headers = self.get_success_headers(serializer.data)
         response_data = {
             'items':serializer.data,
-            'total_pages':paginator.num_pages
+            'total_pages':paginator.num_pages if len(items) != 0 else 0
         }
         return Response(response_data,status=status.HTTP_200_OK,headers=headers)
         
