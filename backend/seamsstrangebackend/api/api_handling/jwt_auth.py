@@ -8,6 +8,8 @@ from rest_framework_simplejwt.views import TokenObtainPairView,TokenRefreshView
 from rest_framework_simplejwt.exceptions import InvalidToken,TokenError
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.conf import settings
+from rest_framework.permissions import AllowAny,IsAuthenticated
+from ..authenticate import JWTCookieAuthentication
 
 
 def get_csrf_token(request):
@@ -89,6 +91,8 @@ class LogoutView(APIView):
     LogoutView: Inherits from APIView
     Purpose: To log out a user and delete their http only cookies storing the access and refresh jwt token pairs
     '''
+    authentication_classes = []
+    permission_classes = [AllowAny]
     def post(self, request):
         '''
         Method: post(self,request)

@@ -4,6 +4,8 @@ from rest_framework.authentication import CSRFCheck
 from rest_framework import exceptions
 
 # https://www.procoding.org/jwt-token-as-httponly-cookie-in-django
+# The above resource was utilized to learn how to authenticate using the inherited properties of JWTauth for httponly cookies
+# It also takes their code, enforce_csrf to ensure that a csrf token is present
 def enforce_csrf(request):
     check = CSRFCheck(request)
     check.process_request(request)

@@ -6,7 +6,8 @@ from ..authenticate import JWTCookieAuthentication
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from rest_framework.decorators import action
 from rest_framework_simplejwt.authentication import JWTAuthentication
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated,AllowAny
+from django.views.decorators.csrf import csrf_exempt
 
 
 
@@ -17,16 +18,20 @@ class ItemViewSet(viewsets.ModelViewSet):
     serializer_class = ItemSerializer
     queryset = Item.objects.all()
     http_method_names = ['get','post','delete','put']
-    authentication_classes=[JWTCookieAuthentication]
-    permission_classes=[IsAuthenticated]
+    authentication_classes = [JWTCookieAuthentication]
+    
+    
+    
 
+    
     def get_permissions(self):
-
         if self.action in ['destroy','update','create']:
             permission_classes = [IsAuthenticated]
         else:
-            permission_classes = []
+            permission_classes = [AllowAny]
         return [permission() for permission in permission_classes]
+    
+ 
 
     def create(self,request,*args,**kwargs):
         serializer = self.get_serializer(data=request.data)
@@ -55,7 +60,6 @@ class ItemViewSet(viewsets.ModelViewSet):
     
     def list(self, request, *args, **kwargs):
 
-        # 
         page = request.GET.get('page',1)
         size = request.GET.get('size',20)
 
