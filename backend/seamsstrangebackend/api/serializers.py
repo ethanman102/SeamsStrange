@@ -41,11 +41,13 @@ class ItemSerializer(serializers.ModelSerializer):
         for tag in tags_data:
             tag_obj = Tag.objects.get_or_create(**tag)[0]
             item.tags.add(tag_obj)
+        
         return item
     
     def update(self, instance, validated_data):
 
         tags_data = validated_data.pop('tags',[])
+        instance.tags.set([])
         for tag in tags_data:
             tag_obj = Tag.objects.get_or_create(**tag)[0]
             instance.tags.add(tag_obj)
@@ -54,6 +56,7 @@ class ItemSerializer(serializers.ModelSerializer):
         instance.quantity = validated_data.get('quantity',0)
         instance.sold_out = validated_data.get('sold_out',True)
         instance.etsy_url = validated_data.get('etsy_url','')
+
 
         return instance
     
