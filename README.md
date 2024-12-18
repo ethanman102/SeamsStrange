@@ -1,5 +1,5 @@
 # SeamsStrange
-Welcome to SeamsStrange, a Djano backend React frontend website for my Mom's Embroidary business. At the business she specializes in custom embroidary items such as scarfs, hats, shirts, and more! She also loves to post updates about her life and her company.
+Welcome to SeamsStrange, a Djano backend with a PostgresSQL database, and React frontend website for my Mom's Embroidary business. At the business she specializes in custom embroidary items such as scarfs, hats, shirts, and more! She also loves to post updates about her life and her company.
 
 This github contains a Django Rest Framework backend to allow my mother to update posts with images, commonmark syntax, and edit/delete/create listings for her embroidary items! All of this functionality for unsafe HTTP methods is protected by JWT Cookie Auth overriden from DRF's simplejwt package! 
 
