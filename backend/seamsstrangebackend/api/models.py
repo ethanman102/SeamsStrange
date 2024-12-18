@@ -25,6 +25,9 @@ class Item(models.Model):
     sold_out = models.BooleanField(default=True)
     etsy_url = models.URLField(blank=True,null=True,default=None)
 
+    class Meta:
+        ordering = ['-id']
+
 class Image(models.Model):
     url = models.URLField(null=False,blank=False)
     title = models.CharField(max_length=100,null=False,blank=False)

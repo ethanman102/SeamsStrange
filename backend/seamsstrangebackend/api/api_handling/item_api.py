@@ -10,7 +10,7 @@ from rest_framework.permissions import IsAuthenticated,AllowAny
 
 
 
-# Already handles getting with the retrieve method for the api!
+
 class ItemViewSet(viewsets.ModelViewSet):
 
     serializer_class = ItemSerializer
@@ -101,6 +101,13 @@ class ItemViewSet(viewsets.ModelViewSet):
             'total_pages':paginator.num_pages if len(items) != 0 else 0
         }
         return Response(response_data,status=status.HTTP_200_OK,headers=headers)
+    
+    def retrieve(self, request, *args, **kwargs):
+        item = self.get_object()
+        serializer = self.get_serializer(item)
+        headers = self.get_success_headers(serializer.data)
+        serializer.data['id'] = item.id
+        return Response(serializer.data,status=status.HTTP_200_OK,headers=headers)
         
 
     
