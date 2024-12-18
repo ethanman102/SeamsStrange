@@ -2,10 +2,6 @@ from django.test import TestCase
 from django.urls import reverse
 from rest_framework.test import APIClient
 from ..models import Item,User,Tag
-from ..authenticate import JWTCookieAuthentication
-from rest_framework_simplejwt.tokens import AccessToken
-from http.cookies import SimpleCookie
-from django.http import HttpRequest
 from django.urls import reverse
 import json
 
@@ -223,6 +219,57 @@ class ItemAPITestCases(TestCase):
 
         response = self.client.put(reverse('api:items-detail',args=[6]),json.dumps(self.item_json),content_type='application/json')
         self.assertEqual(response.status_code,404)
+    
+    # create test.
+    def test_create_invalid_json(self):
+        # log in first.
+        response = self.client.post(reverse('api:login'),{
+            'email':'ethankeys@ualberta.ca',
+            'password':'abc123!!'
+        })
+
+        self.assertEqual(response.status_code,200)
+
+        invalid_json = {
+            "tags":[],
+            "title":"",
+            "quantity":2,
+            "description":"for blu with love",
+            "sold_out":True,
+            "etsy_url":""
+            
+        }
+
+        response = self.client.post(reverse('api:items-list'),json.dumps(invalid_json),content_type='application/json')
+
+        self.assertEqual(response.status_code,400)
+    
+    def test_create_item(self):
+        # log in first.
+        response = self.client.post(reverse('api:login'),{
+            'email':'ethankeys@ualberta.ca',
+            'password':'abc123!!'
+        })
+
+        self.assertEqual(response.status_code,200)
+        response = self.client.post(reverse('api:items-list'),json.dumps(self.item_json),content_type='application/json')
+        self.assertEqual(response.status_code,201)
+
+        item_data = response.data
+        item_created = Item.objects.filter(id=item_data['id']).first()
+        self.assertIsNotNone(item_created)
+
+        self.assertEqual(item_created.title,self.item_json['title'])
+        self.assertEqual(item_created.quantity,self.item_json['quantity'])
+        self.assertEqual(item_created.description,self.item_json['description'])
+        self.assertEqual(item_created.etsy_url,self.item_json['etsy_url'])
+        self.assertEqual(item_created.sold_out,self.item_json['sold_out'])
+
+
+
+        
+
+
 
 
 
