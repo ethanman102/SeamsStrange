@@ -4,10 +4,8 @@ from ..serializers import ItemSerializer
 from ..models import Item
 from ..authenticate import JWTCookieAuthentication
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from rest_framework.decorators import action
-from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.permissions import IsAuthenticated,AllowAny
-from django.views.decorators.csrf import csrf_exempt
+
 
 
 
@@ -28,7 +26,7 @@ class ItemViewSet(viewsets.ModelViewSet):
             permission_classes = [AllowAny]
         return [permission() for permission in permission_classes]
     
-    # https://stackoverflow.com/questions/59720294/override-permission-and-authentication-classes-in-viewset-list-method
+    # https://stackoverflow.com/questions/59720294/override-permission-and-authentication-classes-in-viewset-list-method``
     def get_authenticators(self):
         authentication_classes = [JWTCookieAuthentication]
 
