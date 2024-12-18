@@ -101,6 +101,49 @@ class ItemAPITestCases(TestCase):
         self.assertEqual(data['total_pages'],2)
         item = Item.objects.get(id=data['items'][0]['id'])
         self.assertEqual(item,self.item3)
+    
+    def test_retrieve_one_tag_param_filter(self):
+        response = self.client.get(self.list_url_filter_one_tag)
+        self.assertEqual(response.status_code,200)
+        data = response.data
+        self.assertTrue('items' in data)
+        self.assertTrue('total_pages' in data)
+        self.assertTrue(len(data['items']) > 0)
+        self.assertTrue(len(data['items']) == 2)
+        self.assertEqual(data['total_pages'],1)
+        items = data['items']
+        retrieved_items = []
+        for item in items:
+            retrieved_items.append(Item.objects.get(id = item['id']))
+        self.assertEqual(retrieved_items[0],self.item1)
+        self.assertEqual(retrieved_items[1],self.item2)
+
+    def test_retrieve_two_tag_param_filter(self):
+        response = self.client.get(self.list_url_filter_two_tag)
+        self.assertEqual(response.status_code,200)
+        data = response.data
+        self.assertTrue('items' in data)
+        self.assertTrue('total_pages' in data)
+        self.assertTrue(len(data['items']) > 0)
+        self.assertTrue(len(data['items']) == 1)
+        self.assertEqual(data['total_pages'],1)
+        items = data['items']
+        retrieved_items = []
+        for item in items:
+            retrieved_items.append(Item.objects.get(id = item['id']))
+        self.assertEqual(retrieved_items[0],self.item2)
+    
+    def test_retrieve_filter_tag_does_not_exist(self):
+        response = self.client.get(reverse('api:items-list')+'?tag=NotAnExistingTag')
+        self.assertEqual(response.status_code,200)
+        data = response.data
+        self.assertTrue('items' in data)
+        self.assertTrue('total_pages' in data)
+        self.assertTrue(len(data['items']) == 0)
+        self.assertTrue(data['items'] == [])
+        self.assertEqual(data['total_pages'],0)
+
+        
 
 
         
