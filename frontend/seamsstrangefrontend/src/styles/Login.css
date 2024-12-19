@@ -1,0 +1,55 @@
+.card{
+    width: fit-content;
+    background-color: rgb(241, 241, 241);
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    border-radius: 2ch;
+    padding-bottom: 2ch;
+    
+}
+
+h1{
+    display: inline;
+    color: white;
+    background-image: url("../assets/seamsstrangelogindesign.jpg");
+    padding-top: 3ch;
+    display: block;
+    text-align: center;
+    padding-left: 3ch;
+    padding-right: 3ch;
+    border-top-left-radius: 1ch;
+    border-top-right-radius: 1ch;
+}
+
+h1 > h6{
+    padding-bottom: 2ch;
+    margin-top: 0.2ch; 
+}
+
+.textbox{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1ch;
+    font-size: large;
+    
+
+}
+.submitButton{
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    background:rgb(165, 72, 87);
+    color: white;
+    border: none;
+    font-size: large;
+    border-radius: 0.5ch;
+    padding-left: 2ch;
+    padding-right: 2ch;
+}
+
+.submitButton:hover{
+    background: rgb(100, 43, 53);
+}
+
+
+
