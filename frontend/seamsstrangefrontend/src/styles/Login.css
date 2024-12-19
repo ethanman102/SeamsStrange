@@ -3,7 +3,7 @@
     background-color: rgb(241, 241, 241);
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     border-radius: 2ch;
-    padding-bottom: 2ch;
+    padding-bottom: 3ch;
     
 }
 
@@ -20,7 +20,8 @@ h1{
     border-top-right-radius: 1ch;
 }
 
-h1 > h6{
+h1 > div{
+    font-size: large;
     padding-bottom: 2ch;
     margin-top: 0.2ch; 
 }
@@ -31,9 +32,9 @@ h1 > h6{
     margin-right: auto;
     margin-bottom: 1ch;
     font-size: large;
-    
-
+    width: 80%;
 }
+
 .submitButton{
     margin-left: auto;
     margin-right: auto;
@@ -45,10 +46,18 @@ h1 > h6{
     border-radius: 0.5ch;
     padding-left: 2ch;
     padding-right: 2ch;
+    width: 80%;
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(112,9,121,1) 64%, rgba(219,142,128,1) 100%);
+    margin-top: 2ch;
+    transition: box-shadow 0.5s ease, opacity 0.5s ease ;
+    
+    
 }
 
 .submitButton:hover{
-    background: rgb(100, 43, 53);
+    opacity: 0.5;
+    cursor: pointer;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 0 0 2px #000000;
 }
 
 

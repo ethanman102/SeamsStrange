@@ -35,7 +35,6 @@ class LoginView(TokenObtainPairView):
         Checks to see if the user actually exists and the correct credentials were provided. If so sets a csrf token in a non httponly cookie,
         and jwt access and refresh tokens in httponly cookies
         '''
-
         # get the email and password fields set within the request.
         email = request.data.get('email')
         password = request.data.get('password')
