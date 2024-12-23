@@ -1,19 +1,28 @@
 .tagItem{
     list-style-type: none;
-    font-size: 125%;
+    font-size: 90%;
     color: white;
     border-radius: 1ch;
-    border: 2px solid black;
-    padding-right: 1ch;
-    padding-left: 1ch;
-    padding-top: 0.25ch;
-    padding-bottom: 0.25ch;
+    padding-right: 2ch;
+    padding-left: 2ch;
+    padding-top: 0.5ch;
+    padding-bottom: 0.5ch;
     margin: 0.25ch;
+    overflow-wrap: break-word;
+    flex-shrink: 1;
+    max-width: 40%;
+    transition: scale 0.3s ease;
     
+}
+
+.tagItem:hover{
+    scale: 1.1;
 }
 
 .tagList{
     display: flex;
     flex-wrap: wrap;
     padding: 0;
+    margin-left: 1ch;
+    margin-right: 1ch;
 }

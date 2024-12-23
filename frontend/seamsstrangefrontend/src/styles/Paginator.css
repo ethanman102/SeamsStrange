@@ -1,0 +1,28 @@
+.paginator{
+    width: fit-content;
+    margin-top: 10ch;
+}
+
+.paginatorButton{
+    display: inline;
+    margin-left: 2ch;
+    margin-right: 2ch;
+    padding-left: 2ch;
+    padding-right: 2ch;
+    font-size: 100%;
+    color: white;
+    border: none;
+    background-color: #3AAFA9;
+    cursor: pointer;
+    border-radius: 2ch;
+    transition: background-color 0.3s ease;
+
+}
+
+.paginatorButton:hover{
+    background-color: #256e6b;
+}
+
+.paginatorText{
+    display: inline;
+}

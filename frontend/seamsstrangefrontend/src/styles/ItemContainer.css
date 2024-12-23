@@ -1,0 +1,23 @@
+.itemContainer{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-items: center;
+}
+
+.itemContainer .itemCard{
+    flex-shrink: 1;
+    flex-basis: 25%;
+}
+
+.itemBox{
+    width: 100%;
+}
+
+.itemBox > .paginator{
+    
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+

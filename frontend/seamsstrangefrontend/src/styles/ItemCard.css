@@ -1,7 +1,20 @@
 .itemCard{
-    width: 10%;
-    background-color: rgb(241, 241, 241);
+    width: 20%;
+    background-color: #def2f1;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     border-radius: 2ch;
     padding-bottom: 3ch;
+    margin: 1ch;
+}
+
+.itemPrice{
+    font-weight: bold;
+    font-size: 150%;
+    text-align: center;
+}
+
+.itemTitle{
+   text-align: center; 
+   overflow-wrap: break-word;
+   font-size: 200%;
 }
