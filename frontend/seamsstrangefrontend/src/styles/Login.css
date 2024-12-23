@@ -7,7 +7,7 @@
     
 }
 
-h1{
+.loginHeader{
     display: inline;
     color: white;
     background-image: url("../assets/seamsstrangelogindesign.jpg");
@@ -20,7 +20,7 @@ h1{
     border-top-right-radius: 1ch;
 }
 
-h1 > div{
+.loginHeader > div{
     font-size: large;
     padding-bottom: 2ch;
     margin-top: 0.2ch; 

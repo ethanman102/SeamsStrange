@@ -22,7 +22,7 @@ const Login = () => {
 
     return(
         (<div className="card">
-            <h1>Seams Strange Embroidary
+            <h1 className="loginHeader">Seams Strange Embroidary
                 <div>Admin Login</div>
             </h1>
             <form onSubmit={handleSubmit}>

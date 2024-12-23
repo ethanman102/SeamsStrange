@@ -1,0 +1,7 @@
+.itemCard{
+    width: 10%;
+    background-color: rgb(241, 241, 241);
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    border-radius: 2ch;
+    padding-bottom: 3ch;
+}

@@ -1,0 +1,19 @@
+.tagItem{
+    list-style-type: none;
+    font-size: 125%;
+    color: white;
+    border-radius: 1ch;
+    border: 2px solid black;
+    padding-right: 1ch;
+    padding-left: 1ch;
+    padding-top: 0.25ch;
+    padding-bottom: 0.25ch;
+    margin: 0.25ch;
+    
+}
+
+.tagList{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+}
