@@ -1,7 +1,7 @@
 .itemCard{
     width: 20%;
-    background-color: #def2f1;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    background-color: #3AAFA9;
+    box-shadow: 0 4px 8px 0 #2b7a78;
     border-radius: 2ch;
     padding-bottom: 3ch;
     margin: 1ch;
@@ -9,12 +9,32 @@
 
 .itemPrice{
     font-weight: bold;
-    font-size: 150%;
-    text-align: center;
+    font-size: 175%;
+    margin-top: 0;
+    margin-left: 1ch;
+    margin-right: 1ch;
 }
 
 .itemTitle{
-   text-align: center; 
+   margin-bottom: 0;
    overflow-wrap: break-word;
    font-size: 200%;
+   color: #FEFFFF;
+   margin-left: 1ch;
+   margin-right: 1ch;
+   text-transform: uppercase;
+}
+
+.itemDollarSign{
+    font-size: 120%;
+}
+
+.tagListTitle{
+    margin-left: 1ch;
+    margin-right: 1ch;
+    font-size: 150%;
+    width: fit-content;
+    text-decoration: underline;
+    text-transform: uppercase;
+    margin-bottom: 0;
 }

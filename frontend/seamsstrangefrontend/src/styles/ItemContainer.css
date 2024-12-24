@@ -2,16 +2,27 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-items: center;
+    justify-content: space-evenly;
+    min-height: 75ch;
+    align-items: flex-start;
 }
 
 .itemContainer .itemCard{
     flex-shrink: 1;
     flex-basis: 25%;
+    min-height: 25ch;
+    transition: scale 0.5s ease;
+}
+
+.itemContainer .itemCard:hover{
+    scale: 1.1;
+    cursor: pointer;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
 
 .itemBox{
     width: 100%;
+    display: inline;
 }
 
 .itemBox > .paginator{

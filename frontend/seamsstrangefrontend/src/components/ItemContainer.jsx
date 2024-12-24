@@ -35,11 +35,13 @@ const ItemContainer = () => {
 
 
     return(
+    <>
     <div className="itemBox">
         <div className="itemContainer">
             {items}
         </div>
         <Paginator update={setPage} pageNumber={page} totalPages={totalPages}/>
-    </div>)
+    </div>
+    </>)
 }
 export default ItemContainer
