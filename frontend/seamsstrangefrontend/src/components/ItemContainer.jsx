@@ -3,6 +3,7 @@ import axios from "axios";
 import ItemCard from "./ItemCard";
 import "../styles/ItemContainer.css"
 import Paginator from "./Paginator";
+import TagFilter from "./TagFilter";
 
 const ItemContainer = () => {
 
@@ -36,11 +37,18 @@ const ItemContainer = () => {
 
     return(
     <>
+    <div className="itemShopHeader">
+        <h1>Shop</h1>
+        <h2>Embroidary</h2>
+    </div>
+    <div className="itemPageContainer">
+    <TagFilter/>
     <div className="itemBox">
         <div className="itemContainer">
             {items}
         </div>
         <Paginator update={setPage} pageNumber={page} totalPages={totalPages}/>
+    </div>
     </div>
     </>)
 }

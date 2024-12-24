@@ -1,7 +1,7 @@
 .itemCard{
     width: 20%;
-    background-color: #3AAFA9;
-    box-shadow: 0 4px 8px 0 #2b7a78;
+    background-color: #367583;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     border-radius: 2ch;
     padding-bottom: 3ch;
     margin: 1ch;
@@ -13,16 +13,16 @@
     margin-top: 0;
     margin-left: 1ch;
     margin-right: 1ch;
+    color: #0d313a;
 }
 
 .itemTitle{
    margin-bottom: 0;
    overflow-wrap: break-word;
    font-size: 200%;
-   color: #FEFFFF;
+   color: #17c783;
    margin-left: 1ch;
    margin-right: 1ch;
-   text-transform: uppercase;
 }
 
 .itemDollarSign{
@@ -34,7 +34,6 @@
     margin-right: 1ch;
     font-size: 150%;
     width: fit-content;
-    text-decoration: underline;
-    text-transform: uppercase;
     margin-bottom: 0;
+    color: #0d313a;
 }

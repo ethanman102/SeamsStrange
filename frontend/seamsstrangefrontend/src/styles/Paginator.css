@@ -10,9 +10,9 @@
     padding-left: 2ch;
     padding-right: 2ch;
     font-size: 100%;
-    color: #DEF2F1;
+    color: #FEFFFF;
     border: none;
-    background-color: #2B7A78;
+    background-color: #0a7c5a;
     cursor: pointer;
     border-radius: 2ch;
     transition: background-color 0.5s ease;
@@ -20,7 +20,7 @@
 }
 
 .paginatorButton:hover:enabled{
-    background-color: #153636;
+    background-color: #083a2a;
 }
 
 .paginatorButton:disabled{
