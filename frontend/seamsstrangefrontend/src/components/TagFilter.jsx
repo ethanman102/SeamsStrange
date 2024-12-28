@@ -47,13 +47,10 @@ const TagFilter = ({filterFunction}) => {
                 </label>
             )})
             }
-            {
-                selected.length > 0 &&
-                <div className="filterButtonContainer">
-                    <button className="adjustTagFilterButton" onClick={handleApplyClick}>Apply</button>
-                    {(applied && <button className="adjustTagFilterButton" onClick={handleClearClick}>Clear</button>)}
-                </div>
-            }
+            {selected.length > 0 && <button className="adjustTagFilterButton" onClick={handleApplyClick}>Apply</button>}
+            {(applied && <button className="adjustTagFilterButton" onClick={handleClearClick}>Clear</button>)}
+                
+            
         </div>
     );
 }
