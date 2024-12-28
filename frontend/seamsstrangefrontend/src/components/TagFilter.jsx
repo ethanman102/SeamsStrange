@@ -54,6 +54,6 @@ const TagFilter = ({filterFunction}) => {
         </div>
     );
 }
-export default TagFilter
+export default TagFilter;
 
 

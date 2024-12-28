@@ -1,0 +1,34 @@
+.navigationBar{
+    background-color:  #17503f;
+    margin: 0;
+}
+
+.navigationList{
+    display: flex;
+    list-style-type: none;
+    height: 100%;  
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 2ch;
+    
+}
+
+.navigationList > li{
+    padding-left: 2ch;
+    padding-right: 2ch;
+    padding-top: 1ch;
+    padding-bottom: 1ch;
+    transition: background-color 0.3s ease;
+}
+
+.navigationList > li:hover{
+    background-color: #0D313A;
+    
+}
+
+.navLink{
+    text-decoration: none;
+    color: #17c783;
+    font-size: larger;
+}
+

@@ -14,4 +14,4 @@ const Paginator = ({update,pageNumber,totalPages}) => {
         </div>
     );
 }
-export default Paginator
+export default Paginator;

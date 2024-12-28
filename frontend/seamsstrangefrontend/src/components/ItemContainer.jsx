@@ -1,4 +1,4 @@
-import React, { useState,useEffect,useRef } from "react";
+import React, { useState,useEffect } from "react";
 import axios from "axios";
 import ItemCard from "./ItemCard";
 import "../styles/ItemContainer.css"
@@ -65,4 +65,4 @@ const ItemContainer = () => {
     </div>
     </>)
 }
-export default ItemContainer
+export default ItemContainer;

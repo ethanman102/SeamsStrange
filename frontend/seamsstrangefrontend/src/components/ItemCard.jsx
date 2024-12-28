@@ -12,4 +12,4 @@ const ItemCard = ({title,price,tags}) => {
         <TagList tags={tags}/>
     </div>)
 }
-export default ItemCard
+export default ItemCard;
