@@ -1,16 +1,27 @@
-import React, { useState,useEffect } from "react";
+import React, { useState,useEffect,useRef } from "react";
 import axios from "axios";
 import ItemCard from "./ItemCard";
 import "../styles/ItemContainer.css"
 import Paginator from "./Paginator";
 import TagFilter from "./TagFilter";
 
-const ItemContainer = () => {
+const ItemContainer = ({filterFunction}) => {
+
+    const SIZE = 4;
 
     const [page,setPage] = useState(1);
     const [items,setItems] = useState([]);
     const [totalPages,setTotalPages] = useState(null);
-    const SIZE = 4;
+    
+    const tagFilterRef = useRef([]);
+
+    const editFilteredTags = (tagName) =>{
+        if (tagFilterRef.current.includes(tagName)){
+            tagFilterRef.current = tagFilterRef.current.filter((tag) => tag !== tagName);
+        }else{
+            tagFilterRef.current.push(tagName);
+        }
+    }
 
     
 
@@ -42,7 +53,7 @@ const ItemContainer = () => {
         <h2>Embroidary</h2>
     </div>
     <div className="itemPageContainer">
-    <TagFilter/>
+    <TagFilter filterFunction={editFilteredTags}/>
     <div className="itemBox">
         <div className="itemContainer">
             {items}

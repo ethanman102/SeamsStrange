@@ -18,6 +18,7 @@
     height: 0;
 }
 
+
 .tagLabel:hover{
     background-color: #0a7c5a;
     cursor: pointer;
@@ -40,5 +41,30 @@
     padding-right: 1ch;
     border-radius: 1ch;
     margin-right: 0.5ch;
+}
+
+.filterButtonContainer{
+    margin-top: 5ch;
+}
+
+.adjustTagFilterButton{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 2ch;
+    padding-left: 2ch;
+    padding-right: 2ch;
+    font-size: 100%;
+    color: #FEFFFF;
+    border: none;
+    width: 100%;
+    background-color: #0a7c5a;
+    cursor: pointer;
+    border-radius: 2ch;
+    transition: background-color 0.5s ease;
+}
+
+.adjustTagFilterButton:hover{
+    background-color: #083a2a;
 }
 
