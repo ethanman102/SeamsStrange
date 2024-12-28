@@ -10,24 +10,8 @@ const TagFilter = ({filterFunction}) => {
     const [applied,setApplied] = useState(false);
 
     useEffect(() => {
-        const getTags = async () =>{
-            var response = await axios.get('http://localhost:8000/api/tags/');
-            var fetchedTags = await response.data;
-            return fetchedTags.tags;
-        }
-
-        getTags().then((fetchedTags) => {
-             setTagChecks(fetchedTags.map((tag,i) =>{
-                return(
-                    <label key={tag.name} className="tagLabel" style={{backgroundColor: selected.includes(tag.name) ? "#0a7c5a" : ""}}>
-                        <input type="checkbox" className="tagCheckbox" tag={tag.name} checked={selected.includes(tag.name)} onChange={(event) => handleCheck(event.target)}/>
-                        <span className="check" style={{backgroundColor: tag.color}}></span>
-                        {tag.name}
-                    </label>
-                );
-            }));
-        });
-    },[selected]);   
+            axios.get('http://localhost:8000/api/tags/').then((response) => response.data).then((fetchedTags) => setTagChecks(fetchedTags.tags));
+    },[]);   
     
     const handleCheck = (tagCheckbox) =>{
         var tagName = tagCheckbox.getAttribute("tag");
@@ -41,16 +25,28 @@ const TagFilter = ({filterFunction}) => {
     const handleClearClick = () =>{
         setSelected([]);
         setApplied(false);
+        filterFunction([]);
     }
 
     const handleApplyClick = () =>{
         setApplied(true);
+        filterFunction(selected);
     }
 
     return(
         <div className="tagFilter">
             <h3>Filter By Tag</h3>
-            {tagChecks}
+            
+            {
+            tagChecks.map(tag=>{
+                return(
+                <label key={tag.name} className="tagLabel" style={{backgroundColor: selected.includes(tag.name) ? "#0a7c5a" : ""}}>
+                    <input type="checkbox" className="tagCheckbox" tag={tag.name} checked={selected.includes(tag.name)} onChange={(event) => handleCheck(event.target)}/>
+                    <span className="check" style={{backgroundColor: tag.color}}></span>
+                {tag.name}
+                </label>
+            )})
+            }
             {
                 selected.length > 0 &&
                 <div className="filterButtonContainer">
@@ -62,3 +58,5 @@ const TagFilter = ({filterFunction}) => {
     );
 }
 export default TagFilter
+
+

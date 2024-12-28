@@ -5,22 +5,18 @@ import "../styles/ItemContainer.css"
 import Paginator from "./Paginator";
 import TagFilter from "./TagFilter";
 
-const ItemContainer = ({filterFunction}) => {
+const ItemContainer = () => {
 
     const SIZE = 4;
 
     const [page,setPage] = useState(1);
     const [items,setItems] = useState([]);
     const [totalPages,setTotalPages] = useState(null);
-    
-    const tagFilterRef = useRef([]);
+    const [filterTags,setFilterTags] = useState([]);
 
-    const editFilteredTags = (tagName) =>{
-        if (tagFilterRef.current.includes(tagName)){
-            tagFilterRef.current = tagFilterRef.current.filter((tag) => tag !== tagName);
-        }else{
-            tagFilterRef.current.push(tagName);
-        }
+    const editFilteredTags = (tags) =>{
+        setFilterTags(tags);
+        setPage(1);
     }
 
     
@@ -28,9 +24,15 @@ const ItemContainer = ({filterFunction}) => {
     // re-render the items when the page query changes.
     useEffect(() => {
         const getItems = async () =>{
-            var response = await axios.get('http://localhost:8000/api/items/',{params: {size: SIZE,page: page}});
+            var params = new URLSearchParams();
+            params.append('size',SIZE);
+            params.append('page',page);
+            for (var tag of filterTags){
+                params.append('tag',tag);
+            }
+            var response = await axios.get('http://localhost:8000/api/items/',{params:params});
             var fetchedItems = await response.data;
-            setTotalPages(fetchedItems.total_pages)
+            setTotalPages(fetchedItems.total_pages === 0 ? 1 : fetchedItems.total_pages)
             return fetchedItems.items;
         }
 
@@ -42,7 +44,7 @@ const ItemContainer = ({filterFunction}) => {
         );
        
         
-    },[page]);
+    },[page,filterTags]);
     
 
 
