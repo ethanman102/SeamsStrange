@@ -1,0 +1,71 @@
+.itemContainer{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    min-height: 75ch;
+    align-items: flex-start;
+    
+}
+
+.itemContainer .itemCard{
+    flex-shrink: 1;
+    flex-basis: 25%;
+    min-height: 25ch;
+    transition: scale 0.5s ease;
+}
+
+.itemContainer .itemCard:hover{
+    scale: 1.1;
+    cursor: pointer;
+}
+
+.itemPageContainer{
+    display: flex;
+    flex-direction: row;
+}
+
+.tagFilter{
+    flex-basis: 10%;
+    flex-shrink: 1;
+    background-color: #0D313A;
+    padding-left: 2ch;
+    padding-right: 1ch;
+    margin-left: 2ch;
+    margin-right: 0;
+    border-right: #0a7c5a solid 0.25ch;
+}
+
+.itemBox{
+    width: 100%;
+    flex-shrink: 1;
+    margin-right: 0;
+}
+
+.itemBox > .paginator{
+    
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.itemShopHeader{
+    width: fit-content;
+    margin-left: 2ch;
+}
+
+.itemShopHeader > h1{
+    color: #17c783;
+    font-size: 250%;
+    margin-bottom: 0;
+}
+
+.itemShopHeader > h2{
+    color: #0a7c5a;
+    font-size: 200%;
+    margin-top: 0;
+}
+
+
+
+

@@ -1,0 +1,66 @@
+.card{
+    width: fit-content;
+    background-color: rgb(241, 241, 241);
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    border-radius: 2ch;
+    padding-bottom: 3ch;
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+
+.loginHeader{
+    display: inline;
+    color: white;
+    background-image: url("../assets/seamsstrangelogindesign.jpg");
+    padding-top: 3ch;
+    display: block;
+    text-align: center;
+    padding-left: 3ch;
+    padding-right: 3ch;
+    border-top-left-radius: 1ch;
+    border-top-right-radius: 1ch;
+}
+
+.loginHeader > div{
+    font-size: large;
+    padding-bottom: 2ch;
+    margin-top: 0.2ch; 
+}
+
+.textbox{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1ch;
+    font-size: large;
+    width: 80%;
+}
+
+.submitButton{
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    background:rgb(165, 72, 87);
+    color: white;
+    border: none;
+    font-size: large;
+    border-radius: 0.5ch;
+    padding-left: 2ch;
+    padding-right: 2ch;
+    width: 80%;
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(112,9,121,1) 64%, rgba(219,142,128,1) 100%);
+    margin-top: 2ch;
+    transition: box-shadow 0.5s ease, opacity 0.5s ease ;
+    
+    
+}
+
+.submitButton:hover{
+    opacity: 0.5;
+    cursor: pointer;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 0 0 2px #000000;
+}
+
+
+

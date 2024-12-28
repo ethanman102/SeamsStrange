@@ -83,7 +83,7 @@ class ItemViewSet(viewsets.ModelViewSet):
 
         # query params will be sent with 'tag' key and items must match ALL tag names.
         for tag in tag_names:
-            items = items.filter(tags__name__icontains=tag)
+            items = items.filter(tags__name__iexact=tag)
 
         # paginate the results.
         paginator = Paginator(items,size)

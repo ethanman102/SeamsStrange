@@ -1,0 +1,69 @@
+
+.tagLabel{
+    display: block;
+    margin-top: 1ch;
+    border-radius: 1ch;
+    color: #feffff;
+    border-radius: 1ch;
+    padding-right: 1ch;
+    padding-left: 1ch;
+    overflow-wrap: break-word;
+    transition: background-color 0.3s ease;
+    
+}
+.tagCheckbox{
+    display: inline;
+    visibility: hidden; 
+    width: 0;
+    height: 0;
+}
+
+
+.tagLabel:hover{
+    background-color: #0a7c5a;
+    cursor: pointer;
+}
+
+.tagFilter > h3{
+    color: #17c783;
+    width: 100%;
+    border-bottom: #0a7c5a solid 0.25ch;
+    padding-right: 1ch;
+    text-align: center;
+    margin-top: 0;
+    padding-bottom: 1ch;
+    padding-top: 1ch;
+}
+
+.check{
+    display: inline;
+    padding-left: 1ch;
+    padding-right: 1ch;
+    border-radius: 1ch;
+    margin-right: 0.5ch;
+}
+
+
+
+.adjustTagFilterButton{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 2ch;
+    margin-top: 1.5ch;
+    padding-left: 2ch;
+    padding-right: 2ch;
+    font-size: 100%;
+    color: #FEFFFF;
+    border: none;
+    width: 100%;
+    background-color: #0a7c5a;
+    cursor: pointer;
+    border-radius: 2ch;
+    transition: background-color 0.5s ease;
+}
+
+.adjustTagFilterButton:hover{
+    background-color: #083a2a;
+}
+
