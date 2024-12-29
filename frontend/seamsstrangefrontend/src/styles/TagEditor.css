@@ -1,0 +1,11 @@
+.tagPill{
+    padding-left: 5ch;
+    padding-right: 5ch;
+    padding-top: 2ch;
+    padding-bottom: 2ch;
+    border-radius: 2ch;
+    color: white;
+    font-size: 150%;
+    display: block;
+    width: fit-content;
+}
