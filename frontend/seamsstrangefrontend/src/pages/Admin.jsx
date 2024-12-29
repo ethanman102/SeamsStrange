@@ -1,8 +1,8 @@
 import React, { useState,useEffect } from "react";
 import axios from "axios";
-import { Navigate } from "react-router-dom";
 import "../styles/ItemContainer.css"
 import Login from "../components/Login";
+import AdminTagPanel from "./AdminTagPanel";
 
 const Admin = () =>{
 
@@ -11,7 +11,6 @@ const Admin = () =>{
 
     useEffect(() =>{
         axios.get('http://localhost:8000/api/authenticated/', 
-        // 
         {
             withCredentials: true
         }).then((response) =>{
@@ -26,7 +25,7 @@ const Admin = () =>{
 
 return(
     <>
-    {authenticated ? <h1>YOYO</h1> : <Login/>}
+    {authenticated ? <AdminTagPanel/> : <Login/>}
     </>
 )
 

@@ -1,0 +1,11 @@
+.adminTagsHeader > h1{
+    color: #17c783;
+    font-size: 250%;
+    margin-bottom: 0;
+}
+
+.adminTagsHeader > h2{
+    color: #0a7c5a;
+    font-size: 200%;
+    margin-top: 0;
+}

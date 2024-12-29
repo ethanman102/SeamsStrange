@@ -2,6 +2,7 @@
 .tagLabel{
     display: block;
     margin-top: 1ch;
+    margin-bottom: 1.25ch;
     border-radius: 1ch;
     color: #feffff;
     border-radius: 1ch;
@@ -35,6 +36,13 @@
     padding-top: 1ch;
 }
 
+.buttonSection{
+    border-top: #0a7c5a solid 0.25ch;
+    width: 100%;
+    padding-right: 1ch;
+ 
+}
+
 .check{
     display: inline;
     padding-left: 1ch;
@@ -57,7 +65,7 @@
     color: #FEFFFF;
     border: none;
     width: 100%;
-    background-color: #0a7c5a;
+    background-color: #367583;
     cursor: pointer;
     border-radius: 2ch;
     transition: background-color 0.5s ease;
@@ -65,5 +73,16 @@
 
 .adjustTagFilterButton:hover{
     background-color: #083a2a;
+}
+
+.tagWordTitle{
+    background-color: #367583;
+    border-radius: 1ch;
+    padding-left: 1ch;
+    padding-right: 1ch;
+    padding-top: 0.25ch;
+    padding-bottom: 0.25ch;
+    color: white;
+    font-weight: normal;
 }
 

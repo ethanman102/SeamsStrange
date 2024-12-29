@@ -35,7 +35,7 @@ const TagFilter = ({filterFunction}) => {
 
     return(
         <div className="tagFilter">
-            <h3>Filter By Tag</h3>
+            <h3>Filter By <span className="tagWordTitle">Tag</span></h3>
             
             {
             tagChecks.map(tag=>{
@@ -47,8 +47,10 @@ const TagFilter = ({filterFunction}) => {
                 </label>
             )})
             }
-            {selected.length > 0 && <button className="adjustTagFilterButton" onClick={handleApplyClick}>Apply</button>}
-            {(applied && <button className="adjustTagFilterButton" onClick={handleClearClick}>Clear</button>)}
+            <div className="buttonSection">
+                {selected.length > 0 && <button className="adjustTagFilterButton" onClick={handleApplyClick}>Apply</button>}
+                {(applied && <button className="adjustTagFilterButton" onClick={handleClearClick}>Clear</button>)}
+            </div>
                 
             
         </div>
