@@ -6,6 +6,7 @@ import AdminTagPanel from "./AdminTagPanel";
 import AdminNavBar from "../components/AdminNavbar";
 import { Route, Routes } from "react-router-dom";
 import "../styles/Admin.css"
+import AdminItemPanel from "./AdminItemPanel";
 
 const Admin = () =>{
 
@@ -35,7 +36,7 @@ return(
     <div className="adminPageFlexContainer">
         <AdminNavBar/>
         <Routes>
-            <Route path="items/" element={<Login/>}/>
+            <Route path="items/" element={<AdminItemPanel/>}/>
             <Route path="tags/" element={<AdminTagPanel/>}/>
         </Routes>
     </div>

@@ -33,6 +33,8 @@ const TagEditor = ({onSubmit,tag}) =>{
         ).then((response) =>{
             if (response.status === 201 || response.status === 200){ 
                 onSubmit(data);
+                setTagText(tag.name);
+                setTagColor(tag.color);
             }
         }).catch((error) => console.error("Request Failed"));
     }

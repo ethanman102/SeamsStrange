@@ -56,3 +56,15 @@
     margin-right: auto;
 }
 
+.tagDecor{
+    background-color: #367583;
+    
+    border-radius: 1ch;
+    padding-left: 1ch;
+    padding-right: 1ch;
+    padding-top: 0.25ch;
+    padding-bottom: 0.25ch;
+    color: white;
+    font-weight: normal; 
+}
+

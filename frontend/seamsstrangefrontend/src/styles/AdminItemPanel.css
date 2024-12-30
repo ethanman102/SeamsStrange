@@ -1,0 +1,15 @@
+.adminItemsHeader > h1{
+    color: #17c783;
+    font-size: 250%;
+    margin-bottom: 0;
+}
+
+.adminItemsHeader > h2{
+    color: #0a7c5a;
+    font-size: 200%;
+    margin-top: 0;
+}
+
+.adminItemsHeader > .tagFilter{
+    border: #0a7c5a solid 0.25ch;
+}

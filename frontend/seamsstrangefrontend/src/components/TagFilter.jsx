@@ -3,7 +3,7 @@ import "../styles/TagFilter.css"
 import axios from "axios";
 
 
-const TagFilter = ({filterFunction}) => {
+const TagFilter = ({filterFunction,purpose}) => {
 
     const [tagChecks,setTagChecks] = useState([]);
     const [selected,setSelected] = useState([]);
@@ -35,7 +35,7 @@ const TagFilter = ({filterFunction}) => {
 
     return(
         <div className="tagFilter">
-            <h3>Filter By <span className="tagWordTitle">Tag</span></h3>
+            <h3>{purpose}<span className="tagWordTitle">Tag</span></h3>
             
             {
             tagChecks.map(tag=>{

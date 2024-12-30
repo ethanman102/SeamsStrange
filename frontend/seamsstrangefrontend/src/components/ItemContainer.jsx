@@ -55,7 +55,7 @@ const ItemContainer = () => {
         <h2>Embroidary</h2>
     </div>
     <div className="itemPageContainer">
-    <TagFilter filterFunction={editFilteredTags}/>
+    <TagFilter filterFunction={editFilteredTags} purpose="Filter By "/>
     <div className="itemBox">
         <div className="itemContainer">
             {items}
