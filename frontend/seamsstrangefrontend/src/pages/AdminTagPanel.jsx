@@ -16,20 +16,30 @@ const AdminTagPanel = () => {
         ).then((response) => setTags(response.data.tags))
     },[])
 
-    const handleSubmit = () =>{
-        console.log('submition time');
+    const handleSubmit = (newTag) =>{
+        console.log("WELLL");
+        setTags([...tags,newTag]);
     }
 
     return(
     <>
         <div className="adminTagsHeader">
             <h1>Seams Strange</h1>
-            <h2>Tags</h2>
+            <h2>Tags </h2>
         </div>
-        <TagEditor tag={{}}/>
-        <h1 className="currentHeader">Current</h1>
-        <div className="adminPanelFrame">
-            <TagList tags={tags}/>
+        <div className="adminTagsContainer">
+            <div className="createTagSection">
+                <h1 className="createTagHeader">Create Tag 🏷️</h1>  
+                <TagEditor onSubmit={handleSubmit} tag={{}}/>
+            </div>
+            <div className="currentTagsSection">
+                <h1 className="currentHeader">Current Tags 🏷️</h1>
+                <p className="currentTagsMessage">These are all of the current tags currently created for the website! <br/>
+                to edit a tag click on the edit icon on the tag, from there you can change text, color, or delete the tag entirely!</p>
+                <div className="adminPanelFrame">
+                    <TagList className="adminTagList" tags={tags}/>
+                </div>
+            </div>
         </div>
     </>
     );

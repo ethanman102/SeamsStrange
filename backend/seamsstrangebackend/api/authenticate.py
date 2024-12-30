@@ -18,7 +18,6 @@ class JWTCookieAuthentication(JWTAuthentication):
         access_cookie = request.COOKIES.get('access',None)
         if access_cookie is None:
             return None
-        
         validated_token = self.get_validated_token(access_cookie)
         enforce_csrf(request)
         return self.get_user(validated_token), validated_token

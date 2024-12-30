@@ -6,6 +6,85 @@
     border-radius: 2ch;
     color: white;
     font-size: 150%;
-    display: block;
     width: fit-content;
+    display: block;
+    overflow-wrap: break-word;
 }
+
+
+
+.tagNameInput{
+    background-color: white;
+    margin-bottom: 2ch;
+}
+
+.tagColorInput{
+    height: 10ch;
+    width: 10ch;
+}
+
+
+.tagColorInput:hover{
+    cursor: pointer;
+    scale: 1.1;
+}
+
+.nameLabel,.colorLabel{
+    color: #17c783;
+    width: fit-content;
+    margin-bottom: 0;
+    display: block;
+    font-size: 150%;
+}
+
+.tagCreationInput{
+    margin-right: 20%;
+}
+
+.tagEditorFlexContainer{
+    display: flex;
+    padding-left: 2ch;
+    align-items: center;
+    padding-bottom: 5ch;
+}
+
+.tagEditorDisclaimer{
+    color: white;
+    margin-left: 2ch;
+}
+
+.currentTagDesignHeader{
+    color: #17c783;
+    margin-top: 0;
+    text-decoration: underline;
+    
+}
+
+.tagEditorButtons{
+    margin-top: 1.5ch;
+    
+}
+
+.tagEditorButton{
+    color: white;
+    background-color: #0a7c5a;
+    border: none;
+    border-radius: 2ch;
+    margin-left: 0ch;
+    margin-right: 2ch;
+    padding-left: 2ch;
+    padding-right: 2ch;
+    font-size: 100%;
+    transition: background-color 0.5s ease;
+}
+
+.tagEditorButton:hover{
+    cursor: pointer;
+    background-color: #083a2a;
+}
+
+
+
+
+
+
