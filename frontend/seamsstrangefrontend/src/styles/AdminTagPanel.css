@@ -68,3 +68,7 @@
     font-weight: normal; 
 }
 
+.priceLinkAvailabilityContainer{
+    display: flex;
+}
+

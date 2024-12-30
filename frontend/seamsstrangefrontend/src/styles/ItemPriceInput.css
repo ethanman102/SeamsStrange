@@ -1,0 +1,10 @@
+.itemPriceLabel{
+    display: block;
+    color: #17c783;
+    text-decoration: underline;
+    font-size: 3ch;
+}
+
+.priceInput{
+    max-width: 40%;
+}

@@ -11,5 +11,10 @@
     flex-shrink: 3;
 }
 
+.adminItemPanelFlexContainer{
+    margin-left: 5%;
+    width: 100%;
+}
+
 
 

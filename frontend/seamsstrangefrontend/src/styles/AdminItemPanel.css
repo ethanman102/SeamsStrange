@@ -10,6 +10,39 @@
     margin-top: 0;
 }
 
-.adminItemsHeader > .tagFilter{
+.itemCreatePrompt{
+    color: white;
+    margin-left: 2ch;
+    overflow-wrap: break-word;
+}
+
+
+.tagAndInputContainer{
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 4ch;
+    padding-bottom: 4ch;
+    margin-right: 2ch;
+}
+
+.tagAndInputContainer > .tagFilter{
     border: #0a7c5a solid 0.25ch;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    margin-right: 2ch;
+}
+
+.adminItemsTextualInputs{
+    flex-basis: 50%;
+    width: 100%;
+    margin-left: 2ch;
+    background-color: #367583;
+    padding-left: 2ch;
+    padding-right: 2.5ch;
+    padding-top: 2ch;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.createItemHeader{
+    color: #17c783;
+    text-decoration: underline;
 }
