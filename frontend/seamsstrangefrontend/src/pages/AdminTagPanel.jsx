@@ -22,7 +22,7 @@ const AdminTagPanel = () => {
     }
 
     return(
-    <>
+    <div className="adminTagsPage">
         <div className="adminTagsHeader">
             <h1>Seams Strange</h1>
             <h2>Tags </h2>
@@ -41,7 +41,7 @@ const AdminTagPanel = () => {
                 </div>
             </div>
         </div>
-    </>
+    </div>
     );
 }
 

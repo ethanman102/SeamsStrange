@@ -46,6 +46,7 @@
     padding-left: 2ch;
     align-items: center;
     padding-bottom: 5ch;
+    flex-wrap: wrap;
 }
 
 .tagEditorDisclaimer{

@@ -3,6 +3,9 @@ import axios from "axios";
 import "../styles/ItemContainer.css"
 import Login from "../components/Login";
 import AdminTagPanel from "./AdminTagPanel";
+import AdminNavBar from "../components/AdminNavbar";
+import { Route, Routes } from "react-router-dom";
+import "../styles/Admin.css"
 
 const Admin = () =>{
 
@@ -25,7 +28,18 @@ const Admin = () =>{
 
 return(
     <>
-    {authenticated ? <AdminTagPanel/> : <Login/>}
+
+    
+    {authenticated ? 
+    <>
+    <div className="adminPageFlexContainer">
+        <AdminNavBar/>
+        <Routes>
+            <Route path="items/" element={<Login/>}/>
+            <Route path="tags/" element={<AdminTagPanel/>}/>
+        </Routes>
+    </div>
+    </> : <Login/>}
     </>
 )
 

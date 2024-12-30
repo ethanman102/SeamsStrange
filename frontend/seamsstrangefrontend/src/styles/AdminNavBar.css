@@ -1,0 +1,59 @@
+.adminNavigationList{
+    
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+    height: 100%;  
+    width: fit-content;
+    
+    padding-top: 1ch;
+    padding-left: 2ch;
+    padding-right: 2ch;
+    margin-bottom: 0;
+}
+
+.adminNavigationBar{
+    margin: 0;
+    height: fit-content;
+
+}
+
+.adminNavLink{
+    text-decoration: none;
+    color: #17c783;
+    font-size: larger;
+    transition: background-color 0.5s ease;
+}
+
+.adminNavigationList > li{
+    padding-bottom: 1ch;
+}
+
+
+
+.adminNavLink:hover{
+    background-color: #17c783;
+    color: white;
+}
+
+.adminNavContainer{
+    border-right: #0a7c5a solid 0.25ch;
+    height: fit-content;
+    margin-top: 4ch;
+}
+
+.adminNavHeader1, .adminNavHeader2{
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 2ch;
+    padding-right: 1ch;
+}
+
+.adminNavHeader2{
+    border-bottom: #0a7c5a solid 0.25ch;
+    color: #0a7c5a;
+}
+
+.adminNavHeader1{
+    color: #17c783;
+}
