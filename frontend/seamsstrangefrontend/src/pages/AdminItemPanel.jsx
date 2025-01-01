@@ -1,11 +1,15 @@
 import "../styles/AdminItemPanel.css"
 import TagFilter from "../components/TagFilter";
+import TagList from "../components/TagList";
 import ItemTitleInput from "../components/ItemTitleInput";
 import ItemDescriptionInput from "../components/ItemDescriptionInput";
 import ItemPriceInput from "../components/ItemPriceInput";
 import ItemLinkInput from "../components/ItemLinkInput";
 import ItemQuantityInput from "../components/ItemQuantityInput";
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import axios from "axios";
+import Cookies from "js-cookie"
+
 const AdminItemPanel = () => {
 
     const titleRef = useRef('myTitle');
@@ -13,7 +17,7 @@ const AdminItemPanel = () => {
     const priceRef = useRef(0.00);
     const linkRef = useRef("http://localhost:8000/");
     const quantityRef = useRef(0);
-    const tagRef = useRef([]);
+    const [currentTags, setCurrentTags] = useState([]);
 
     const handleTitleChange = (titleText) =>{
         titleRef.current = titleText;
@@ -36,21 +40,35 @@ const AdminItemPanel = () => {
     }
 
     const handleTagChange = (tagList) =>{
-
+        setCurrentTags(tagList);
     }
 
     
     const createItem = () => {
         // Validate here to reduce round trip time.
-        data = {}
+        var data = {}
         if (quantityRef.current < 0) return;
         data.quantity = Number(quantityRef.current);
         if (priceRef.current < 0) return;
-        data.price = parseFloat(price.current.toFixed(2));
+        data.price = parseFloat(priceRef.current.toFixed(2)); // this line gives error december 31 8pm
         if (!titleRef.current) return;
+        data.title = titleRef.current;
         if (!descriptionRef.current) return;
-
-        // Url format can be validated by the django backend serializer to reduce regex and url constructor usage.
+        data.description = descriptionRef.current;
+        if (!linkRef) linkRef.current = "";
+        data.etsy_url = linkRef.current;
+        data.tags = currentTags;
+        
+        // Create the axios request for the API call
+        axios.post("http://localhost:8000/api/items/",
+            data,
+            {
+                headers:{
+                    "X-CSRFToken": Cookies.get('csrftoken')
+                },
+                withCredentials: true
+            }
+        ).then(console.log("ITEM POSTED")).catch(console.log('ERROR BISH'));
 
     }
 
@@ -74,11 +92,13 @@ const AdminItemPanel = () => {
                 <div className="priceLinkAvailabilityContainer">
                     <ItemPriceInput itemPrice={priceRef.current} handlePrice={handlePriceChange}/>
                     <ItemQuantityInput itemQuantity={quantityRef.current} handleQuantity={handleQuantityChange}/>
-                    
                 </div>
+                <h3>Attached Tags 🏷️</h3>
+                <TagList tags={currentTags}/>
                 <ItemLinkInput itemLink={linkRef.current} handleLink={handleLinkChange}/>
+                <button onClick={createItem}>Create</button>
             </div>
-            <TagFilter purpose="Attach a "/>
+            <TagFilter purpose="Attach a " filterFunction={handleTagChange}/>
         </div>
     </div>
     )
