@@ -16,9 +16,11 @@ def enforce_csrf(request):
 class JWTCookieAuthentication(JWTAuthentication):
     def authenticate(self, request):
         access_cookie = request.COOKIES.get('access',None)
+        print("here")
         if access_cookie is None:
             return None
         validated_token = self.get_validated_token(access_cookie)
         enforce_csrf(request)
+        print("here 2")
         return self.get_user(validated_token), validated_token
     

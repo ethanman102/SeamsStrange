@@ -13,6 +13,7 @@ const AdminItemPanel = () => {
     const priceRef = useRef(0.00);
     const linkRef = useRef("http://localhost:8000/");
     const quantityRef = useRef(0);
+    const tagRef = useRef([]);
 
     const handleTitleChange = (titleText) =>{
         titleRef.current = titleText;
@@ -23,7 +24,7 @@ const AdminItemPanel = () => {
     }
 
     const handlePriceChange = (itemPrice) =>{
-        descriptionRef.current = itemPrice;
+        priceRef.current = itemPrice;
     }
 
     const handleLinkChange = (itemLink) =>{
@@ -32,6 +33,25 @@ const AdminItemPanel = () => {
 
     const handleQuantityChange = (itemQuantity) =>{
         quantityRef.current = itemQuantity;
+    }
+
+    const handleTagChange = (tagList) =>{
+
+    }
+
+    
+    const createItem = () => {
+        // Validate here to reduce round trip time.
+        data = {}
+        if (quantityRef.current < 0) return;
+        data.quantity = Number(quantityRef.current);
+        if (priceRef.current < 0) return;
+        data.price = parseFloat(price.current.toFixed(2));
+        if (!titleRef.current) return;
+        if (!descriptionRef.current) return;
+
+        // Url format can be validated by the django backend serializer to reduce regex and url constructor usage.
+
     }
 
     return(

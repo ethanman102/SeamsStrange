@@ -28,7 +28,7 @@ const ItemContainer = () => {
             params.append('size',SIZE);
             params.append('page',page);
             for (var tag of filterTags){
-                params.append('tag',tag);
+                params.append('tag',tag.name);
             }
             var response = await axios.get('http://localhost:8000/api/items/',{params:params});
             var fetchedItems = await response.data;

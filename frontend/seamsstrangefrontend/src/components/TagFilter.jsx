@@ -15,10 +15,18 @@ const TagFilter = ({filterFunction,purpose}) => {
     
     const handleCheck = (tagCheckbox) =>{
         var tagName = tagCheckbox.getAttribute("tag");
-        if (selected.includes(tagName)){
-            setSelected(selected.filter((tag)=> tag !== tagName));
+        var tagColor = tagCheckbox.getAttribute("color");
+        var data = {
+            name: tagName,
+            color: tagColor
+        };
+
+        if (selected.some((tag) => 
+            tag.name === tagName && tag.color === tagColor
+        )){
+            setSelected(selected.filter((tag)=> tag.name !== tagName));
         }else{
-            setSelected([...selected,tagName]);
+            setSelected([...selected,data]);
         }
     }
 
@@ -40,8 +48,8 @@ const TagFilter = ({filterFunction,purpose}) => {
             {
             tagChecks.map(tag=>{
                 return(
-                <label key={tag.name} className="tagLabel" style={{backgroundColor: selected.includes(tag.name) ? "#0a7c5a" : ""}}>
-                    <input type="checkbox" className="tagCheckbox" tag={tag.name} checked={selected.includes(tag.name)} onChange={(event) => handleCheck(event.target)}/>
+                <label key={tag.name} className="tagLabel" style={{backgroundColor: selected.some((selectedTag) => tag.name === selectedTag.name) ? "#0a7c5a" : ""}}>
+                    <input type="checkbox" className="tagCheckbox" tag={tag.name} checked={selected.some((selectedTag) => tag.name === selectedTag.name)} onChange={(event) => handleCheck(event.target)} color={tag.color}/>
                     <span className="check" style={{backgroundColor: tag.color}}></span>
                 {tag.name}
                 </label>
