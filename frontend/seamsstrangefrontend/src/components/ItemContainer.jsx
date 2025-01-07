@@ -56,12 +56,12 @@ const ItemContainer = () => {
     </div>
     <div className="itemPageContainer">
     <TagFilter filterFunction={editFilteredTags} purpose="Filter By "/>
-    <div className="itemBox">
-        <div className="itemContainer">
-            {items}
+        <div className="itemBox">
+            <div className="itemContainer">
+                {items}
+            </div>
+            <Paginator update={setPage} pageNumber={page} totalPages={totalPages}/>
         </div>
-        <Paginator update={setPage} pageNumber={page} totalPages={totalPages}/>
-    </div>
     </div>
     </>)
 }

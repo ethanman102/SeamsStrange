@@ -1,9 +1,9 @@
+
 .itemContainer{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-evenly;
-    min-height: 75ch;
     align-items: flex-start;
     
 }
@@ -12,7 +12,6 @@
     flex-shrink: 1;
     flex-basis: 25%;
     min-height: 25ch;
-    max-height: 40ch;
     transition: scale 0.5s ease;
     align-self: stretch;
 }
@@ -41,7 +40,6 @@
 
 .itemBox{
     width: 100%;
-    flex-shrink: 1;
     margin-right: 0;
 }
 
@@ -50,6 +48,7 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 5ch;
 }
 
 .itemShopHeader{

@@ -1,0 +1,23 @@
+.singleItemContainer{
+    margin-left: 2ch;
+}
+
+.singleItemTitle{
+    color: #17c783;
+}
+
+.singleItemTags{
+    color: #0a7c5a ;
+}
+
+.singleItemPrice{
+    color: #0a7c5a;
+}
+
+.singleItemDescription{
+    color: white;
+}
+
+.newestCreations{
+    color: #17c783;
+}

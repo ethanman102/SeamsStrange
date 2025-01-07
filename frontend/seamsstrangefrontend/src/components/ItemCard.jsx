@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../styles/ItemCard.css";
 import TagList from "./TagList";
 import { useNavigate } from "react-router-dom";
+import seamImage from "../assets/seamsstrangelogindesign.jpg"
 
 const ItemCard = ({title,price,tags,id}) => {
 
@@ -15,6 +16,7 @@ const ItemCard = ({title,price,tags,id}) => {
     <div className="itemCard" onClick={handleNavigate}>
         <h1 className="itemTitle">{title}</h1>
         <p className="itemPrice"><span className="itemDollarSign">$</span>{price}</p>
+        <img className="cardItemImage" src={seamImage}/>
         <h4 className="tagListTitle">Tags</h4>
         <TagList tags={tags}/>
     </div>)

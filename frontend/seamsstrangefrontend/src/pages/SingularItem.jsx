@@ -1,6 +1,9 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import TagList from "../components/TagList";
+import ContactForm from "../components/ContactForm";
+import "../styles/SingularItem.css"
 
 const SingularItem = () =>{
 
@@ -26,10 +29,15 @@ const SingularItem = () =>{
     },[]);
 
     return(
-        <>
-        <h1>{title}</h1>
-        <h1>{price}</h1>
-        </>
+        <div className="singleItemContainer">
+            <h1 className="singleItemTitle">{title}</h1>
+            <h2 className="singleItemPrice">${price}</h2>
+            <p className="singleItemDescription">{description}</p>
+            <h2 className="singleItemTags">Tags 🏷️</h2>
+            <TagList tags={tags}/>
+            <h2 className="newestCreations">Newest creations you may like</h2>
+            <ContactForm/>
+        </div>
     )
 }
 export default SingularItem;

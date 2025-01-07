@@ -1,0 +1,24 @@
+.contactFormContainer{
+    background-color: #367583;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    width: max-content;
+    padding-left: 3ch;
+    padding-right: 3ch;
+    padding-top: 1ch;
+    border-radius: 2ch;
+    padding-bottom: 2ch;
+}
+
+.contactName{
+    display: block;
+}
+
+.contactEmail{
+    display: block;
+}
+
+.contactMessage{
+    resize: inherit;
+    display: block;
+    width: 100%;
+}
