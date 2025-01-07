@@ -38,7 +38,7 @@ const ItemContainer = () => {
 
         getItems().then( (fetchedItems) =>{
             setItems(fetchedItems.map((item) =>{
-                return <ItemCard title={item.title} price={item.price} tags={item.tags} key={item.id}/>
+                return <ItemCard title={item.title} price={item.price} tags={item.tags} key={item.id} id={item.id}/>
             } ));
             }
         );

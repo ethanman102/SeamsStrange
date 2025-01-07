@@ -34,10 +34,7 @@ class ItemViewSet(viewsets.ModelViewSet):
         action_map = {key.lower(): value for key,
                       value in self.action_map.items()}
         action_name = action_map.get(self.request.method.lower())
-        print(action_name)
         if action_name in ['destroy','create','update']:
-            print('hey')
-            print(action_name,'wooow')
             return [auth() for auth in authentication_classes]
 
         return []      

@@ -1,11 +1,18 @@
 import React, { useState } from "react";
 import "../styles/ItemCard.css";
 import TagList from "./TagList";
+import { useNavigate } from "react-router-dom";
 
-const ItemCard = ({title,price,tags}) => {
+const ItemCard = ({title,price,tags,id}) => {
+
+    let navigate = useNavigate();
+
+    const handleNavigate = () =>{
+        navigate(`/items/${id}/`);
+    }
 
     return(
-    <div className="itemCard">
+    <div className="itemCard" onClick={handleNavigate}>
         <h1 className="itemTitle">{title}</h1>
         <p className="itemPrice"><span className="itemDollarSign">$</span>{price}</p>
         <h4 className="tagListTitle">Tags</h4>

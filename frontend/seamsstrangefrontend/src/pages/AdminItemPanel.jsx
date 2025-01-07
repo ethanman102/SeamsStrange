@@ -61,7 +61,7 @@ const AdminItemPanel = () => {
         
         // Create the axios request for the API call
         axios.post("http://localhost:8000/api/items/",
-            data,
+            -data,
             {
                 headers:{
                     "X-CSRFToken": Cookies.get('csrftoken')
