@@ -24,6 +24,7 @@ class Item(models.Model):
     created_on = models.DateTimeField(auto_now=True)
     sold_out = models.BooleanField(default=True)
     etsy_url = models.URLField(blank=True,null=True,default=None)
+    price = models.DecimalField(default=0.00,decimal_places=2,max_digits=10)
 
     class Meta:
         ordering = ['-id']

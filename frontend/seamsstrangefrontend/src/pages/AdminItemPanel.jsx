@@ -50,7 +50,7 @@ const AdminItemPanel = () => {
         if (quantityRef.current < 0) return;
         data.quantity = Number(quantityRef.current);
         if (priceRef.current < 0) return;
-        data.price = parseFloat(priceRef.current.toFixed(2)); // this line gives error december 31 8pm
+        data.price = parseFloat(priceRef.current).toFixed(2); // this line gives error december 31 8pm
         if (!titleRef.current) return;
         data.title = titleRef.current;
         if (!descriptionRef.current) return;
