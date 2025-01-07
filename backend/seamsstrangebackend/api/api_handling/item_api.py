@@ -29,11 +29,15 @@ class ItemViewSet(viewsets.ModelViewSet):
     # https://stackoverflow.com/questions/59720294/override-permission-and-authentication-classes-in-viewset-list-method``
     def get_authenticators(self):
         authentication_classes = [JWTCookieAuthentication]
+        print('running')
 
         action_map = {key.lower(): value for key,
                       value in self.action_map.items()}
         action_name = action_map.get(self.request.method.lower())
+        print(action_name)
         if action_name in ['destroy','create','update']:
+            print('hey')
+            print(action_name,'wooow')
             return [auth() for auth in authentication_classes]
 
         return []      

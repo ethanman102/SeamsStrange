@@ -1,6 +1,7 @@
 
 from django.middleware import csrf
 from django.contrib.auth import authenticate
+from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.exceptions import ValidationError,NotFound
@@ -9,7 +10,6 @@ from rest_framework_simplejwt.exceptions import InvalidToken,TokenError
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.conf import settings
 from rest_framework.permissions import AllowAny,IsAuthenticated
-from ..authenticate import JWTCookieAuthentication
 
 
 def get_csrf_token(request):
@@ -161,6 +161,19 @@ class HttpCookieRefreshView(TokenRefreshView):
 
         response.data = {'Success': 'New access token obtained'}
         return response
+
+class ProvideAuthenticationStateView(APIView):
+    permission_classes = [IsAuthenticated]
+    def get(self,request):
+        response = Response()
+        print(request.user)
+        if request.user.is_authenticated:
+            data = {"Success":"User is Authenticated"}
+            return Response(data)
+        data = {"Failure":"User is Not Authenticated"}
+        return Response(data,status=status.HTTP_403_FORBIDDEN)
+            
+
 
         
 

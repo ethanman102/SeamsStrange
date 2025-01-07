@@ -1,0 +1,20 @@
+.adminPageFlexContainer{
+    display: flex;
+    flex-direction: row;
+}
+
+.adminTagsPage{
+    margin-left: 5%;
+}
+
+.adminNavigationBar{
+    flex-shrink: 3;
+}
+
+.adminItemPanelFlexContainer{
+    margin-left: 5%;
+    width: 100%;
+}
+
+
+

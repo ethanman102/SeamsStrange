@@ -12,7 +12,9 @@
     flex-shrink: 1;
     flex-basis: 25%;
     min-height: 25ch;
+    max-height: 40ch;
     transition: scale 0.5s ease;
+    align-self: stretch;
 }
 
 .itemContainer .itemCard:hover{
@@ -29,11 +31,12 @@
     flex-basis: 10%;
     flex-shrink: 1;
     background-color: #0D313A;
-    padding-left: 2ch;
+    
     padding-right: 1ch;
     margin-left: 2ch;
     margin-right: 0;
     border-right: #0a7c5a solid 0.25ch;
+    height: fit-content
 }
 
 .itemBox{
@@ -54,7 +57,7 @@
     margin-left: 2ch;
 }
 
-.itemShopHeader > h1{
+.itemShopHeader > h1,.currentHeader{
     color: #17c783;
     font-size: 250%;
     margin-bottom: 0;
