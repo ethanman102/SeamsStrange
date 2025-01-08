@@ -17,7 +17,7 @@ urlpatterns = [
     path('logout/',LogoutView.as_view(),name='logout'),
     path('refresh/',HttpCookieRefreshView.as_view(),name='refresh'),
     path('authenticated/',ProvideAuthenticationStateView.as_view(),name='authenticated'),
-    path('email',EmailView.as_view(),name="email")
+    path('email',EmailView.as_view(),name="email"),
     # item api routes
     path('',include(router.urls)),
     
