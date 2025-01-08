@@ -11,14 +11,65 @@
 
 .contactName{
     display: block;
+    border-radius: 1ch;
+    width: 100%;
+    margin-bottom: 1ch;
+    height: 3ch;
 }
 
 .contactEmail{
     display: block;
+    border-radius: 1ch;
+    width: 100%;
+    margin-bottom: 5ch;
+    height: 3ch;
 }
 
 .contactMessage{
     resize: inherit;
     display: block;
     width: 100%;
+    border-radius: 1ch;
+    height: 30ch;
+}
+
+.contactSubmit{
+    background-color:  #17c783;
+    width: 100%;
+    margin-top: 1ch;
+    color: white;
+    border: none;
+    border-radius: 1ch;
+}
+
+.contactSubmit:hover{
+    background-color:  #17885c;
+    cursor: pointer;
+}
+
+.contactHeader{
+    text-align: center;
+    text-decoration: underline;
+    color: white;
+    width: 100%;
+}
+
+.contactSentCheck{
+    text-align: center;
+    font-size: 300%;
+    transition: scale ease 0.3s;
+}
+
+.contactSentCheck:hover{
+    scale: 1.2;
+}
+
+.contactSentConfirmation{
+    text-align: center;
+    color: #17c783;
+}
+
+.contactSentMessage{
+    text-align: center;
+    color: white;
 }

@@ -1,0 +1,12 @@
+Seams Strange Notification:
+
+You are recieving this email because a new individual has submitted an inquiry:
+
+Inquiry From Page: {{ sent_from }}
+
+Inquierer Name: {{ name }}
+
+Inquierer Email: {{ email }}
+
+Message:
+{{ message }}
