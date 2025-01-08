@@ -2,6 +2,7 @@
     background-color: #367583;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     width: max-content;
+    min-width: 30%;
     padding-left: 3ch;
     padding-right: 3ch;
     padding-top: 1ch;
@@ -42,9 +43,13 @@
     border-radius: 1ch;
 }
 
-.contactSubmit:hover{
+.contactSubmit:enabled:hover{
     background-color:  #17885c;
     cursor: pointer;
+}
+
+.contactSubmit:disabled{
+    background-color:  #09291d86;
 }
 
 .contactHeader{
@@ -72,4 +77,8 @@
 .contactSentMessage{
     text-align: center;
     color: white;
+}
+
+.recaptcha{
+    margin-top: 2ch;
 }
