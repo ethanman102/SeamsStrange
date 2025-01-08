@@ -36,7 +36,7 @@ const SingularItem = () =>{
             <h2 className="singleItemTags">Tags 🏷️</h2>
             <TagList tags={tags}/>
             <h2 className="newestCreations">Newest creations you may like</h2>
-            <ContactForm/>
+            <ContactForm page={title}/>
         </div>
     )
 }

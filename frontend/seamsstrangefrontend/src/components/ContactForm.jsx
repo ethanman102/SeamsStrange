@@ -2,11 +2,35 @@ import axios from "axios";
 import "../styles/ContactForm.css"
 import { useState } from "react";
 
-const ContactForm = () => {
+const ContactForm = ({page}) => {
 
     const [sent,setSent] = useState(false);
 
     const handleSubmit = async (event) => {
+        event.preventDefault();
+        let formData = new FormData(event.target);
+
+        formData.append("sent_from",page);
+        let object = Object.fromEntries(formData);
+        let json = JSON.stringify(object);
+
+        let response = await axios.post('http://localhost:8000/api/email/',
+            json,
+            {
+                headers:{
+                    "Content-Type": "application/json"
+                }
+            }
+
+        );
+        if (response.status === 200){
+            setSent(true);
+        }
+        else{
+            var data = response.data;
+            console.log(data.error);
+        }
+
     }
     
 

@@ -10,3 +10,6 @@ Inquierer Email: {{ email }}
 
 Message:
 {{ message }}
+
+This email is intended for the admins of Seams Strange Embroidary.
+If you recieve this email in error please immediately discard it.
