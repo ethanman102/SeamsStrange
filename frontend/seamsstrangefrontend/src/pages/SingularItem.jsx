@@ -4,7 +4,7 @@ import axios from "axios";
 import TagList from "../components/TagList";
 import ContactForm from "../components/ContactForm";
 import "../styles/SingularItem.css"
-import seamImage from "../assets/seamsstrangelogindesign.jpg"
+import asModal from "../components/wrappers/asModal"
 
 const SingularItem = () =>{
 
@@ -16,6 +16,9 @@ const SingularItem = () =>{
     const [quantity,setQuantity] = useState(0);
     const [etsyURL,setEtsyURL] = useState('');
     const [tags,setTags] = useState([]);
+    const [openModal,setOpenModal] = useState(false);
+
+    const ModalContact = asModal(ContactForm);
 
     useEffect(() => {
         axios.get(`http://localhost:8000/api/items/${params.id}`).then((response) => {
@@ -31,6 +34,7 @@ const SingularItem = () =>{
 
     return(
         <>
+        <ModalContact page={title} openModal={openModal} />
         <div className="singleItemContainer">
             <div className="singleItemContent">
                 <h1 className="singleItemTitle">{title}</h1>
@@ -46,7 +50,7 @@ const SingularItem = () =>{
                 </div>
                 <div className="contactSellerContainer">
                     <h2 className="contactSellerTitle">Interested In Buying?</h2>
-                    <button className="contactSellerButton">Contact Seller</button>
+                    <button className="contactSellerButton" onClick={() => setOpenModal(!openModal)}>Contact Seller</button>
                 </div>
 
                 </div>
