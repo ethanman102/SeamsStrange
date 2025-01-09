@@ -4,6 +4,7 @@ import axios from "axios";
 import TagList from "../components/TagList";
 import ContactForm from "../components/ContactForm";
 import "../styles/SingularItem.css"
+import seamImage from "../assets/seamsstrangelogindesign.jpg"
 
 const SingularItem = () =>{
 
@@ -29,15 +30,29 @@ const SingularItem = () =>{
     },[]);
 
     return(
+        <>
         <div className="singleItemContainer">
-            <h1 className="singleItemTitle">{title}</h1>
-            <h2 className="singleItemPrice">${price}</h2>
-            <p className="singleItemDescription">{description}</p>
-            <h2 className="singleItemTags">Tags 🏷️</h2>
-            <TagList tags={tags}/>
-            <h2 className="newestCreations">Newest creations you may like</h2>
-            <ContactForm page={title}/>
+            <div className="singleItemContent">
+                <h1 className="singleItemTitle">{title}</h1>
+                <h2 className="singleItemPrice">${price}</h2>
+            </div>
+            <div className="informationContainer">
+            <div className="descriptionContainer">
+                <h1>About the Product</h1>
+                <label className="singleDescriptionLabel">Description</label>
+                <p className="singleItemDescription">{description}</p>
+                <h2 className="singleItemTags">Tags 🏷️</h2>
+                <TagList tags={tags}/>
+                </div>
+                <div className="contactSellerContainer">
+                    <h2 className="contactSellerTitle">Interested In Buying?</h2>
+                    <button className="contactSellerButton">Contact Seller</button>
+                </div>
+
+                </div>
         </div>
+        <h2 className="newestCreations">Newest creations you may like</h2>
+        </>
     )
 }
 export default SingularItem;

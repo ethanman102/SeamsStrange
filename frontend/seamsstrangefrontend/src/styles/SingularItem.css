@@ -1,23 +1,111 @@
 .singleItemContainer{
-    margin-left: 2ch;
+    display: flex;
+    justify-content:space-between;
+    flex-wrap: wrap;
+    padding-bottom: 5ch;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
 
 .singleItemTitle{
     color: #17c783;
+    width: fit-content;
 }
 
 .singleItemTags{
     color: #0a7c5a ;
+    margin-left: 1ch;
+    background-color: rgba(255, 255, 255, 0.712);
+    width: fit-content;
+    padding-left: 1ch;
+    padding-right: 1ch;
+    border-radius: 2ch;
 }
 
 .singleItemPrice{
     color: #0a7c5a;
+    width: fit-content;
+
 }
 
 .singleItemDescription{
     color: white;
+    padding-left: 2ch;
+    padding-right: 2ch;
+    padding-bottom: 3ch;
+    overflow-wrap: break-word;
+    max-height: 50ch;
+    overflow-y: auto;
+    
 }
 
 .newestCreations{
     color: #17c783;
+}
+
+.singleItemContent{
+    margin-left: 2ch;
+    width: fit-content;
+}
+
+
+.descriptionContainer{
+    background: rgb(23,199,131);
+    background: linear-gradient(90deg, rgba(23,199,131,1) 0%, rgba(54,117,131,1) 100%);
+    border-radius: 2ch;
+    margin-top: 2ch;
+    margin-left: 2ch;
+    min-width: 30%;
+    margin-right: 2ch;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+.descriptionContainer > h1{
+    color: white;
+    text-align: center;
+    padding-left: 2ch;
+    padding-right: 2ch;
+}
+
+.informationContainer .tagList{
+    margin-left: 2ch;
+    padding: 0;
+    width: fit-content;
+    padding-bottom: 2ch;
+
+}
+
+.informationContainer{
+    min-width: 30%;
+    max-width: 75ch;
+}
+
+.singleDescriptionLabel{
+    color: white;
+    text-decoration: underline;
+    margin-left: 2ch;
+    margin-right: 2ch;
+}
+
+.contactSellerButton{
+    color: white;
+    border: none;
+    background: rgb(23,199,131);
+    background: linear-gradient(90deg, rgba(23,199,131,1) 0%, rgba(54,117,131,1) 100%);
+    font-size: 125%;
+    padding-left: 1ch;
+    padding-right: 1ch;
+    border-radius: 2ch;
+    transition: scale 0.3s ease;
+}
+
+.contactSellerButton:hover{
+    cursor: pointer;
+    scale: 1.1;
+}
+
+.contactSellerTitle{
+    color: white;
+}
+
+.contactSellerContainer{
+    text-align: center;
 }

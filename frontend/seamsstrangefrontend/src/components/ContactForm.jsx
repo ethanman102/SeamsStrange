@@ -56,7 +56,9 @@ const ContactForm = ({page}) => {
             </>}
             {!sent && <><form action="">
                 <h2 className="contactHeader">Get in touch</h2>
+                <label>Name</label>
                 <input className="contactName" type="text" name="name" placeholder="Your Name" required disabled={loading}/>
+                <label>Email</label>
                 <input className="contactEmail" type="email" name="email" placeholder="Your email" required disabled={loading}/>
                 <textarea className="contactMessage" name="message" placeholder="Message" required disabled={loading}/>
                 <ReCAPTCHA className="recaptcha" sitekey="6LewaLEqAAAAAKhyx4RWdDUzqbk0oRK2Xw2VL78b" onChange={(value) => setRecaptchaValue(value)} ref={recaptchaRef}/>
