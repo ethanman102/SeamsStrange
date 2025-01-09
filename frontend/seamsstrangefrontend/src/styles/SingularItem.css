@@ -1,6 +1,6 @@
 .singleItemContainer{
     display: flex;
-    justify-content:space-between;
+    justify-content:space-evenly;
     flex-wrap: wrap;
     padding-bottom: 5ch;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -40,11 +40,14 @@
 
 .newestCreations{
     color: #17c783;
+    margin-left: 2ch;
+    margin-right: 2ch;
 }
 
 .singleItemContent{
     margin-left: 2ch;
     width: fit-content;
+    margin-right: 2ch;
 }
 
 
@@ -78,11 +81,12 @@
     max-width: 75ch;
 }
 
-.singleDescriptionLabel{
+.singleDescriptionLabel, .singleURLLabel{
     color: white;
     text-decoration: underline;
     margin-left: 2ch;
     margin-right: 2ch;
+    display: block;
 }
 
 .contactSellerButton{
@@ -93,12 +97,14 @@
     padding-left: 1ch;
     padding-right: 1ch;
     border-radius: 2ch;
-    transition: scale 0.3s ease;
+    transition: scale 0.3s ease, background-color 0.3s ease;
 }
 
 .contactSellerButton:hover{
     cursor: pointer;
     scale: 1.1;
+    background-color: #0a7c5a;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
 
 .contactSellerTitle{
@@ -107,4 +113,14 @@
 
 .contactSellerContainer{
     text-align: center;
+}
+
+.singleItemURL{
+    padding-left: 2ch;
+    margin-top: 1ch;
+    display: block;
+}
+
+.singleItemQuantity{
+    color: #0a7c5a;
 }
