@@ -1,13 +1,21 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import "../../styles/asModal.css"
 
 const asModal = (WrappedComponent) => {
     const modalfiedComponent = (props) =>{
-        const [isOpen,setIsOpen] = useState(props.openModal);
+        const [isOpen,setIsOpen] = useState(false);
+
+        useEffect(() => {
+            if (props.openModal !== 0) setIsOpen(true);
+        }, [props.openModal]);
+
 
         return(
         <div className="modal" style={{display: isOpen ? "block" : "none",position: "fixed"}}>
-            <WrappedComponent {...props}/>
-            <button onClick={() => setIsOpen(!isOpen)}>Close</button>
+            <div className="modalContent">
+                <WrappedComponent {...props}/>
+                <button onClick={() => setIsOpen(!isOpen)} className="modalCloseButton">Close</button>
+            </div>
         </div>
         );
     }

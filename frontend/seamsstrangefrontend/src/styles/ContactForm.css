@@ -1,5 +1,6 @@
 .contactFormContainer{
-    background-color: #367583;
+    background: rgb(23,199,131);
+    background: linear-gradient(90deg, rgba(23,199,131,1) 0%, rgba(54,117,131,1) 100%);
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     width: max-content;
     min-width: 30%;
@@ -35,7 +36,7 @@
 }
 
 .contactSubmit{
-    background-color:  #17c783;
+    background-color:  #0a7c5a;;
     width: 100%;
     margin-top: 1ch;
     color: white;
@@ -54,7 +55,6 @@
 
 .contactHeader{
     text-align: center;
-    text-decoration: underline;
     color: white;
     width: 100%;
 }

@@ -16,7 +16,7 @@ const SingularItem = () =>{
     const [quantity,setQuantity] = useState(0);
     const [etsyURL,setEtsyURL] = useState('');
     const [tags,setTags] = useState([]);
-    const [openModal,setOpenModal] = useState(false);
+    const [openModal,setOpenModal] = useState(0);
 
     const ModalContact = asModal(ContactForm);
 
@@ -50,7 +50,7 @@ const SingularItem = () =>{
                 </div>
                 <div className="contactSellerContainer">
                     <h2 className="contactSellerTitle">Interested In Buying?</h2>
-                    <button className="contactSellerButton" onClick={() => setOpenModal(!openModal)}>Contact Seller</button>
+                    <button className="contactSellerButton" onClick={() => setOpenModal(openModal + 1)}>Contact Seller</button>
                 </div>
 
                 </div>
