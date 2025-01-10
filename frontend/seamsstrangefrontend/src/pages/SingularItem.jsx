@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import TagList from "../components/TagList";
+import ItemCard from "../components/ItemCard";
 import ContactForm from "../components/ContactForm";
 import "../styles/SingularItem.css"
 import asModal from "../components/wrappers/asModal"
@@ -17,6 +18,7 @@ const SingularItem = () =>{
     const [etsyURL,setEtsyURL] = useState('');
     const [tags,setTags] = useState([]);
     const [openModal,setOpenModal] = useState(0);
+    const [recommendations,setRecommendations] = useState([]);
 
     const ModalContact = asModal(ContactForm);
 
@@ -30,7 +32,11 @@ const SingularItem = () =>{
             setEtsyURL(data.etsy_url);
             setTags(data.tags);
         });
-    },[]);
+        axios.get(`http://localhost:8000/api/items/${params.id}/recommendations/`).then((response) => {
+            var data = response.data;
+            setRecommendations(data.items);
+        })
+    },[params.id]);
 
     return(
         <>
@@ -64,6 +70,9 @@ const SingularItem = () =>{
                 </div>
         </div>
         <h2 className="newestCreations">Newest creations you may like</h2>
+        {recommendations.map((item) =>{
+            return <ItemCard title={item.title} price={item.price} tags={item.tags} key={item.id} id={item.id}/>
+        })}
         </>
     )
 }

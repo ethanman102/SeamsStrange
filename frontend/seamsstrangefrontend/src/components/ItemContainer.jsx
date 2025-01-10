@@ -19,7 +19,14 @@ const ItemContainer = () => {
         setPage(1);
     }
 
-    
+    const handlePage = (pageNum) => {
+        setPage(pageNum);
+    }
+
+    // use effect to repoint person at top of page whenever paginator at bottom is activated or new tags are activated
+    useEffect(() => {
+        window.scrollTo({top:0,left:0,behavior:"smooth"});
+    },[filterTags,page]);
 
     // re-render the items when the page query changes.
     useEffect(() => {
@@ -60,7 +67,7 @@ const ItemContainer = () => {
             <div className="itemContainer">
                 {items}
             </div>
-            <Paginator update={setPage} pageNumber={page} totalPages={totalPages}/>
+            <Paginator update={handlePage} pageNumber={page} totalPages={totalPages}/>
         </div>
     </div>
     </>)

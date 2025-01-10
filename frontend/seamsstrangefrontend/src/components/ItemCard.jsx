@@ -10,6 +10,7 @@ const ItemCard = ({title,price,tags,id}) => {
 
     const handleNavigate = () =>{
         navigate(`/items/${id}/`);
+        window.scrollTo({top:0,left:0,behavior:"smooth"});
     }
 
     return(

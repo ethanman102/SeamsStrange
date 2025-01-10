@@ -1,6 +1,6 @@
 from django.urls import path,include
 from .api_handling.jwt_auth import LoginView, LogoutView, HttpCookieRefreshView, ProvideAuthenticationStateView
-from .api_handling.item_api import ItemViewSet
+from .api_handling.item_api import ItemViewSet, ItemRecommendationView
 from .api_handling.tag_api import TagViewSet
 from .api_handling.email_api import EmailView
 from rest_framework.routers import DefaultRouter
@@ -20,5 +20,6 @@ urlpatterns = [
     path('email/',EmailView.as_view(),name="email"),
     # item api routes
     path('',include(router.urls)),
+    path('items/<int:id>/recommendations/',ItemRecommendationView.as_view(),name="recommendations")
     
 ]
