@@ -4,6 +4,7 @@
     flex-wrap: wrap;
     padding-bottom: 5ch;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+
 }
 
 .singleItemTitle{
@@ -42,6 +43,7 @@
     color: #17c783;
     margin-left: 2ch;
     margin-right: 2ch;
+    text-align: center;
 }
 
 .singleItemContent{
@@ -124,3 +126,46 @@
 .singleItemQuantity{
     color: #0a7c5a;
 }
+
+.recommendationsContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    margin-bottom: 10ch;
+}
+
+/*Item Card shrinking for recommendation section specifics*/
+.recommendationsContainer .itemCard{
+    transition: scale 0.5s ease;
+    margin-right: 2ch;
+    scale: 0.9;
+    min-width: 40ch;
+}
+
+.recommendationsContainer .itemPrice{
+    font-size: 125%;
+}
+
+.recommendationsContainer .itemTitle{
+    font-size: 150%;
+}
+
+.recommendationsContainer .tagListTitle{
+    font-size: 125%;
+}
+
+.recommendationsContainer .tagItem{
+    font-size: 75%;
+}
+
+.recommendationsContainer .cardItemImage{
+    object-fit: cover;
+
+}
+
+.recommendationsContainer .itemCard:hover{
+    scale: 1;
+    cursor: pointer;
+}
+/*Item Card shrinking for recommendation section specifics*/
