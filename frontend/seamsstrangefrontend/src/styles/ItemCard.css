@@ -1,10 +1,15 @@
 .itemCard{
     width: 20%;
-    background-color: #367583;
+    min-width: 20ch;
+    max-width: 45ch;
+    background-color: #17c783;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     border-radius: 2ch;
     padding-bottom: 3ch;
-    margin: 1ch;
+    margin: 2ch;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
 }
 
 .itemPrice{
@@ -20,7 +25,7 @@
    margin-bottom: 0;
    overflow-wrap: break-word;
    font-size: 200%;
-   color: #17c783;
+   color: white;
    margin-left: 1ch;
    margin-right: 1ch;
 }
@@ -36,4 +41,14 @@
     width: fit-content;
     margin-bottom: 0;
     color: #0d313a;
+    padding-left: 1ch;
+    padding-right: 1ch;
+    border-radius: 2ch;
+    background-color: rgba(255, 255, 255, 0.712);
+}
+
+.cardItemImage{
+    width: 100%;
+    max-height: 200px;
+    object-fit: cover;
 }

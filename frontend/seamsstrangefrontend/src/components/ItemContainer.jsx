@@ -19,7 +19,14 @@ const ItemContainer = () => {
         setPage(1);
     }
 
-    
+    const handlePage = (pageNum) => {
+        setPage(pageNum);
+    }
+
+    // use effect to repoint person at top of page whenever paginator at bottom is activated or new tags are activated
+    useEffect(() => {
+        window.scrollTo({top:0,left:0,behavior:"smooth"});
+    },[filterTags,page]);
 
     // re-render the items when the page query changes.
     useEffect(() => {
@@ -38,7 +45,7 @@ const ItemContainer = () => {
 
         getItems().then( (fetchedItems) =>{
             setItems(fetchedItems.map((item) =>{
-                return <ItemCard title={item.title} price={item.price} tags={item.tags} key={item.id}/>
+                return <ItemCard title={item.title} price={item.price} tags={item.tags} key={item.id} id={item.id}/>
             } ));
             }
         );
@@ -56,12 +63,12 @@ const ItemContainer = () => {
     </div>
     <div className="itemPageContainer">
     <TagFilter filterFunction={editFilteredTags} purpose="Filter By "/>
-    <div className="itemBox">
-        <div className="itemContainer">
-            {items}
+        <div className="itemBox">
+            <div className="itemContainer">
+                {items}
+            </div>
+            <Paginator update={handlePage} pageNumber={page} totalPages={totalPages}/>
         </div>
-        <Paginator update={setPage} pageNumber={page} totalPages={totalPages}/>
-    </div>
     </div>
     </>)
 }

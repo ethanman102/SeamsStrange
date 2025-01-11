@@ -5,6 +5,8 @@ import ItemContainer from './components/ItemContainer';
 import NavBar from './components/NavBar';
 import Login from './components/Login';
 import Admin from './pages/Admin';
+import Homepage from './pages/Homepage';
+import SingularItem from './pages/SingularItem';
 
 function App() {
 
@@ -15,6 +17,7 @@ function App() {
         <Route path="/" element={<h1>HEY</h1>}/>
         <Route path="/login/" element={<Login/>}/>
         <Route path="/items/" element={<ItemContainer/>}/>
+        <Route path="/items/:id/" element={<SingularItem/>}/>
         <Route path="/admin/*" element={<Admin/>}/>
       </Routes>
     </>

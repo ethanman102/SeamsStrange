@@ -1,15 +1,14 @@
 from rest_framework import viewsets, status
 from rest_framework.response import Response
+from rest_framework.views import APIView
 from ..serializers import ItemSerializer
 from ..models import Item
 from ..authenticate import JWTCookieAuthentication
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from rest_framework.permissions import IsAuthenticated,AllowAny
+from django.shortcuts import get_object_or_404
 
-
-
-
-
+RECOMMEND_NUM = 3 
 
 class ItemViewSet(viewsets.ModelViewSet):
 
@@ -34,10 +33,7 @@ class ItemViewSet(viewsets.ModelViewSet):
         action_map = {key.lower(): value for key,
                       value in self.action_map.items()}
         action_name = action_map.get(self.request.method.lower())
-        print(action_name)
         if action_name in ['destroy','create','update']:
-            print('hey')
-            print(action_name,'wooow')
             return [auth() for auth in authentication_classes]
 
         return []      
@@ -114,5 +110,34 @@ class ItemViewSet(viewsets.ModelViewSet):
         return Response(serializer.data,status=status.HTTP_200_OK,headers=headers)
         
 
-    
+class ItemRecommendationView(APIView):
+    '''
+     Recommendation get endpoint for items. It grabs RECCOMENDED_NUM amount of items based on items thatr have one of the similar tags. If no tags are similar or the # of
+     items is less than RECOMMEND_NUM then populate with the most recently created items not already in the list.
+    '''
+    def get(self,request,id):
+        item = get_object_or_404(Item,id=id)
+
+        # if the item has no tags then just return the first 3 objects.
+        if item.tags.count() == 0:
+            items = Item.objects.all().exclude(id=id)[:RECOMMEND_NUM]
+            return Response({"items": ItemSerializer(items,many=True).data},status=status.HTTP_200_OK)
+        
+        tag_array = [tag.name for tag in item.tags.all()]
+        items = Item.objects.filter(tags__name__in=tag_array).exclude(id=id).distinct()[:RECOMMEND_NUM]
+        item_count = items.count()
+        if item_count < RECOMMEND_NUM:
+            remaining = RECOMMEND_NUM - item_count
+            # get the required items to not query again, we do not want items repeating or the item viewing to be shown twice.
+            excluded_ids = [id]
+            for queried_item in items:
+                excluded_ids.append(queried_item.id)
+            
+            # perform one last query to get the remaining items as most recently created items.
+            remaining_items = Item.objects.all().exclude(id__in=excluded_ids)[:remaining]
+            completed_recommendations = remaining_items | items
+            return Response({"items" : ItemSerializer(completed_recommendations,many=True).data},status=status.HTTP_200_OK)
+
+        # else the case when the first query (atleast RECOMMEND_NUM amount of item with similar tags) are found
+        return Response({"items": ItemSerializer(items,many=True).data},status=status.HTTP_200_OK)     
 
