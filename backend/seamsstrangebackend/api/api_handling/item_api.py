@@ -126,9 +126,7 @@ class ItemRecommendationView(APIView):
         tag_array = [tag.name for tag in item.tags.all()]
         items = Item.objects.filter(tags__name__in=tag_array).exclude(id=id).distinct()[:RECOMMEND_NUM]
         item_count = items.count()
-        print(items,'hhhh')
         if item_count < RECOMMEND_NUM:
-            print("heyyy")
             remaining = RECOMMEND_NUM - item_count
             # get the required items to not query again, we do not want items repeating or the item viewing to be shown twice.
             excluded_ids = [id]
@@ -137,9 +135,7 @@ class ItemRecommendationView(APIView):
             
             # perform one last query to get the remaining items as most recently created items.
             remaining_items = Item.objects.all().exclude(id__in=excluded_ids)[:remaining]
-            print("YOOO")
             completed_recommendations = remaining_items | items
-            print(completed_recommendations)
             return Response({"items" : ItemSerializer(completed_recommendations,many=True).data},status=status.HTTP_200_OK)
 
         # else the case when the first query (atleast RECOMMEND_NUM amount of item with similar tags) are found

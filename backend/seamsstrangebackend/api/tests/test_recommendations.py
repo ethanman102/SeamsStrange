@@ -99,7 +99,7 @@ class TestRecommendations(TestCase):
         tag_count = 0
         for item in data["items"]:
             self.assertTrue(len(item['tags']) == 0 or len(item['tags']) == 1)
-            if len(item['tags'] == 1):
+            if len(item['tags']) == 1:
                 tag_count += 1
         
         self.assertEqual(tag_count,2)
