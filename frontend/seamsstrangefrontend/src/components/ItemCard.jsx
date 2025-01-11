@@ -15,8 +15,10 @@ const ItemCard = ({title,price,tags,id}) => {
 
     return(
     <div className="itemCard" onClick={handleNavigate}>
-        <h1 className="itemTitle">{title}</h1>
-        <p className="itemPrice"><span className="itemDollarSign">$</span>{price}</p>
+        <div className="itemCardHeader">
+            <h1 className="itemTitle">{title}</h1>
+            <p className="itemPrice"><span className="itemDollarSign">$</span>{price}</p>
+        </div>
         <img className="cardItemImage" src={seamImage}/>
         <h4 className="tagListTitle">Tags 🏷️</h4>
         <TagList tags={tags}/>

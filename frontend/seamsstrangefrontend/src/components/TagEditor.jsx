@@ -1,12 +1,19 @@
-import { useState } from "react";
+import { useState,useContext } from "react";
 import "../styles/TagEditor.css"
-import axios from "axios";
-import Cookies from "js-cookie"
+import { AuthContext } from "../pages/Admin";
+import { useNavigate } from "react-router-dom";
+import instance from "../api";
+
 
 const TagEditor = ({onSubmit,tag}) =>{
 
-    const [tagColor,setTagColor] = useState(tag.color);
+    const [tagColor,setTagColor] = useState(tag.color ? tag.color : "#000000" );
     const [tagText,setTagText] = useState(tag.name);
+    const [message,setMessage] = useState('');
+
+    const authenticationStateHandler = useContext(AuthContext);
+
+    const navigate =  useNavigate();
 
     const onColorChange = (color) =>{
         setTagColor(color);
@@ -16,27 +23,40 @@ const TagEditor = ({onSubmit,tag}) =>{
         setTagText(text);
     }
 
+    const onReset = () =>{
+        setTagText(tag.name ? tag.name : "");
+        setTagColor(tag.color ? tag.color : "#000000");
+        setMessage('');
+    }
+
     const onConfirm = () =>{
-        var csrfToken = Cookies.get('csrftoken');
+
+        if (tagText === undefined || tagText === ''){
+            setMessage("Tag name can not be blank.");
+            return
+        }
+
         var data = {
             name: tagText,
             color: tagColor
         }
-        axios.post("http://localhost:8000/api/tags/",
+        instance.post("/api/tags/",
             data,
-            {
-            headers:{
-                'X-CSRFToken' : csrfToken
-            },
-            withCredentials:true
-            }
         ).then((response) =>{
             if (response.status === 201 || response.status === 200){ 
                 onSubmit(data);
-                setTagText(tag.name);
-                setTagColor(tag.color);
+                setTagText(tag.name ? tag.name : "");
+                setTagColor(tag.color ? tag.color : "#000000");
+                setMessage('Tag Created');
             }
-        }).catch((error) => console.error("Request Failed"));
+        }).catch((error) => {
+            if (error.response.status === 401){
+                authenticationStateHandler(false);
+                navigate('/admin');
+            }else if (error.response.status === 500){
+                setMessage('Invalid Tag name. Is this name already being used?')
+            }
+        });
     }
 
     return(
@@ -48,17 +68,18 @@ const TagEditor = ({onSubmit,tag}) =>{
     <div className="tagEditorFlexContainer">
         <div className="tagCreationInput">
             <label className="nameLabel">Name</label>
-            <input type="text" defaultValue={tagText} onChange={(event) =>{onTextChange(event.target.value)}} className="tagNameInput"></input>
+            <input type="text" value={tagText} defaultValue={tagText} onChange={(event) =>{onTextChange(event.target.value)}} className="tagNameInput"/>
             <label className="colorLabel">Color</label>
-            <input type="color" onChange={(event) => {onColorChange(event.target.value)}} maxLength="30" className="tagColorInput"/>
+            <input type="color" value={tagColor} defaultValue={tag.color ? tag.color : "#000000"} onChange={(event) => {onColorChange(event.target.value)}} maxLength="30" className="tagColorInput"/>
         </div>
         <div className="tagCreationOutput">
             <h3 className="currentTagDesignHeader">Current Design</h3>
             <span className="tagPill" style={{backgroundColor: tagColor}}>{tagText}</span>
             <div className="tagEditorButtons">
                 <button className="tagEditorButton" onClick={() => onConfirm()}>Create</button>
-                <button className="tagEditorButton">Reset</button>
+                <button className="tagEditorButton" onClick={() => onReset()}>Reset</button>
             </div>
+            <p className="tagEditorMessage">{message}</p>
         </div>
     </div>
     </>

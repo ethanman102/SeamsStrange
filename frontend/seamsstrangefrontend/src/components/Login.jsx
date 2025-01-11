@@ -1,23 +1,30 @@
 import React, { useState } from "react";
-import axios from "axios";
 import "../styles/Login.css";
+import instance from "../api";
 
-const Login = () => {
+const Login = ({authenticationStateHandler}) => {
 
     const [username,setEmail] = useState('');
     const [password,setPassword] = useState('');
+    const [errorMessage,setErrorMessage] = useState('');
 
     const handleSubmit = async (event) =>{
         event.preventDefault();
-        var response = await axios.post('http://localhost:8000/api/login/',
+        try{
+        var response = await instance.post('http://localhost:8000/api/login/',
             {
                 email: username,
                 password: password
-            },
-            {
-                withCredentials: true
             }
-        )
+        );
+        if (response.status === 200){
+            authenticationStateHandler(true);
+        }
+        }catch (error){
+            if (error.response.status === 404){
+                setErrorMessage("Incorrect Email or Password");
+            }
+        }
     }
 
     return(
@@ -28,6 +35,7 @@ const Login = () => {
             <form onSubmit={handleSubmit}>
                 <input type="email" name="email" placeholder="Email" className="textbox" onChange={(event) => setEmail(event.target.value)}/>
                 <input type="password" name="password" placeholder="Password" className="textbox" onChange={(event) => setPassword(event.target.value)}/>
+                <p className="loginErrorMessage">{errorMessage}</p>
                 <button type="submit" className="submitButton">Login</button>
             </form>
         </div>)

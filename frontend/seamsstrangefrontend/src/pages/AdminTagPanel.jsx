@@ -10,6 +10,7 @@ const AdminTagPanel = () => {
     const [tags,setTags] = useState([]);
 
 
+
     useEffect(() =>{
         axios.get('http://localhost:8000/api/tags/',
             {withCredentials: true}
@@ -17,7 +18,6 @@ const AdminTagPanel = () => {
     },[])
 
     const handleSubmit = (newTag) =>{
-        console.log("WELLL");
         setTags([...tags,newTag]);
     }
 

@@ -1,5 +1,4 @@
-import React, { useState,useEffect } from "react";
-import axios from "axios";
+import React, { useState,useEffect, createContext } from "react";
 import "../styles/ItemContainer.css"
 import Login from "../components/Login";
 import AdminTagPanel from "./AdminTagPanel";
@@ -7,6 +6,9 @@ import AdminNavBar from "../components/AdminNavbar";
 import { Route, Routes } from "react-router-dom";
 import "../styles/Admin.css"
 import AdminItemPanel from "./AdminItemPanel";
+import instance from "../api";
+
+export const AuthContext = createContext();
 
 const Admin = () =>{
 
@@ -14,33 +16,32 @@ const Admin = () =>{
     const [authenticated,setAuthenticated] = useState(null);
 
     useEffect(() =>{
-        axios.get('http://localhost:8000/api/authenticated/', 
-        {
-            withCredentials: true
-        }).then((response) =>{
+        instance.get('http://localhost:8000/api/authenticated/').then((response) =>{
             if (response.status === 200) setAuthenticated(true);
             else setAuthenticated(false);
-        }).catch(()=> {setAuthenticated(false);}
+        }).catch((error)=> {setAuthenticated(false);}
     );
 
     },
 []);
 
+const handleAuthenticationState = (authBool) => setAuthenticated(authBool)
+
 
 return(
-    <>
-
-    
+    <> 
     {authenticated ? 
     <>
     <div className="adminPageFlexContainer">
         <AdminNavBar/>
-        <Routes>
-            <Route path="items/" element={<AdminItemPanel/>}/>
-            <Route path="tags/" element={<AdminTagPanel/>}/>
-        </Routes>
+        <AuthContext.Provider value={handleAuthenticationState}>
+            <Routes>
+                    <Route path="items/" element={<AdminItemPanel />}/>
+                    <Route path="tags/" element={<AdminTagPanel />}/>
+            </Routes>
+        </AuthContext.Provider>
     </div>
-    </> : <Login/>}
+    </> : <Login authenticationStateHandler={handleAuthenticationState}/>}
     </>
 )
 
