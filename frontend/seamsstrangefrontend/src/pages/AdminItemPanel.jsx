@@ -6,9 +6,10 @@ import ItemDescriptionInput from "../components/ItemDescriptionInput";
 import ItemPriceInput from "../components/ItemPriceInput";
 import ItemLinkInput from "../components/ItemLinkInput";
 import ItemQuantityInput from "../components/ItemQuantityInput";
-import { useRef, useState } from "react";
-import axios from "axios";
-import Cookies from "js-cookie"
+import { useRef, useState,useContext } from "react";
+import instance from "../api";
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from "./Admin";
 
 const AdminItemPanel = () => {
 
@@ -18,6 +19,10 @@ const AdminItemPanel = () => {
     const linkRef = useRef("http://localhost:8000/");
     const quantityRef = useRef(0);
     const [currentTags, setCurrentTags] = useState([]);
+
+    const authenticationStateHandler = useContext(AuthContext);
+
+    const navigate = useNavigate();
 
     const handleTitleChange = (titleText) =>{
         titleRef.current = titleText;
@@ -60,15 +65,12 @@ const AdminItemPanel = () => {
         data.tags = currentTags;
         
         // Create the axios request for the API call
-        axios.post("http://localhost:8000/api/items/",
+        instance.post("/api/items/",
             data,
-            {
-                headers:{
-                    "X-CSRFToken": Cookies.get('csrftoken')
-                },
-                withCredentials: true
-            }
-        ).then(console.log("ITEM POSTED")).catch(console.log('ERROR BISH'));
+        ).then(console.log("ITEM POSTED")).catch((error) =>{
+            authenticationStateHandler(false);
+            navigate('/admin');
+        })
 
     }
 

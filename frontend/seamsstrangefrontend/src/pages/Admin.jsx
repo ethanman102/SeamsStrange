@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState,useEffect, createContext } from "react";
 import axios from "axios";
 import "../styles/ItemContainer.css"
 import Login from "../components/Login";
@@ -7,6 +7,8 @@ import AdminNavBar from "../components/AdminNavbar";
 import { Route, Routes } from "react-router-dom";
 import "../styles/Admin.css"
 import AdminItemPanel from "./AdminItemPanel";
+
+export const AuthContext = createContext();
 
 const Admin = () =>{
 
@@ -26,19 +28,21 @@ const Admin = () =>{
     },
 []);
 
+const handleAuthenticationState = (authBool) => setAuthenticated(authBool)
+
 
 return(
-    <>
-
-    
+    <> 
     {authenticated ? 
     <>
     <div className="adminPageFlexContainer">
         <AdminNavBar/>
-        <Routes>
-            <Route path="items/" element={<AdminItemPanel/>}/>
-            <Route path="tags/" element={<AdminTagPanel/>}/>
-        </Routes>
+        <AuthContext.Provider value={handleAuthenticationState}>
+            <Routes>
+                    <Route path="items/" element={<AdminItemPanel />}/>
+                    <Route path="tags/" element={<AdminTagPanel />}/>
+            </Routes>
+        </AuthContext.Provider>
     </div>
     </> : <Login/>}
     </>

@@ -1,12 +1,19 @@
-import { useState } from "react";
+import { useState,useContext } from "react";
 import "../styles/TagEditor.css"
-import axios from "axios";
 import Cookies from "js-cookie"
+import { AuthContext } from "../pages/Admin";
+import { useNavigate } from "react-router-dom";
+import instance from "../api";
+
 
 const TagEditor = ({onSubmit,tag}) =>{
 
     const [tagColor,setTagColor] = useState(tag.color);
     const [tagText,setTagText] = useState(tag.name);
+
+    const authenticationStateHandler = useContext(AuthContext);
+
+    const navigate =  useNavigate();
 
     const onColorChange = (color) =>{
         setTagColor(color);
@@ -17,26 +24,22 @@ const TagEditor = ({onSubmit,tag}) =>{
     }
 
     const onConfirm = () =>{
-        var csrfToken = Cookies.get('csrftoken');
         var data = {
             name: tagText,
             color: tagColor
         }
-        axios.post("http://localhost:8000/api/tags/",
+        instance.post("/api/tags/",
             data,
-            {
-            headers:{
-                'X-CSRFToken' : csrfToken
-            },
-            withCredentials:true
-            }
         ).then((response) =>{
             if (response.status === 201 || response.status === 200){ 
                 onSubmit(data);
                 setTagText(tag.name);
                 setTagColor(tag.color);
             }
-        }).catch((error) => console.error("Request Failed"));
+        }).catch((error) => {
+            authenticationStateHandler(false);
+            navigate('/admin');
+        });
     }
 
     return(
