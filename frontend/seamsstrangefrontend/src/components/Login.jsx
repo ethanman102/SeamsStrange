@@ -1,23 +1,28 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "../styles/Login.css";
+import instance from "../api";
 
-const Login = () => {
+const Login = ({authenticationStateHandler}) => {
 
     const [username,setEmail] = useState('');
     const [password,setPassword] = useState('');
 
     const handleSubmit = async (event) =>{
         event.preventDefault();
-        var response = await axios.post('http://localhost:8000/api/login/',
+        try{
+        var response = await instance.post('http://localhost:8000/api/login/',
             {
                 email: username,
                 password: password
-            },
-            {
-                withCredentials: true
             }
-        )
+        );
+        if (response.status === 200){
+            authenticationStateHandler(true);
+        }
+        }catch (error){
+
+        }
     }
 
     return(

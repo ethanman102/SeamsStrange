@@ -16,8 +16,9 @@
 }
 
 .createTagHeader{
-    color: #17c783;
+    color: white;
     padding-left: 1ch;
+    font-size: 175%;
     border-top-left-radius: 1ch;
     border-top-right-radius: 1ch;
     border-bottom: #17c783 solid 0.25ch;
@@ -29,13 +30,15 @@
 }
 
 .currentHeader{
+    color: white;
+    font-size: 175%;
     padding-left: 16px;  
     border-bottom: #17c783 solid 0.25ch;
 }
 
 
 .createTagSection, .currentTagsSection{
-    background-color: #367583;
+    background-color: #0a7c5a;
     margin-left: 2ch;
     margin-right: 2ch;
     border-radius: 1ch;
@@ -57,8 +60,7 @@
 }
 
 .tagDecor{
-    background-color: #367583;
-    
+    background-color: #0a7c5a;
     border-radius: 1ch;
     padding-left: 1ch;
     padding-right: 1ch;

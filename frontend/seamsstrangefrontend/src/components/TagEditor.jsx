@@ -23,6 +23,11 @@ const TagEditor = ({onSubmit,tag}) =>{
         setTagText(text);
     }
 
+    const onReset = () =>{
+        setTagText(tag.name ? tag.name : "");
+        setTagColor(tag.color ? tag.color : "#000000");
+    }
+
     const onConfirm = () =>{
         var data = {
             name: tagText,
@@ -60,7 +65,7 @@ const TagEditor = ({onSubmit,tag}) =>{
             <span className="tagPill" style={{backgroundColor: tagColor}}>{tagText}</span>
             <div className="tagEditorButtons">
                 <button className="tagEditorButton" onClick={() => onConfirm()}>Create</button>
-                <button className="tagEditorButton">Reset</button>
+                <button className="tagEditorButton" onClick={() => onReset()}>Reset</button>
             </div>
         </div>
     </div>

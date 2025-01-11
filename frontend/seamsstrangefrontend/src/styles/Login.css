@@ -12,7 +12,8 @@
 .loginHeader{
     display: inline;
     color: white;
-    background-image: url("../assets/seamsstrangelogindesign.jpg");
+    background: rgb(23,199,131);
+    background: linear-gradient(90deg, rgba(23,199,131,1) 0%, rgba(54,117,131,1) 100%);
     padding-top: 3ch;
     display: block;
     text-align: center;
@@ -41,7 +42,6 @@
     margin-left: auto;
     margin-right: auto;
     display: block;
-    background:rgb(165, 72, 87);
     color: white;
     border: none;
     font-size: large;
@@ -49,17 +49,17 @@
     padding-left: 2ch;
     padding-right: 2ch;
     width: 80%;
-    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(112,9,121,1) 64%, rgba(219,142,128,1) 100%);
+    background: rgb(23,199,131);
+    background: linear-gradient(90deg, rgba(23,199,131,1) 0%, rgba(54,117,131,1) 100%);
     margin-top: 2ch;
-    transition: box-shadow 0.5s ease, opacity 0.5s ease ;
+    transition: scale 0.5s ease;
     
     
 }
 
 .submitButton:hover{
-    opacity: 0.5;
     cursor: pointer;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 0 0 2px #000000;
+    scale: 1.1;
 }
 
 
