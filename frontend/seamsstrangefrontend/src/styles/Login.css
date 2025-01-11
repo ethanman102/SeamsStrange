@@ -62,5 +62,9 @@
     scale: 1.1;
 }
 
+.loginErrorMessage{
+    text-align: center;
+}
+
 
 

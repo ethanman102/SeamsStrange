@@ -3,14 +3,12 @@ import TagList from "../components/TagList"
 import TagEditor from "../components/TagEditor";
 import axios from "axios";
 import "../styles/AdminTagPanel.css"
-import { useNavigate } from "react-router-dom";
-import instance from "../api";
 
 
 const AdminTagPanel = () => {
 
     const [tags,setTags] = useState([]);
-    const navigate = useNavigate();
+
 
 
     useEffect(() =>{

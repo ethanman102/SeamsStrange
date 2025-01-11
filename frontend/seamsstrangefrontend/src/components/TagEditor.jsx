@@ -1,6 +1,5 @@
 import { useState,useContext } from "react";
 import "../styles/TagEditor.css"
-import Cookies from "js-cookie"
 import { AuthContext } from "../pages/Admin";
 import { useNavigate } from "react-router-dom";
 import instance from "../api";
@@ -10,6 +9,7 @@ const TagEditor = ({onSubmit,tag}) =>{
 
     const [tagColor,setTagColor] = useState(tag.color ? tag.color : "#000000" );
     const [tagText,setTagText] = useState(tag.name);
+    const [message,setMessage] = useState('');
 
     const authenticationStateHandler = useContext(AuthContext);
 
@@ -26,9 +26,16 @@ const TagEditor = ({onSubmit,tag}) =>{
     const onReset = () =>{
         setTagText(tag.name ? tag.name : "");
         setTagColor(tag.color ? tag.color : "#000000");
+        setMessage('');
     }
 
     const onConfirm = () =>{
+
+        if (tagText === undefined || tagText === ''){
+            setMessage("Tag name can not be blank.");
+            return
+        }
+
         var data = {
             name: tagText,
             color: tagColor
@@ -40,10 +47,15 @@ const TagEditor = ({onSubmit,tag}) =>{
                 onSubmit(data);
                 setTagText(tag.name ? tag.name : "");
                 setTagColor(tag.color ? tag.color : "#000000");
+                setMessage('Tag Created');
             }
         }).catch((error) => {
-            authenticationStateHandler(false);
-            navigate('/admin');
+            if (error.response.status === 401){
+                authenticationStateHandler(false);
+                navigate('/admin');
+            }else if (error.response.status === 500){
+                setMessage('Invalid Tag name. Is this name already being used?')
+            }
         });
     }
 
@@ -67,6 +79,7 @@ const TagEditor = ({onSubmit,tag}) =>{
                 <button className="tagEditorButton" onClick={() => onConfirm()}>Create</button>
                 <button className="tagEditorButton" onClick={() => onReset()}>Reset</button>
             </div>
+            <p className="tagEditorMessage">{message}</p>
         </div>
     </div>
     </>
