@@ -1,17 +1,31 @@
-import { useState,useContext } from "react";
+import { useState,useContext,useEffect } from "react";
 import "../styles/TagEditor.css"
 import { AuthContext } from "../pages/Admin";
 import { useNavigate } from "react-router-dom";
 import instance from "../api";
+import View from "../constants";
 
 
-const TagEditor = ({onSubmit,tag}) =>{
-
+const TagEditor = ({onSubmit,onDelete,tag}) =>{
+    console.log(tag);
     const [tagColor,setTagColor] = useState(tag.color ? tag.color : "#000000" );
     const [tagText,setTagText] = useState(tag.name);
     const [message,setMessage] = useState('');
+    const [viewMode,setViewMode] = useState(View.VIEW);
 
     const authenticationStateHandler = useContext(AuthContext);
+
+    useEffect(() => {
+        if (tag) {
+          setTagColor(tag.color || "#000000");
+          setTagText(tag.name || "");
+        }
+        if (tag.name){
+            setViewMode(View.EDIT);
+        }else{
+            setViewMode(View.VIEW);
+        }
+      }, [tag]);
 
     const navigate =  useNavigate();
 
@@ -27,6 +41,18 @@ const TagEditor = ({onSubmit,tag}) =>{
         setTagText(tag.name ? tag.name : "");
         setTagColor(tag.color ? tag.color : "#000000");
         setMessage('');
+    }
+
+    const onRemove = (id) => {
+
+        instance.delete(`/api/tags/${id}/`).then((response) => {
+            onDelete(id);
+            setMessage("Item Delete");
+        }).catch((error) =>{
+            if (error.response.status === 401){
+                navigate('/admin');
+            }
+        })
     }
 
     const onConfirm = () =>{
@@ -62,6 +88,7 @@ const TagEditor = ({onSubmit,tag}) =>{
     return(
 
     <>
+    <h2 className="tagEditorMode">Mode: {viewMode === View.VIEW ? "Create" : "Edit"}</h2>
     <p className="tagEditorDisclaimer">Ensure that tags names are concise and as descriptive as possible.<br/> Customers should be prompted with the main idea of the item that the tag is associated with through it's name.<br/>
     Stay away from colours that will hide the tag's text, or the outline of the tag itself!
     </p>
@@ -76,8 +103,9 @@ const TagEditor = ({onSubmit,tag}) =>{
             <h3 className="currentTagDesignHeader">Current Design</h3>
             <span className="tagPill" style={{backgroundColor: tagColor}}>{tagText}</span>
             <div className="tagEditorButtons">
-                <button className="tagEditorButton" onClick={() => onConfirm()}>Create</button>
+                <button className="tagEditorButton" onClick={() => onConfirm()}>{viewMode === View.VIEW ? "Create" : "Update"}</button>
                 <button className="tagEditorButton" onClick={() => onReset()}>Reset</button>
+                {viewMode === View.EDIT && <button className="tagEditorButton" onClick={() => onRemove(tag.id)}>Delete</button>}
             </div>
             <p className="tagEditorMessage">{message}</p>
         </div>

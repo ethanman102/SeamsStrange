@@ -26,3 +26,18 @@
     margin-left: 1ch;
     margin-right: 1ch;
 }
+
+.tagEditButton{
+    background: none;
+    border: none;
+    width: fit-content;
+    margin-left: 1ch;
+    border-radius: 1ch;
+    transition: background-color 0.5s ease;
+
+}
+
+.tagEditButton:hover{
+    background-color: yellow;
+    cursor: pointer;
+}

@@ -69,4 +69,9 @@ class TagViewSet(viewsets.ModelViewSet):
             'tags':serializer.data,
         }
         return Response(response_data,status=status.HTTP_200_OK,headers=headers)
+    def retrieve(self, request, *args, **kwargs):
+        tag = self.get_object()
+        serializer = self.get_serializer(tag)
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data,status=status.HTTP_200_OK,headers=headers)
         

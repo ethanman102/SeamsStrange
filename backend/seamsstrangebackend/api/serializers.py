@@ -13,7 +13,7 @@ class UserSerializer(serializers.ModelSerializer):
 class TagSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tag
-        fields = ('created_on','name','color')
+        fields = ('created_on','name','color','id')
         extra_kwargs = {
             'created_on' : {'read_only' : True},
             'name': {'validators':[]}
