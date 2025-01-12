@@ -19,6 +19,8 @@ const AdminTagPanel = () => {
                 let data = response.data;
                 setSingleTag(data);
            }) 
+        }else{
+            setSingleTag({});
         }
     },[state])
 
@@ -36,7 +38,15 @@ const AdminTagPanel = () => {
     }
 
     const handleSubmit = (newTag) =>{
-        setTags([...tags,newTag]);
+        setTags(tags.filter((tag) => {
+            if (newTag.id === tag.id){
+                tag.name = newTag.name;
+                tag.color = newTag.color;
+                return true;
+            }
+            return true;
+        }));
+        setSingleTag(newTag);
     }
 
     return(
@@ -47,7 +57,7 @@ const AdminTagPanel = () => {
         </div>
         <div className="adminTagsContainer">
             <div className="createTagSection">
-                <h1 className="createTagHeader">Create Tag 🏷️</h1>  
+                <h1 className="createTagHeader">Tag Editor 🏷️</h1>  
                 <TagEditor onSubmit={handleSubmit} onDelete={handleDelete} tag={singleTag}/>
             </div>
             <div className="currentTagsSection">

@@ -92,6 +92,30 @@
 .tagEditorMode{
     margin-left: 1ch;
     color: #17c783;
+    margin-bottom: 0.25ch;
+    display: inline;
+}
+
+.disableModeButton{
+    margin-left: 2ch;
+    border: none;
+    color: white;
+    background-color: red;
+    font-size: 100%;
+    border-radius: 2ch;
+    display: inline;
+    padding-top: 0.5ch;
+    padding-left: 1ch;
+    padding-right: 1ch;
+    padding-bottom: 0.5ch;
+    transition: background-color 0.5s ease, scale 0.5s ease;
+
+}
+
+.disableModeButton:hover{
+    cursor: pointer;
+    background-color: rgb(177, 0, 0);
+    scale:1.1;
 }
 
 

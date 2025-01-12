@@ -43,13 +43,21 @@ const TagEditor = ({onSubmit,onDelete,tag}) =>{
         setMessage('');
     }
 
+    const onDisableEdit = () =>{
+        setViewMode(View.VIEW);
+        // reset the params id by simply calling on delete with a negative value
+        navigate('/admin/tags/');
+    }
+
     const onRemove = (id) => {
 
         instance.delete(`/api/tags/${id}/`).then((response) => {
             onDelete(id);
-            setMessage("Item Delete");
+            setMessage("Tag Deleted");
+            navigate('/admin/tags/');
         }).catch((error) =>{
             if (error.response.status === 401){
+                authenticationStateHandler(false);
                 navigate('/admin');
             }
         })
@@ -64,31 +72,52 @@ const TagEditor = ({onSubmit,onDelete,tag}) =>{
 
         var data = {
             name: tagText,
-            color: tagColor
+            color: tagColor,
+            id: tag.id
         }
-        instance.post("/api/tags/",
-            data,
-        ).then((response) =>{
-            if (response.status === 201 || response.status === 200){ 
-                onSubmit(data);
-                setTagText(tag.name ? tag.name : "");
-                setTagColor(tag.color ? tag.color : "#000000");
-                setMessage('Tag Created');
-            }
-        }).catch((error) => {
-            if (error.response.status === 401){
-                authenticationStateHandler(false);
-                navigate('/admin');
-            }else if (error.response.status === 500){
-                setMessage('Invalid Tag name. Is this name already being used?')
-            }
-        });
+        if (viewMode === View.VIEW){
+            instance.post("/api/tags/",
+                data,
+            ).then((response) =>{
+                if (response.status === 201 || response.status === 200){ 
+                    onSubmit(data);
+                    setTagText(tag.name ? tag.name : "");
+                    setTagColor(tag.color ? tag.color : "#000000");
+                    setMessage('Tag Created');
+                }
+            }).catch((error) => {
+                if (error.response.status === 401){
+                    authenticationStateHandler(false);
+                    navigate('/admin');
+                }else if (error.response.status === 500){
+                    setMessage('Invalid Tag name. Is this name already being used?')
+                }
+            });
+        }else if (viewMode === View.EDIT){
+            instance.put(`/api/tags/${tag.id}/`,
+                data
+            ).then((response) => {
+                if (response.status === 200){
+                    onSubmit(data);
+                    setMessage("Tag Successfully Updated");
+                }
+            }).catch((error) =>{
+                if (error.response.status === 401){
+                    authenticationStateHandler(false);
+                    navigate('/admin');
+                }else if (error.response.status === 500){
+                    setMessage("Invalid Tag Values");
+                }
+            })
+        }
+
     }
 
     return(
 
     <>
     <h2 className="tagEditorMode">Mode: {viewMode === View.VIEW ? "Create" : "Edit"}</h2>
+    {viewMode === View.EDIT ? <button className="disableModeButton" onClick={() => onDisableEdit()}>Disable Edit Mode</button> : ''}
     <p className="tagEditorDisclaimer">Ensure that tags names are concise and as descriptive as possible.<br/> Customers should be prompted with the main idea of the item that the tag is associated with through it's name.<br/>
     Stay away from colours that will hide the tag's text, or the outline of the tag itself!
     </p>
