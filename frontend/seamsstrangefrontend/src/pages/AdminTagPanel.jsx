@@ -5,6 +5,7 @@ import axios from "axios";
 import "../styles/AdminTagPanel.css"
 import { useLocation } from "react-router-dom";
 import instance from "../api";
+import View from "../constants";
 
 
 const AdminTagPanel = () => {
@@ -26,8 +27,8 @@ const AdminTagPanel = () => {
 
 
     useEffect(() =>{
-        axios.get('http://localhost:8000/api/tags/',
-            {withCredentials: true}
+        instance.get('/api/tags/',
+
         ).then((response) => setTags(response.data.tags))
     },[])
 
@@ -37,7 +38,8 @@ const AdminTagPanel = () => {
         setTags(filteredTags);
     }
 
-    const handleSubmit = (newTag) =>{
+    const handleSubmit = (newTag,mode) =>{
+        if (mode === View.EDIT){
         setTags(tags.filter((tag) => {
             if (newTag.id === tag.id){
                 tag.name = newTag.name;
@@ -46,8 +48,11 @@ const AdminTagPanel = () => {
             }
             return true;
         }));
-        setSingleTag(newTag);
-    }
+    }else if (mode === View.VIEW){
+        setTags([...tags,newTag]);
+        setSingleTag({});
+    }}
+
 
     return(
     <div className="adminTagsPage">
@@ -72,5 +77,4 @@ const AdminTagPanel = () => {
     </div>
     );
 }
-
 export default AdminTagPanel;

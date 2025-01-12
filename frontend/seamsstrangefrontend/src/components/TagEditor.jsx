@@ -7,7 +7,7 @@ import View from "../constants";
 
 
 const TagEditor = ({onSubmit,onDelete,tag}) =>{
-    console.log(tag);
+    
     const [tagColor,setTagColor] = useState(tag.color ? tag.color : "#000000" );
     const [tagText,setTagText] = useState(tag.name);
     const [message,setMessage] = useState('');
@@ -70,17 +70,17 @@ const TagEditor = ({onSubmit,onDelete,tag}) =>{
             return
         }
 
-        var data = {
-            name: tagText,
-            color: tagColor,
-            id: tag.id
-        }
         if (viewMode === View.VIEW){
+            var data = {
+                name: tagText,
+                color: tagColor,
+            }
             instance.post("/api/tags/",
                 data,
             ).then((response) =>{
                 if (response.status === 201 || response.status === 200){ 
-                    onSubmit(data);
+                    navigate('/admin/tags/');
+                    onSubmit(response.data,viewMode);
                     setTagText(tag.name ? tag.name : "");
                     setTagColor(tag.color ? tag.color : "#000000");
                     setMessage('Tag Created');
@@ -94,11 +94,16 @@ const TagEditor = ({onSubmit,onDelete,tag}) =>{
                 }
             });
         }else if (viewMode === View.EDIT){
+            var data = {
+                name: tagText,
+                color: tagColor,
+                id: tag.id
+            }
             instance.put(`/api/tags/${tag.id}/`,
                 data
             ).then((response) => {
                 if (response.status === 200){
-                    onSubmit(data);
+                    onSubmit(data,viewMode);
                     setMessage("Tag Successfully Updated");
                 }
             }).catch((error) =>{
