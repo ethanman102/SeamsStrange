@@ -23,6 +23,7 @@ const SingularItem = () =>{
     const ModalContact = asModal(ContactForm);
 
     useEffect(() => {
+        setOpenModal(0);
         axios.get(`http://localhost:8000/api/items/${params.id}`).then((response) => {
             var data = response.data;
             setTitle(data.title);
@@ -40,7 +41,7 @@ const SingularItem = () =>{
 
     return(
         <>
-        <ModalContact page={title} openModal={openModal} />
+        {openModal && <ModalContact page={title} openModal={openModal} />}
         <div className="singleItemContainer">
             <div className="singleItemContent">
                 <h1 className="singleItemTitle">{title}</h1>
