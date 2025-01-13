@@ -8,6 +8,7 @@ import Admin from './pages/Admin';
 import Homepage from './pages/Homepage';
 import SingularItem from './pages/SingularItem';
 import Footer from './components/Footer';
+import ContactPage from './pages/ContactPage';
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
         <Route path="/items/" element={<ItemContainer/>}/>
         <Route path="/items/:id/" element={<SingularItem/>}/>
         <Route path="/admin/*" element={<Admin/>}/>
+        <Route path="/contact/" element={<ContactPage/>}/>
       </Routes>
       </div>
       <Footer/>

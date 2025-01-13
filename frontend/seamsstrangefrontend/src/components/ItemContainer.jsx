@@ -8,7 +8,7 @@ import TagFilter from "./TagFilter";
 
 const ItemContainer = () => {
 
-    const SIZE = 6;
+    const SIZE = 8;
 
     const [page,setPage] = useState(1);
     const [items,setItems] = useState([]);
