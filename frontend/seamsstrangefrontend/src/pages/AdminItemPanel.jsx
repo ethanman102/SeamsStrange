@@ -6,7 +6,7 @@ import ItemDescriptionInput from "../components/ItemDescriptionInput";
 import ItemPriceInput from "../components/ItemPriceInput";
 import ItemLinkInput from "../components/ItemLinkInput";
 import ItemQuantityInput from "../components/ItemQuantityInput";
-import { useRef, useState,useContext } from "react";
+import { useRef, useState,useContext} from "react";
 import instance from "../api";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "./Admin";
@@ -57,7 +57,6 @@ const AdminItemPanel = () => {
     }
 
     const onDeleteImage = (index) => {
-        console.log("hi");
         setCurrentImages(currentImages.filter((_,i) => i !== index));
     }
 
@@ -76,11 +75,27 @@ const AdminItemPanel = () => {
         if (!linkRef) linkRef.current = "";
         data.etsy_url = linkRef.current;
         data.tags = currentTags;
+
+        let formData = new FormData();
+        currentImages.forEach(({ file }, index) => {
+            formData.append('images', file);  // Append each file individually
+        });
+
+        
+
         
         // Create the axios request for the API call
         instance.post("/api/items/",
-            data,
-        ).then(console.log("ITEM POSTED")).catch((error) =>{
+            data
+        ).then((response) => {
+            let id = response.data.id;
+            formData.append('item',id);
+            instance.post('/api/images/',formData,{
+                headers : {
+                    'Content-Type' : 'multipart/form-data'
+                }
+            })
+        }).catch((error) =>{
             authenticationStateHandler(false);
             navigate('/admin');
         })

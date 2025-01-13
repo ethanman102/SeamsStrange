@@ -39,6 +39,8 @@ class ItemSerializer(serializers.ModelSerializer):
         tags_data = validated_data.pop('tags',[])
         item = Item.objects.create(**validated_data)
         for tag in tags_data:
+            if tag == "":
+                continue
             tag_obj = Tag.objects.get_or_create(**tag)[0]
             item.tags.add(tag_obj)
         

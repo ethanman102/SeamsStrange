@@ -21,14 +21,15 @@ const ImageSlider = ({images,mode,handleRemove}) => {
 
     const onDelete = () =>{
         handleRemove(page - 1);
+        setPage(page - 1)
     }
 
     return(
-        <>
+        <div className="imageSlider">
             {mode === View.EDIT && <button className="removeImageButton" onClick={onDelete}>Remove Image 🗑️</button>}
-            <img className="imageBox" index={page-1} src={images[page - 1]}/>
+            <img className="imageBox" key={page-1} src={images[page - 1].URL}/>
             <Paginator pageNumber={page} totalPages={images.length} update={handlePage}/>
-        </>
+        </div>
     )
 }
 

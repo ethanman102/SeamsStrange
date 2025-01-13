@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import "../styles/ImageUploader.css"
 
 const ImageUploader = ({handleUpload}) =>{
 
@@ -7,7 +8,11 @@ const ImageUploader = ({handleUpload}) =>{
     const handleChange = (event) => {
         let files = event.target.files;
         let fileURL = URL.createObjectURL(files[0]);
-        handleUpload(fileURL);
+        let data={
+            file: files[0],
+            URL: fileURL
+        }
+        handleUpload(data);
         fileRef.current = '';
     }
 

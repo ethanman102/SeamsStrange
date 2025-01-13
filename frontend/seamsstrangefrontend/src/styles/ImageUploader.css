@@ -1,0 +1,21 @@
+.fileUploadButton{
+    color: black;
+    background-color: white ;
+    font-size: 150%;
+    margin-bottom: 2ch;
+    margin-top: 2ch;
+    border-radius: 2ch;
+    padding-left: 1ch;
+    padding-right: 1ch;
+    transition: background-color 0.5s ease, color 0.5s ease;
+    display: block;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.fileUploadButton:hover{
+    cursor: pointer;
+    background-color: black;
+    color: white;
+}
