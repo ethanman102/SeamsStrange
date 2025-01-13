@@ -7,7 +7,7 @@ import TagFilter from "./TagFilter";
 
 const ItemContainer = () => {
 
-    const SIZE = 9;
+    const SIZE = 6;
 
     const [page,setPage] = useState(1);
     const [items,setItems] = useState([]);
@@ -45,7 +45,7 @@ const ItemContainer = () => {
 
         getItems().then( (fetchedItems) =>{
             setItems(fetchedItems.map((item) =>{
-                return <ItemCard title={item.title} price={item.price} tags={item.tags} key={item.id} id={item.id}/>
+                return <ItemCard title={item.title} price={item.price} tags={item.tags} key={item.id} id={item.id} images={item.images}/>
             } ));
             }
         );
@@ -65,7 +65,7 @@ const ItemContainer = () => {
     <TagFilter filterFunction={editFilteredTags} purpose="Filter By "/>
         <div className="itemBox">
             <div className="itemContainer">
-                {items}
+                {items.length > 0 ? items : <h2 className="noResultsHeader">No Results</h2>}
             </div>
             <Paginator update={handlePage} pageNumber={page} totalPages={totalPages}/>
         </div>

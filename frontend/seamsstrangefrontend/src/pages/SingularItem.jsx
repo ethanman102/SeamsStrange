@@ -77,7 +77,7 @@ const SingularItem = () =>{
             <h2 className="newestCreations">You May Also Like</h2>
             <div className="recommendationsContainer">
                 {recommendations.map((item) =>{
-                    return <ItemCard title={item.title} price={item.price} tags={item.tags} key={item.id} id={item.id}/>
+                    return <ItemCard title={item.title} price={item.price} tags={item.tags} key={item.id} id={item.id} images={item.images}/>
                 })}
             </div>
         </>

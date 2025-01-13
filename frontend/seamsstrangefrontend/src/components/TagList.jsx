@@ -35,7 +35,7 @@ const TagList = ({tags}) => {
 
     return(
         <ul className="tagList">
-            {tagListItems}
+            {tagListItems.length > 0 ? tagListItems : <h4>No Tags</h4>} 
         </ul>
     );
 }
