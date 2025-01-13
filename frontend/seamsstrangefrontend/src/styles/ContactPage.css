@@ -16,7 +16,7 @@
 }
 
 .imageContainer{
-    margin-bottom: 10ch;
+    margin-bottom: 5ch;
     margin-right: 2ch;
     margin-left: 2ch;
     position: relative;
@@ -115,7 +115,37 @@
     animation: fadeIn 2s forwards;
 }
 
+.buyerTextThree{
+    position: absolute;
+    color: white;
+    background-color: #17c783;
+    font-size: 125%;
+    padding-left: 3ch;
+    padding-right: 3ch;
+    padding-top: 0.5ch;
+    padding-bottom: 0.5ch;
+    top: 63ch;
+    margin-left: 1ch;
+    border-top-left-radius: 2ch;
+    border-top-right-radius: 2ch;
+    border-bottom-right-radius: 2ch;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    opacity: 0;
+    animation: fadeIn 2s forwards;
+}
+
+
 @keyframes fadeIn {
     from {opacity: 0}
     to {opacity: 1}
+}
+
+.contactPage .contactFormContainer{
+    margin-bottom: 10ch;
+    margin-left: 2ch;
+}
+
+.contactPageInquiryText{
+    margin-left: 2ch;
+    color: white;
 }
