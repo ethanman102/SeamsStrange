@@ -67,7 +67,7 @@ const ItemContainer = () => {
             <div className="itemContainer">
                 {items.length > 0 ? items : <h2 className="noResultsHeader">No Results</h2>}
             </div>
-            <Paginator update={handlePage} pageNumber={page} totalPages={totalPages}/>
+            <Paginator update={handlePage} pageNumber={page} totalPages={totalPages} purpose={'Page'}/>
         </div>
     </div>
     </>)
