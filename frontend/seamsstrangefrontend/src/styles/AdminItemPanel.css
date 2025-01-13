@@ -46,3 +46,38 @@
     color: #17c783;
     text-decoration: underline;
 }
+
+.imagesHeader{
+    color: #17c783;
+}
+
+.createItemButton{
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    margin-top: 5ch;
+    color: white;
+    background-color:#17c783;
+    border: none;
+    margin-bottom: 5ch;
+    font-size: 150%;
+    padding-left: 2ch;
+    padding-right: 2ch;
+    padding-top: 0.5ch;
+    padding-bottom: 0.5ch;
+    border-radius: 2ch;
+    transition: background-color 0.5s ease, box-shadow 0.5s ease;
+}
+
+.createItemButton:hover{
+    cursor: pointer;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    background-color: #33946f;
+}
+
+.itemCreationInputPrompt{
+    color: white;
+}
+.attachedTagsHeader{
+    color:#17c783;
+}

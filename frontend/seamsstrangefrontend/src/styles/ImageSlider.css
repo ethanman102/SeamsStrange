@@ -24,3 +24,22 @@
     object-fit: cover;
     height: 40ch;
 }
+
+.removeImageButton{
+    margin-left: auto;
+    display: block;
+    margin-bottom: 1ch;
+    padding-left: 1ch;
+    padding-right: 1ch;
+    background-color: red;
+    border: none;
+    border-radius: 2ch;
+    color: white;
+    font-size: 110%;
+    transition: scale 0.5s ease;
+}
+
+.removeImageButton:hover{
+    cursor: pointer;
+    scale: 1.1;
+}

@@ -56,6 +56,11 @@ const AdminItemPanel = () => {
         setCurrentImages([...currentImages,imageFile]);
     }
 
+    const onDeleteImage = (index) => {
+        console.log("hi");
+        setCurrentImages(currentImages.filter((_,i) => i !== index));
+    }
+
     
     const createItem = () => {
         // Validate here to reduce round trip time.
@@ -103,12 +108,19 @@ const AdminItemPanel = () => {
                     <ItemPriceInput itemPrice={priceRef.current} handlePrice={handlePriceChange}/>
                     <ItemQuantityInput itemQuantity={quantityRef.current} handleQuantity={handleQuantityChange}/>
                 </div>
-                <h3>Attached Tags 🏷️</h3>
+                <h2 className="attachedTagsHeader">Attached Tags 🏷️</h2>
+                <p className="itemCreationInputPrompt">
+                These are the attached tags you have currently applied to the item.<br/>
+                Note that if you click on the edit tag at the time all progress for creating the item will be lost!
+                </p>
                 <TagList tags={currentTags}/>
-                {currentImages.length > 0 && <ImageSlider images={currentImages} mode={View.EDIT} />}
+                <h2 className="imagesHeader">Images</h2>
+                <p className="itemCreationInputPrompt">Choose files from your computer to upload for a specific item.<br/>
+                To detach an image associated to the item click on the delete button at the top right corner.</p>
+                {currentImages.length > 0 && <ImageSlider images={currentImages} mode={View.EDIT} handleRemove={onDeleteImage}/>}
                 <ImageUploader handleUpload={onUpload}/>
                 <ItemLinkInput itemLink={linkRef.current} handleLink={handleLinkChange}/>
-                <button onClick={createItem}>Create</button>
+                <button className="createItemButton" onClick={createItem}>Create</button>
             </div>
             <TagFilter purpose="Attach a " filterFunction={handleTagChange}/>
         </div>
