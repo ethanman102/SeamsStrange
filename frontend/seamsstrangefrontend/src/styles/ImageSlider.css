@@ -1,0 +1,41 @@
+
+
+.imageBox{
+    width: 100%;
+    object-fit: cover;
+    height: 40ch;
+    animation: fadeIn 1s;
+    border: solid white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.384);
+}
+
+.removeImageButton{
+    margin-left: auto;
+    display: block;
+    margin-bottom: 1ch;
+    padding-left: 1ch;
+    padding-right: 1ch;
+    background-color: red;
+    border: none;
+    border-radius: 2ch;
+    color: white;
+    font-size: 110%;
+    transition: scale 0.5s ease;
+}
+
+.removeImageButton:hover{
+    cursor: pointer;
+    scale: 1.1;
+}
+
+.imageSlider .paginator{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 3ch;
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+  

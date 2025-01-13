@@ -6,6 +6,8 @@ import ItemCard from "../components/ItemCard";
 import ContactForm from "../components/ContactForm";
 import "../styles/SingularItem.css"
 import asModal from "../components/wrappers/asModal"
+import ImageSlider from "../components/ImageSlider";
+import View from "../constants";
 
 const SingularItem = () =>{
 
@@ -19,6 +21,7 @@ const SingularItem = () =>{
     const [tags,setTags] = useState([]);
     const [openModal,setOpenModal] = useState(0);
     const [recommendations,setRecommendations] = useState([]);
+    const [images,setImages] = useState([]);
 
     const ModalContact = asModal(ContactForm);
 
@@ -32,6 +35,7 @@ const SingularItem = () =>{
             setQuantity(data.quantity);
             setEtsyURL(data.etsy_url);
             setTags(data.tags);
+            setImages(data.images);
         });
         axios.get(`http://localhost:8000/api/items/${params.id}/recommendations/`).then((response) => {
             var data = response.data;
@@ -47,7 +51,7 @@ const SingularItem = () =>{
                 <h1 className="singleItemTitle">{title}</h1>
                 <h2 className="singleItemPrice">${price}</h2>
                 <h3 className="singleItemQuantity">Available: {quantity}</h3>
-                
+                {images.length > 0 && <ImageSlider mode={View.VIEW} images={images}/>}
             </div>
             <div className="informationContainer">
             <div className="descriptionContainer">
@@ -73,7 +77,7 @@ const SingularItem = () =>{
             <h2 className="newestCreations">You May Also Like</h2>
             <div className="recommendationsContainer">
                 {recommendations.map((item) =>{
-                    return <ItemCard title={item.title} price={item.price} tags={item.tags} key={item.id} id={item.id}/>
+                    return <ItemCard title={item.title} price={item.price} tags={item.tags} key={item.id} id={item.id} images={item.images}/>
                 })}
             </div>
         </>

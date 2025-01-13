@@ -46,6 +46,7 @@ class ItemViewSet(viewsets.ModelViewSet):
         serializer.is_valid(raise_exception=True)
         item = serializer.save()
         headers = self.get_success_headers(serializer.data)
+
         
         # include the id field
         serializer.data['id'] = item.id

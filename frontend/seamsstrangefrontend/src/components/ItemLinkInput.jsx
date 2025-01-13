@@ -7,6 +7,7 @@ const ItemLinkInput = ({itemLink,handleLink}) => {
     return(
         <div className="itemLinkInputContainer">
             <label className="itemLinkLabel">Link</label>
+            <p className="linkInputPrompt">Provide a URL for the item such as an Instagram post, an etsy page, etc.</p>
             <input type="url" defaultValue={itemLink}></input>
         </div>
     );

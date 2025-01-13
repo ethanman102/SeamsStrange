@@ -3,12 +3,13 @@ from .api_handling.jwt_auth import LoginView, LogoutView, HttpCookieRefreshView,
 from .api_handling.item_api import ItemViewSet, ItemRecommendationView
 from .api_handling.tag_api import TagViewSet
 from .api_handling.email_api import EmailView
+from .api_handling.images_api import ImageView
 from rest_framework.routers import DefaultRouter
 
 
 app_name = 'api'
 router = DefaultRouter()
-router.register(r'items',ItemViewSet,basename='items')
+router.register(r'items',ItemViewSet)
 router.register(r'tags',TagViewSet)
 urlpatterns = [
 
@@ -18,6 +19,7 @@ urlpatterns = [
     path('refresh/',HttpCookieRefreshView.as_view(),name='refresh'),
     path('authenticated/',ProvideAuthenticationStateView.as_view(),name='authenticated'),
     path('email/',EmailView.as_view(),name="email"),
+    path('images/', ImageView.as_view(),name='images'),
     # item api routes
     path('',include(router.urls)),
     path('items/<int:id>/recommendations/',ItemRecommendationView.as_view(),name="recommendations")

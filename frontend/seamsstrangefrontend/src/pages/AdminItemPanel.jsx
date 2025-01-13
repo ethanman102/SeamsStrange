@@ -6,10 +6,13 @@ import ItemDescriptionInput from "../components/ItemDescriptionInput";
 import ItemPriceInput from "../components/ItemPriceInput";
 import ItemLinkInput from "../components/ItemLinkInput";
 import ItemQuantityInput from "../components/ItemQuantityInput";
-import { useRef, useState,useContext } from "react";
+import { useRef, useState,useContext} from "react";
 import instance from "../api";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "./Admin";
+import ImageSlider from "../components/ImageSlider";
+import ImageUploader from "../components/ImageUploader";
+import View from "../constants";
 
 const AdminItemPanel = () => {
 
@@ -19,6 +22,7 @@ const AdminItemPanel = () => {
     const linkRef = useRef("http://localhost:8000/");
     const quantityRef = useRef(0);
     const [currentTags, setCurrentTags] = useState([]);
+    const [currentImages,setCurrentImages] = useState([]);
 
     const authenticationStateHandler = useContext(AuthContext);
 
@@ -48,6 +52,14 @@ const AdminItemPanel = () => {
         setCurrentTags(tagList);
     }
 
+    const onUpload = (imageFile) => {
+        setCurrentImages([...currentImages,imageFile]);
+    }
+
+    const onDeleteImage = (index) => {
+        setCurrentImages(currentImages.filter((_,i) => i !== index));
+    }
+
     
     const createItem = () => {
         // Validate here to reduce round trip time.
@@ -63,11 +75,28 @@ const AdminItemPanel = () => {
         if (!linkRef) linkRef.current = "";
         data.etsy_url = linkRef.current;
         data.tags = currentTags;
+        data.images = []
+
+        let formData = new FormData();
+        currentImages.forEach(({ file }, index) => {
+            formData.append('images', file);  // Append each file individually
+        });
+
+        
+
         
         // Create the axios request for the API call
         instance.post("/api/items/",
-            data,
-        ).then(console.log("ITEM POSTED")).catch((error) =>{
+            data
+        ).then((response) => {
+            let id = response.data.id;
+            formData.append('item',id);
+            instance.post('/api/images/',formData,{
+                headers : {
+                    'Content-Type' : 'multipart/form-data'
+                }
+            })
+        }).catch((error) =>{
             authenticationStateHandler(false);
             navigate('/admin');
         })
@@ -95,10 +124,19 @@ const AdminItemPanel = () => {
                     <ItemPriceInput itemPrice={priceRef.current} handlePrice={handlePriceChange}/>
                     <ItemQuantityInput itemQuantity={quantityRef.current} handleQuantity={handleQuantityChange}/>
                 </div>
-                <h3>Attached Tags 🏷️</h3>
+                <h2 className="attachedTagsHeader">Attached Tags 🏷️</h2>
+                <p className="itemCreationInputPrompt">
+                These are the attached tags you have currently applied to the item.<br/>
+                Note that if you click on the edit tag at the time all progress for creating the item will be lost!
+                </p>
                 <TagList tags={currentTags}/>
+                <h2 className="imagesHeader">Images</h2>
+                <p className="itemCreationInputPrompt">Choose files from your computer to upload for a specific item.<br/>
+                To detach an image associated to the item click on the delete button at the top right corner.</p>
+                {currentImages.length > 0 && <ImageSlider images={currentImages} mode={View.EDIT} handleRemove={onDeleteImage}/>}
+                <ImageUploader handleUpload={onUpload}/>
                 <ItemLinkInput itemLink={linkRef.current} handleLink={handleLinkChange}/>
-                <button onClick={createItem}>Create</button>
+                <button className="createItemButton" onClick={createItem}>Create</button>
             </div>
             <TagFilter purpose="Attach a " filterFunction={handleTagChange}/>
         </div>
