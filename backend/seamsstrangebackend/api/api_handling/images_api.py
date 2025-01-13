@@ -9,14 +9,10 @@ from ..models import Item,Image
 from ..authenticate import JWTCookieAuthentication
 from rest_framework.permissions import IsAuthenticated
 
-'''
-Create an email with a text format and an html format for contacting the seams strange account for item/product inquries
-'''
 class ImageView(APIView):
     permission_classes = [IsAuthenticated]
     authentication_classes=[JWTCookieAuthentication]
     def post(self,request):
-        print('yooooo')
         try:
             item_id = request.data.get('item')
         except:

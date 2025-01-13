@@ -5,6 +5,7 @@ import "../styles/ItemContainer.css"
 import Paginator from "./Paginator";
 import TagFilter from "./TagFilter";
 
+
 const ItemContainer = () => {
 
     const SIZE = 6;
