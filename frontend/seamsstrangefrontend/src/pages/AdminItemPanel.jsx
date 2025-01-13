@@ -10,6 +10,9 @@ import { useRef, useState,useContext } from "react";
 import instance from "../api";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "./Admin";
+import ImageSlider from "../components/ImageSlider";
+import ImageUploader from "../components/ImageUploader";
+import View from "../constants";
 
 const AdminItemPanel = () => {
 
@@ -19,6 +22,7 @@ const AdminItemPanel = () => {
     const linkRef = useRef("http://localhost:8000/");
     const quantityRef = useRef(0);
     const [currentTags, setCurrentTags] = useState([]);
+    const [currentImages,setCurrentImages] = useState([]);
 
     const authenticationStateHandler = useContext(AuthContext);
 
@@ -46,6 +50,10 @@ const AdminItemPanel = () => {
 
     const handleTagChange = (tagList) =>{
         setCurrentTags(tagList);
+    }
+
+    const onUpload = (imageFile) => {
+        setCurrentImages([...currentImages,imageFile]);
     }
 
     
@@ -97,6 +105,8 @@ const AdminItemPanel = () => {
                 </div>
                 <h3>Attached Tags 🏷️</h3>
                 <TagList tags={currentTags}/>
+                {currentImages.length > 0 && <ImageSlider images={currentImages} mode={View.EDIT} />}
+                <ImageUploader handleUpload={onUpload}/>
                 <ItemLinkInput itemLink={linkRef.current} handleLink={handleLinkChange}/>
                 <button onClick={createItem}>Create</button>
             </div>
