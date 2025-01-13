@@ -19,23 +19,30 @@ class TagSerializer(serializers.ModelSerializer):
             'name': {'validators':[]}
         }
 
-#class ImageSerializer(serializers.ModelSerializer):
-   # class Meta:
-        #model = Image
-        #fields = ()
+class ImageSerializer(serializers.ModelSerializer):
+    item_id = serializers.ReadOnlyField(source='item.id', read_only=True)
+    class Meta:
+        model = Image
+        fields = ()
+        fields = ('url','id','created_on','item_id')
+        extra_kwargs = {
+            'created_on' : {'read_only' : True}
+        }
 
 class ItemSerializer(serializers.ModelSerializer):
     tags = TagSerializer(many=True)
+    images = ImageSerializer(many=True,read_only=True)
     #images = ImageSerializer(many=True)
     
     class Meta:
         model = Item
         fields = '__all__'
         extra_kwargs = {
-            'created_on' : {'read_only' : True}
+            'created_on' : {'read_only' : True},
         }
     
     def create(self, validated_data):
+        print('hi')
         tags_data = validated_data.pop('tags',[])
         item = Item.objects.create(**validated_data)
         for tag in tags_data:
@@ -44,6 +51,7 @@ class ItemSerializer(serializers.ModelSerializer):
             tag_obj = Tag.objects.get_or_create(**tag)[0]
             item.tags.add(tag_obj)
         
+        print(item)
         return item
     
     def update(self, instance, validated_data):

@@ -19,7 +19,7 @@ const ItemCard = ({title,price,tags,id}) => {
             <h1 className="itemTitle">{title}</h1>
             <p className="itemPrice"><span className="itemDollarSign">$</span>{price}</p>
         </div>
-        <img className="cardItemImage" src={seamImage}/>
+        <img className="cardItemImage" src='https://seams-strange-bucket.s3.us-east-2.amazonaws.com/seamsstrangelogindesign.jpgd6b75b63-f6b9-48f2-bd9e-311b9f226a75'/>
         <h4 className="tagListTitle">Tags 🏷️</h4>
         <TagList tags={tags}/>
     </div>)

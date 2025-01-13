@@ -166,7 +166,6 @@ class ProvideAuthenticationStateView(APIView):
     permission_classes = [IsAuthenticated]
     def get(self,request):
         response = Response()
-        print(request.user)
         if request.user.is_authenticated:
             data = {"Success":"User is Authenticated"}
             return Response(data)

@@ -75,6 +75,7 @@ const AdminItemPanel = () => {
         if (!linkRef) linkRef.current = "";
         data.etsy_url = linkRef.current;
         data.tags = currentTags;
+        data.images = []
 
         let formData = new FormData();
         currentImages.forEach(({ file }, index) => {

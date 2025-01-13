@@ -31,8 +31,6 @@ class Item(models.Model):
 
 class Image(models.Model):
     url = models.URLField(null=False,blank=False)
-    title = models.CharField(max_length=100,null=False,blank=False)
-    description = models.CharField(max_length=500,null=True,blank=True)
     created_on = models.DateTimeField(auto_now_add=True)
     item = models.ForeignKey('Item',on_delete=models.CASCADE,null=True,related_name='images')
 
