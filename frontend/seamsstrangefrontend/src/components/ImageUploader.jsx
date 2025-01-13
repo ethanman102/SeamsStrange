@@ -10,7 +10,7 @@ const ImageUploader = ({handleUpload}) =>{
         let fileURL = URL.createObjectURL(files[0]);
         let data={
             file: files[0],
-            URL: fileURL
+            url: fileURL
         }
         handleUpload(data);
         fileRef.current = '';
