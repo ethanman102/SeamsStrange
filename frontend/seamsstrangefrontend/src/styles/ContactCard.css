@@ -1,0 +1,74 @@
+.contactCardHeaderContainer{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    border-top-left-radius: 2ch;
+    border-top-right-radius: 2ch;
+    height: fit-content;
+    justify-content: space-between;
+    padding-left: 4ch;
+    padding-right: 4ch;
+    padding-top: 1ch;
+    background: rgb(23,199,131);
+    background: linear-gradient(90deg, rgba(23,199,131,1) 0%, rgba(54,117,131,1) 100%);
+    border-bottom: solid black;
+}
+
+.contactNameHeader{
+    height: fit-content;
+    align-self: center;
+}
+
+.contactHeadshot{
+    width: 15ch;
+    height: 15ch;
+    object-fit: cover;
+    border-radius: 50ch;
+    margin-bottom: 1ch;
+    border: solid white;
+}
+
+.firstNameContact,.lastNameContact{
+    margin-bottom: 0;
+    padding: 0;
+    margin-top: 0;
+}
+
+.firstNameContact{
+    font-size: 250%;
+    color: white;
+}
+
+.lastNameContact{
+    font-size: 200%;
+    color: white;
+}
+
+.contactCardFullContainer{
+    padding: 0;
+    width: 50ch;
+    margin-left: 5ch;
+    margin-right: 5ch;
+    background-color: rgb(241, 241, 241);
+    border-top-left-radius: 2ch;
+    border-top-right-radius: 2ch;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    margin-bottom: 2ch;
+    padding-bottom: 2ch;
+    border-bottom-right-radius: 2ch;
+    border-bottom-left-radius: 2ch;
+}
+
+.roleContact{
+    color: rgb(233, 233, 233);
+}
+
+.contactCardDetailHeader{
+    color: rgb(23,199,131);
+}
+
+.contactCardBody{
+    margin-left: 2ch;
+    margin-right: 2ch;
+}
+

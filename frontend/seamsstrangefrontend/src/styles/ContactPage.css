@@ -1,0 +1,199 @@
+.contactPageHeader{
+    width: fit-content;
+    margin-left: 2ch;
+}
+
+.contactPageHeader > h1,.currentHeader{
+    color: #17c783;
+    font-size: 250%;
+    margin-bottom: 0;
+}
+
+.contactPageHeader > h2{
+    color: #0a7c5a;
+    font-size: 200%;
+    margin-top: 0;
+}
+
+.imageContainer{
+    margin-bottom: 5ch;
+    margin-right: 2ch;
+    margin-left: 2ch;
+    position: relative;
+}
+
+.contactImageOne{
+    width: 100%;
+    height: 100ch;
+    object-fit: cover;
+    display: block;
+    border: solid white;
+}
+
+.textTimestamp{
+    color: rgb(233, 233, 233);
+    margin-top: 1ch;
+    display: block;
+    width: fit-content;
+}
+
+.buyerTextOne{
+    position: absolute;
+    color: white;
+    background-color: #17c783;
+    font-size: 125%;
+    padding-left: 3ch;
+    padding-right: 3ch;
+    padding-top: 0.5ch;
+    padding-bottom: 0.5ch;
+    top: 0;
+    margin-left: 1ch;
+    border-top-left-radius: 2ch;
+    border-top-right-radius: 2ch;
+    border-bottom-right-radius: 2ch;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    opacity: 0;
+    animation: fadeIn 2s forwards;
+}
+
+.sellerTextOne{
+    color: white;
+    background-color:#0a7c5a;
+    font-size: 125%;
+    top:10ch;
+    right: 0;
+    padding-left: 3ch;
+    padding-right: 3ch;
+    padding-top: 0.5ch;
+    padding-bottom: 0.5ch;
+    position: absolute;
+    margin-right: 1ch;
+    border-top-left-radius: 2ch;
+    border-top-right-radius: 2ch;
+    border-bottom-left-radius: 2ch;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    opacity: 0;
+    animation: fadeIn 2s forwards;
+}
+
+.buyerTextTwo{
+    position: absolute;
+    color: white;
+    background-color: #17c783;
+    font-size: 125%;
+    padding-left: 3ch;
+    padding-right: 3ch;
+    padding-top: 0.5ch;
+    padding-bottom: 0.5ch;
+    top: 30ch;
+    margin-left: 1ch;
+    border-top-left-radius: 2ch;
+    border-top-right-radius: 2ch;
+    border-bottom-right-radius: 2ch;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    opacity: 0;
+    animation: fadeIn 2s forwards;
+}
+
+.sellerTextTwo{
+    color: white;
+    background-color:#0a7c5a;
+    font-size: 125%;
+    top:45ch;
+    right: 0;
+    padding-left: 3ch;
+    padding-right: 3ch;
+    padding-top: 0.5ch;
+    padding-bottom: 0.5ch;
+    position: absolute;
+    margin-right: 1ch;
+    border-top-left-radius: 2ch;
+    border-top-right-radius: 2ch;
+    border-bottom-left-radius: 2ch;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    opacity: 0;
+    animation: fadeIn 2s forwards;
+}
+
+.buyerTextThree{
+    position: absolute;
+    color: white;
+    background-color: #17c783;
+    font-size: 125%;
+    padding-left: 3ch;
+    padding-right: 3ch;
+    padding-top: 0.5ch;
+    padding-bottom: 0.5ch;
+    top: 63ch;
+    margin-left: 1ch;
+    border-top-left-radius: 2ch;
+    border-top-right-radius: 2ch;
+    border-bottom-right-radius: 2ch;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    opacity: 0;
+    animation: fadeIn 2s forwards;
+}
+
+
+@keyframes fadeIn {
+    from {opacity: 0}
+    to {opacity: 1}
+}
+
+.contactPage .contactFormContainer{
+    margin-bottom: 10ch;
+    margin-left: 2ch;
+}
+
+.contactPageInquiryTextRight{
+    margin-left: 2ch;
+    margin-right: 2ch;
+    text-align: end;
+    color: white;
+    margin-right: 2ch;
+    display: block;   
+}
+
+.contactPageInquiryLeft{
+    margin-left: 2ch;
+    margin-right: 2ch;
+    color: white;
+    margin-right: 2ch;
+    display: block;  
+}
+
+.ourTeamHeader{
+    color: #17c783;
+    margin-left: 2ch;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+
+.companyDetailsContact{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+}
+
+.generalContactHeader{
+    color: #17c783;
+    margin-left: 2ch; 
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.generalContactPrompt{
+    color: white;
+    text-align: center;
+}
+
+.contactFormSection .contactFormContainer{
+    margin-left: auto;
+    margin-right: auto;
+}

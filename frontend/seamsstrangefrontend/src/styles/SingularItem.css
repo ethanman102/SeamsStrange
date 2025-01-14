@@ -4,6 +4,7 @@
     flex-wrap: wrap;
     padding-bottom: 5ch;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    border-bottom: 1px solid white;
 
 }
 
@@ -40,10 +41,11 @@
 }
 
 .newestCreations{
-    color: #17c783;
-    margin-left: 2ch;
-    margin-right: 2ch;
-    text-align: center;
+    color: white    ;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;  
 }
 
 .singleItemContent{

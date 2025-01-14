@@ -4,6 +4,10 @@
     margin-bottom: 0;
 }
 
+.adminItemPanelFlexContainer{
+    padding-bottom: 10ch;
+}
+
 .adminItemsHeader > h2{
     color: #0a7c5a;
     font-size: 200%;

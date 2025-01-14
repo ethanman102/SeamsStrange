@@ -26,6 +26,7 @@
 .itemPageContainer{
     display: flex;
     flex-direction: row;
+    min-height: 100vh;
 }
 
 .tagFilter{
@@ -37,7 +38,7 @@
     margin-left: 2ch;
     margin-right: 0;
     border-right: #0a7c5a solid 0.25ch;
-    height: fit-content
+    height: fit-content;
 }
 
 .itemBox{
@@ -50,7 +51,7 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 5ch;
+    margin-bottom: 8ch;
 }
 
 .itemShopHeader{
@@ -75,6 +76,7 @@
     font-size: 500%;
     overflow-wrap: break-word;
 }
+
 
 
 

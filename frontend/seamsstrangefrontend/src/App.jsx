@@ -7,11 +7,15 @@ import Login from './components/Login';
 import Admin from './pages/Admin';
 import Homepage from './pages/Homepage';
 import SingularItem from './pages/SingularItem';
+import Footer from './components/Footer';
+import ContactPage from './pages/ContactPage';
 
 function App() {
 
   return(
     <>
+    <div className='pageContainer'>
+      <div className='contentWrap'>
       <NavBar/>
       <Routes>
         <Route path="/" element={<h1>HEY</h1>}/>
@@ -19,7 +23,11 @@ function App() {
         <Route path="/items/" element={<ItemContainer/>}/>
         <Route path="/items/:id/" element={<SingularItem/>}/>
         <Route path="/admin/*" element={<Admin/>}/>
+        <Route path="/contact/" element={<ContactPage/>}/>
       </Routes>
+      </div>
+      <Footer/>
+    </div>
     </>
   );
 }
