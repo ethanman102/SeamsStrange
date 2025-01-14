@@ -145,7 +145,55 @@
     margin-left: 2ch;
 }
 
-.contactPageInquiryText{
+.contactPageInquiryTextRight{
     margin-left: 2ch;
+    margin-right: 2ch;
+    text-align: end;
     color: white;
+    margin-right: 2ch;
+    display: block;   
+}
+
+.contactPageInquiryLeft{
+    margin-left: 2ch;
+    margin-right: 2ch;
+    color: white;
+    margin-right: 2ch;
+    display: block;  
+}
+
+.ourTeamHeader{
+    color: #17c783;
+    margin-left: 2ch;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+
+.companyDetailsContact{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+}
+
+.generalContactHeader{
+    color: #17c783;
+    margin-left: 2ch; 
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.generalContactPrompt{
+    color: white;
+    text-align: center;
+}
+
+.contactFormSection .contactFormContainer{
+    margin-left: auto;
+    margin-right: auto;
 }
