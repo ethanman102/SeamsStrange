@@ -60,7 +60,7 @@ const ItemContainer = () => {
     <>
     <div className="itemShopHeader">
         <h1>Shop</h1>
-        <h2>Embroidary</h2>
+        <h2>Embroidery</h2>
     </div>
     <div className="itemPageContainer">
     <TagFilter filterFunction={editFilteredTags} purpose="Filter By "/>

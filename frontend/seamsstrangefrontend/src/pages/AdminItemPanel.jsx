@@ -6,7 +6,7 @@ import ItemDescriptionInput from "../components/ItemDescriptionInput";
 import ItemPriceInput from "../components/ItemPriceInput";
 import ItemLinkInput from "../components/ItemLinkInput";
 import ItemQuantityInput from "../components/ItemQuantityInput";
-import { useRef, useState,useContext} from "react";
+import { useRef, useState,useContext,useEffect} from "react";
 import instance from "../api";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "./Admin";
@@ -23,6 +23,8 @@ const AdminItemPanel = () => {
     const quantityRef = useRef(0);
     const [currentTags, setCurrentTags] = useState([]);
     const [currentImages,setCurrentImages] = useState([]);
+
+    const [viewMode,setViewMode] = useState(View.VIEW);
 
     const authenticationStateHandler = useContext(AuthContext);
 

@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams,useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import TagList from "../components/TagList";
@@ -8,6 +8,7 @@ import "../styles/SingularItem.css"
 import asModal from "../components/wrappers/asModal"
 import ImageSlider from "../components/ImageSlider";
 import View from "../constants";
+import instance from "../api";
 
 const SingularItem = () =>{
 
@@ -22,6 +23,10 @@ const SingularItem = () =>{
     const [openModal,setOpenModal] = useState(0);
     const [recommendations,setRecommendations] = useState([]);
     const [images,setImages] = useState([]);
+
+    const [authenticated,setAuthenticated] = useState(null);
+
+    const navigate = useNavigate();
 
     const ModalContact = asModal(ContactForm);
 
@@ -43,12 +48,25 @@ const SingularItem = () =>{
         })
     },[params.id]);
 
+    useEffect(() =>{
+        instance.get('http://localhost:8000/api/authenticated/').then((response) =>{
+            if (response.status === 200) setAuthenticated(true);
+            else setAuthenticated(false);
+        }).catch((error)=> {setAuthenticated(false);}
+    );
+
+    },[]);
+
+    const handleItemEditClick = (event) => {
+        navigate('/admin/items/',{state:{id:params.id}})
+    }
+
     return(
         <>
         {openModal && <ModalContact page={title} openModal={openModal} />}
         <div className="singleItemContainer">
             <div className="singleItemContent">
-                <h1 className="singleItemTitle">{title}</h1>
+                <h1 className="singleItemTitle">{title} {authenticated && <button className="editItemButton" onClick={(event) =>handleItemEditClick(event)}>Edit Item ✏️</button>}</h1>
                 <h2 className="singleItemPrice">${price}</h2>
                 <h3 className="singleItemQuantity">Available: {quantity}</h3>
                 {images.length > 0 && <ImageSlider mode={View.VIEW} images={images}/>}
