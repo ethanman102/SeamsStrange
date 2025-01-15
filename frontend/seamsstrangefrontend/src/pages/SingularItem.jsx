@@ -58,7 +58,19 @@ const SingularItem = () =>{
     },[]);
 
     const handleItemEditClick = (event) => {
-        navigate('/admin/items/',{state:{id:params.id}})
+        
+        let itemData = {
+            id: params.id,
+            title: title,
+            description: description,
+            price: price,
+            quantity: quantity,
+            etsyURL: etsyURL,
+            tags: tags,
+            images: images
+        }
+
+        navigate('/admin/items/',{state:itemData});
     }
 
     return(

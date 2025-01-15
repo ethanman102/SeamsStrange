@@ -8,11 +8,12 @@ import ItemLinkInput from "../components/ItemLinkInput";
 import ItemQuantityInput from "../components/ItemQuantityInput";
 import { useRef, useState,useContext,useEffect} from "react";
 import instance from "../api";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useLocation } from "react-router-dom";
 import { AuthContext } from "./Admin";
 import ImageSlider from "../components/ImageSlider";
 import ImageUploader from "../components/ImageUploader";
 import View from "../constants";
+import axios from "axios";
 
 const AdminItemPanel = () => {
 
@@ -21,6 +22,7 @@ const AdminItemPanel = () => {
     const priceRef = useRef(0.00);
     const linkRef = useRef("http://localhost:8000/");
     const quantityRef = useRef(0);
+    const [allTags, setAllTags] = useState([]);
     const [currentTags, setCurrentTags] = useState([]);
     const [currentImages,setCurrentImages] = useState([]);
 
@@ -28,7 +30,36 @@ const AdminItemPanel = () => {
 
     const authenticationStateHandler = useContext(AuthContext);
 
+    const {state} = useLocation();
+
     const navigate = useNavigate();
+
+    // case when navigating to edit the item.
+    useEffect(() =>{
+        if (state && state.id){
+            titleRef.current = state.title;
+            descriptionRef.current = state.description;
+            priceRef.current = state.price
+            linkRef.current = state.etsyURL;
+            quantityRef.current = state.quantity;
+            setCurrentImages(state.images);
+            setCurrentTags(state.tags);
+            setViewMode(View.EDIT);
+        }else{
+            titleRef.current = '';
+            descriptionRef.current = '';
+            priceRef.current = 0.00;
+            linkRef.current = '';
+            quantityRef.current = 0;
+            setCurrentImages([]);
+            setCurrentTags([]);
+            setViewMode([]);
+        }
+    },[state]);
+
+    useEffect(()=>{
+        axios.get('http://localhost:8000/api/tags/').then((response) => response.data).then((fetchedTags) => setAllTags(fetchedTags.tags));
+    },[]);
 
     const handleTitleChange = (titleText) =>{
         titleRef.current = titleText;
@@ -62,6 +93,11 @@ const AdminItemPanel = () => {
         setCurrentImages(currentImages.filter((_,i) => i !== index));
     }
 
+    const onDisableEdit = () =>{
+        setViewMode(View.VIEW);
+        // reset the params id by simply calling on delete with a negative value
+        navigate('/admin/items/');
+    }
     
     const createItem = () => {
         // Validate here to reduce round trip time.
@@ -84,24 +120,24 @@ const AdminItemPanel = () => {
             formData.append('images', file);  // Append each file individually
         });
 
-        
-
-        
         // Create the axios request for the API call
-        instance.post("/api/items/",
-            data
-        ).then((response) => {
+        instance.post("/api/items/", data)
+        .then((response) => {
             let id = response.data.id;
-            formData.append('item',id);
-            instance.post('/api/images/',formData,{
-                headers : {
-                    'Content-Type' : 'multipart/form-data'
+            formData.append('item', id);
+            return instance.post('/api/images/', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
                 }
-            })
-        }).catch((error) =>{
+            }).then(() => id); // Return the id after images are uploaded
+        })
+        .then((id) => {
+            navigate(`/items/${id}/`);
+        })
+        .catch((error) => {
             authenticationStateHandler(false);
             navigate('/admin');
-        })
+        });
 
     }
 
@@ -112,15 +148,18 @@ const AdminItemPanel = () => {
             <h1>Seams Strange</h1>
             <h2>Items</h2>
         </div>
-        <h2 className="createItemHeader">Create Item</h2>
-        <p className="itemCreatePrompt">Follow the process below to create a new item for the shop!<br/>
+        <h2 className="createItemHeader">{viewMode === View.VIEW ? "Create" : "Edit"} Item</h2>
+        <p className="itemCreatePrompt">Follow the process below to {viewMode === View.VIEW ? "create" : "edit"} a new item for the shop!<br/>
         Please note that anything labelled with a is a required input for the item!<br/>
         <br/>
         IMPORTANT: If you want to create a new tag for the item during this process, do not switch tabs as your work will not be saved!<br/>
         You can always create the item then attach a tag afterwards in edit mode. </p>
         <div className="tagAndInputContainer">
             <div className="adminItemsTextualInputs">
+                <h2 className="itemViewMode">Mode: {viewMode === View.VIEW ? "Create" : "Edit"}</h2>
+                {viewMode === View.EDIT ? <button className="disableModeButton" onClick={() => onDisableEdit()}>Disable Edit Mode</button> : ''}
                 <ItemTitleInput titleText={titleRef.current} handleTitle={handleTitleChange}/>
+
                 <ItemDescriptionInput description={descriptionRef.current} handleDescription={handleDescriptionChange}/>
                 <div className="priceLinkAvailabilityContainer">
                     <ItemPriceInput itemPrice={priceRef.current} handlePrice={handlePriceChange}/>
@@ -138,9 +177,9 @@ const AdminItemPanel = () => {
                 {currentImages.length > 0 && <ImageSlider images={currentImages} mode={View.EDIT} handleRemove={onDeleteImage}/>}
                 <ImageUploader handleUpload={onUpload}/>
                 <ItemLinkInput itemLink={linkRef.current} handleLink={handleLinkChange}/>
-                <button className="createItemButton" onClick={createItem}>Create</button>
+                <button className="createItemButton" onClick={createItem}>Save</button>
             </div>
-            <TagFilter purpose="Attach a " filterFunction={handleTagChange}/>
+            <TagFilter purpose="Attach a " filterFunction={handleTagChange} tags={allTags} currentSelection={currentTags}/>
         </div>
     </div>
     )

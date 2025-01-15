@@ -29,6 +29,7 @@ const ItemContainer = () => {
         window.scrollTo({top:0,left:0,behavior:"smooth"});
     },[filterTags,page]);
 
+
     // re-render the items when the page query changes.
     useEffect(() => {
         const getItems = async () =>{
@@ -63,7 +64,7 @@ const ItemContainer = () => {
         <h2>Embroidery</h2>
     </div>
     <div className="itemPageContainer">
-    <TagFilter filterFunction={editFilteredTags} purpose="Filter By "/>
+    <TagFilter filterFunction={editFilteredTags} purpose="Filter By " currentSelection={[]}/>
         <div className="itemBox">
             <div className="itemContainer">
                 {items.length > 0 ? items : <h2 className="noResultsHeader">No Results</h2>}

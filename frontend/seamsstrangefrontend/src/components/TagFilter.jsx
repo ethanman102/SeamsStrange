@@ -3,15 +3,15 @@ import "../styles/TagFilter.css"
 import axios from "axios";
 
 
-const TagFilter = ({filterFunction,purpose}) => {
+const TagFilter = ({filterFunction,purpose,currentSelection}) => {
 
     const [tagChecks,setTagChecks] = useState([]);
-    const [selected,setSelected] = useState([]);
+    const [selected,setSelected] = useState(currentSelection);
     const [applied,setApplied] = useState(false);
 
     useEffect(() => {
-            axios.get('http://localhost:8000/api/tags/').then((response) => response.data).then((fetchedTags) => setTagChecks(fetchedTags.tags));
-    },[]);   
+            axios.get('http://localhost:8000/api/tags/').then((response) => response.data).then((fetchedTags) => setTagChecks(fetchedTags.tags)).then(setSelected(currentSelection))
+    },[currentSelection]);   
     
     const handleCheck = (tagCheckbox) =>{
         var tagName = tagCheckbox.getAttribute("tag");
