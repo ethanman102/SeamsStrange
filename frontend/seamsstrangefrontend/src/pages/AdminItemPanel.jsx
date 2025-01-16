@@ -6,7 +6,7 @@ import ItemDescriptionInput from "../components/ItemDescriptionInput";
 import ItemPriceInput from "../components/ItemPriceInput";
 import ItemLinkInput from "../components/ItemLinkInput";
 import ItemQuantityInput from "../components/ItemQuantityInput";
-import { useRef, useState,useContext,useEffect} from "react";
+import {useState,useContext,useEffect} from "react";
 import instance from "../api";
 import { useNavigate,useLocation } from "react-router-dom";
 import { AuthContext } from "./Admin";
@@ -53,7 +53,7 @@ const AdminItemPanel = () => {
             setQuantity(0);
             setCurrentImages([]);
             setCurrentTags([]);
-            setViewMode([]);
+            setViewMode(View.VIEW);
         }
     },[state]);
 
@@ -109,52 +109,96 @@ const AdminItemPanel = () => {
         setCurrentTags(state.tags);
     }
 
+    const onDeleteItem = () => {
+        instance.delete(`http://localhost:8000/api/items/${state.id}/`).then(() => {
+            navigate('/items/');
+        }).catch((error)=>{
+            return;
+        })
+    }
+
 
 
     const createItem = () => {
         // Validate here to reduce round trip time.
-        console.log('hi');
         var data = {}
         if (quantity < 0) return;
-        console.log('boo')
         data.quantity = Number(quantity);
-        console.log('oop')
         if (price < 0) return;
         console.log(price);
         data.price = parseFloat(price).toFixed(2); // this line gives error december 31 8pm
         if (!title) return;
         data.title = title;
-        console.log('here');
         if (!description) return;
         data.description = description;
         if (!link) setLink("");
         data.etsy_url = link;
         data.tags = currentTags;
-        data.images = []
 
         let formData = new FormData();
-        currentImages.forEach(({ file }, index) => {
-            formData.append('images', file);  // Append each file individually
-        });
+        let alreadyUploadedImages = []
+        if (viewMode == View.VIEW){
+            currentImages.forEach(({ file }, index) => {
+                formData.append('images', file);  // Append each file individually
+            });
+        }else{
+            // case where we have both new images and files.
+            for(let img of currentImages){
+                if (img.constructor && (img.constructor === Blob || img.constructor == File)){
+                    formData.append('images',img);
+                }else{
+                    // get the list of already added urls.
+                    alreadyUploadedImages = [...alreadyUploadedImages,img.url]; 
+                }
+            }
+        }
 
         // Create the axios request for the API call
-        instance.post("/api/items/", data)
-        .then((response) => {
-            let id = response.data.id;
-            formData.append('item', id);
-            return instance.post('/api/images/', formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data'
+        if (viewMode === View.VIEW){
+            instance.post("/api/items/", data)
+            .then((response) => {
+                let id = response.data.id;
+                formData.append('item', id);
+                return instance.post('/api/images/', formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                }).then(() => id); // Return the id after images are uploaded
+            })
+            .then((id) => {
+                navigate(`/items/${id}/`);
+            })
+            .catch((error) => {
+                authenticationStateHandler(false);
+                navigate('/admin');
+            });
+        }else{
+            let imagesToDelete = state.images.filter((img) => !alreadyUploadedImages.includes(img.url));
+            instance.put(`/api/items/${state.id}/`, data)
+            .then((response) => {
+                // upload
+                formData.append('item', state.id);
+                return instance.post('/api/images/', formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                }); // Return the id after images are uploaded
+            }).then(() => {
+                let deletePromises = [];
+                for (let img of imagesToDelete){
+                    deletePromises.push(instance.delete(`/api/images/${img.id}/`));
                 }
-            }).then(() => id); // Return the id after images are uploaded
-        })
-        .then((id) => {
-            navigate(`/items/${id}/`);
-        })
-        .catch((error) => {
-            authenticationStateHandler(false);
-            navigate('/admin');
-        });
+                return Promise.all(deletePromises);
+            })
+            .then(() => {
+                navigate(`/items/${state.id}/`);
+            })
+            .catch((error) => {
+                authenticationStateHandler(false);
+                navigate('/admin');
+            });
+
+        }
 
     }
 
@@ -180,7 +224,7 @@ const AdminItemPanel = () => {
                     <p className="editButtonsPrompt">To reset the all changes you made you can utilize the reset button.<br/>To delete an item from the shop press the delete button.</p>  
                     <div className="editOptionButtons">
                         <button className="itemResetButton" onClick={onReset}>Reset</button>
-                        <button className="itemDeleteButton">DELETE</button>
+                        <button className="itemDeleteButton" onClick={onDeleteItem}>DELETE</button>
                     </div>
                         </>: ''
                 }

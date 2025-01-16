@@ -17,8 +17,7 @@ class ImageView(APIView):
             item_id = request.data.get('item')
         except:
             return Response({'error' : 'Please provide an item id'},status=status.HTTP_400_BAD_REQUEST)
-        
-        print(item_id)
+
         item = get_object_or_404(Item,id=item_id)
 
         images = request.FILES.getlist('images')
@@ -37,3 +36,17 @@ class ImageView(APIView):
 
 
         return Response({'success':'yay'})
+    
+    def delete(self,request,id):
+        img_id = self.kwargs.get('id')
+        image = get_object_or_404(Image,id=img_id)
+        client = boto3.client(service_name='s3',
+                              region_name=settings.AWS_REGION,
+                              aws_access_key_id=settings.AWS_ACCESS_KEY_ID,
+                              aws_secret_access_key=settings.AWS_SECRET_ACCESS_KEY)
+        
+        client.delete_object(Bucket=settings.AWS_STORAGE_BUCKET_NAME,Key=image.url)
+        image.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+

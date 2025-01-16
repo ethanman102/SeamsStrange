@@ -3,6 +3,7 @@ import "../styles/TagList.css";
 import { useLocation,useNavigate } from "react-router-dom";
 import { useEffect,useState } from "react";
 import instance from "../api";
+import {v4 as uuidv4} from 'uuid';
 
 const TagList = ({tags}) => {
 
@@ -27,7 +28,7 @@ const TagList = ({tags}) => {
     },[]);
     
     const tagListItems = tags.map((tag,i) => {
-        return(<li key={tag.id} style={{backgroundColor: tag.color}} className="tagItem">
+        return(<li key={uuidv4()} style={{backgroundColor: tag.color}} className="tagItem">
             {tag.name}
             {authenticated && <button className="tagEditButton" onClick={(event) => handleTagEditClick(event,tag.id)}>✏️</button>}
         </li>);

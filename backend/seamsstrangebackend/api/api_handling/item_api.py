@@ -7,6 +7,8 @@ from ..authenticate import JWTCookieAuthentication
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from rest_framework.permissions import IsAuthenticated,AllowAny
 from django.shortcuts import get_object_or_404
+import boto3
+from django.conf import settings
 
 RECOMMEND_NUM = 3 
 
@@ -54,6 +56,17 @@ class ItemViewSet(viewsets.ModelViewSet):
     
     def destroy(self, request, *args, **kwargs):
         item = self.get_object()
+        images = item.images.all()
+        client = boto3.client(service_name='s3',
+                              region_name=settings.AWS_REGION,
+                              aws_access_key_id=settings.AWS_ACCESS_KEY_ID,
+                              aws_secret_access_key=settings.AWS_SECRET_ACCESS_KEY)
+        
+        for image in images:
+            # remove all images from the database
+            client.delete_object(Bucket=settings.AWS_STORAGE_BUCKET_NAME,Key=image.url)
+
+        # images will cascade
         item.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
     

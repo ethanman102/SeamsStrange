@@ -10,7 +10,11 @@ const TagFilter = ({filterFunction,purpose,currentSelection}) => {
     const [applied,setApplied] = useState(false);
 
     useEffect(() => {
-            axios.get('http://localhost:8000/api/tags/').then((response) => response.data).then((fetchedTags) => setTagChecks(fetchedTags.tags)).then(setSelected(currentSelection))
+            axios.get('http://localhost:8000/api/tags/').then((response) => response.data).then((fetchedTags) => setTagChecks(fetchedTags.tags)).then(setSelected(currentSelection)).then(()=>{
+                if (currentSelection.length > 0){
+                    setApplied(true);
+                }
+            });
     },[currentSelection]);   
     
     const handleCheck = (tagCheckbox) =>{
