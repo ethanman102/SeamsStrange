@@ -101,6 +101,7 @@ const AdminItemPanel = () => {
 
     const onDisableEdit = () =>{
         setViewMode(View.VIEW);
+        setOpenModal(0);
         // reset the params id by simply calling on delete with a negative value
         navigate('/admin/items/');
     }
@@ -210,7 +211,7 @@ const AdminItemPanel = () => {
 
     return(
     <>
-    {openModal && <ModalDelete deleteObject="Item" deleteCallback={onDeleteItem} openModal={openModal} />}  
+    {openModal !== 0 && <ModalDelete deleteObject="Item" deleteCallback={onDeleteItem} modalSwitch={setOpenModal}/>}  
     <div className="adminItemPanelFlexContainer">
         <div className="adminItemsHeader">
             <h1>Seams Strange</h1>

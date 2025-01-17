@@ -1,9 +1,7 @@
 .navigationBar{
-    background: rgb(23,199,131);
-    background: linear-gradient(90deg, rgba(23,199,131,1) 0%, rgba(54,117,131,1) 100%);
+    background-color:  #17503f;
     margin: 0;
     height: 7ch;
-    border-bottom: solid white 1px;
 }
 
 .navigationList{
@@ -37,15 +35,15 @@
 
 .navLink{
     text-decoration: none;
-    color: white;
+    color: #17c783;
     font-size: larger;
 }
 
 .homepageNav{
     color: white;
-    margin-right: 5ch;
 }
 
 .strangeNavText{
     padding-left: 1ch;
+    color: #17c783;
 }

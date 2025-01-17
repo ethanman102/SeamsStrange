@@ -4,6 +4,8 @@ import { AuthContext } from "../pages/Admin";
 import { useNavigate } from "react-router-dom";
 import instance from "../api";
 import View from "../constants";
+import DeletePrompt from "./DeletePrompt";
+import asModal from "./wrappers/asModal";
 
 
 const TagEditor = ({onSubmit,onDelete,tag}) =>{
@@ -13,9 +15,14 @@ const TagEditor = ({onSubmit,onDelete,tag}) =>{
     const [message,setMessage] = useState('');
     const [viewMode,setViewMode] = useState(View.VIEW);
 
+    const [openModal,setOpenModal] = useState(0);
+
     const authenticationStateHandler = useContext(AuthContext);
 
+    const ModalDelete = asModal(DeletePrompt);
+
     useEffect(() => {
+        setOpenModal(0);
         if (tag) {
           setTagColor(tag.color || "#000000");
           setTagText(tag.name || "");
@@ -46,13 +53,15 @@ const TagEditor = ({onSubmit,onDelete,tag}) =>{
     const onDisableEdit = () =>{
         setViewMode(View.VIEW);
         // reset the params id by simply calling on delete with a negative value
+        setOpenModal(0);
         navigate('/admin/tags/');
     }
 
-    const onRemove = (id) => {
+    const onRemove = () => {
 
-        instance.delete(`/api/tags/${id}/`).then((response) => {
-            onDelete(id);
+        instance.delete(`/api/tags/${tag.id}/`).then((response) => {
+            onDelete(tag.id);
+            setOpenModal(0);
             setMessage("Tag Deleted");
             navigate('/admin/tags/');
         }).catch((error) =>{
@@ -121,6 +130,7 @@ const TagEditor = ({onSubmit,onDelete,tag}) =>{
     return(
 
     <>
+    {openModal !== 0 && <ModalDelete deleteObject="Tag" deleteCallback={onRemove} modalSwitch={setOpenModal} />}  
     <h2 className="tagEditorMode">Mode: {viewMode === View.VIEW ? "Create" : "Edit"}</h2>
     {viewMode === View.EDIT ? <button className="disableModeButton" onClick={() => onDisableEdit()}>Disable Edit Mode</button> : ''}
     <p className="tagEditorDisclaimer">Ensure that tags names are concise and as descriptive as possible.<br/> Customers should be prompted with the main idea of the item that the tag is associated with through it's name.<br/>
@@ -139,7 +149,7 @@ const TagEditor = ({onSubmit,onDelete,tag}) =>{
             <div className="tagEditorButtons">
                 <button className="tagEditorButton" onClick={() => onConfirm()}>{viewMode === View.VIEW ? "Create" : "Update"}</button>
                 <button className="tagEditorButton" onClick={() => onReset()}>Reset</button>
-                {viewMode === View.EDIT && <button className="tagEditorButton" onClick={() => onRemove(tag.id)}>Delete</button>}
+                {viewMode === View.EDIT && <button className="tagEditorButton" onClick={() => setOpenModal(openModal + 1)}>Delete</button>}
             </div>
             <p className="tagEditorMessage">{message}</p>
         </div>

@@ -75,7 +75,7 @@ const SingularItem = () =>{
 
     return(
         <>
-        {openModal && <ModalContact page={title} openModal={openModal} />}
+        {openModal !== 0  && <ModalContact page={title} modalSwitch={setOpenModal} />}
         <div className="singleItemContainer">
             <div className="singleItemContent">
                 <h1 className="singleItemTitle">{title} {authenticated && <button className="editItemButton" onClick={(event) =>handleItemEditClick(event)}>Edit Item ✏️</button>}</h1>

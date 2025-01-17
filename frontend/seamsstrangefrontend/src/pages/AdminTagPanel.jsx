@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import TagList from "../components/TagList"
 import TagEditor from "../components/TagEditor";
-import axios from "axios";
 import "../styles/AdminTagPanel.css"
 import { useLocation } from "react-router-dom";
 import instance from "../api";
@@ -13,6 +12,9 @@ const AdminTagPanel = () => {
     const [tags,setTags] = useState([]);
     const [singleTag,setSingleTag] = useState({});
     const {state} = useLocation();
+
+    
+
 
     useEffect(() =>{
         if (state && state.id){
