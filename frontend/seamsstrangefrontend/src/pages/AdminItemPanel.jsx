@@ -14,6 +14,8 @@ import ImageSlider from "../components/ImageSlider";
 import ImageUploader from "../components/ImageUploader";
 import View from "../constants";
 import axios from "axios";
+import asModal from "../components/wrappers/asModal";
+import DeletePrompt from "../components/DeletePrompt";
 
 const AdminItemPanel = () => {
 
@@ -28,11 +30,15 @@ const AdminItemPanel = () => {
 
     const [viewMode,setViewMode] = useState(View.VIEW);
 
+    const [openModal,setOpenModal] = useState(0);
+
     const authenticationStateHandler = useContext(AuthContext);
 
     const {state} = useLocation();
 
     const navigate = useNavigate();
+
+    const ModalDelete = asModal(DeletePrompt);
 
     // case when navigating to edit the item.
     useEffect(() =>{
@@ -203,7 +209,8 @@ const AdminItemPanel = () => {
     }
 
     return(
-        
+    <>
+    {openModal && <ModalDelete deleteObject="Item" deleteCallback={onDeleteItem} openModal={openModal} />}  
     <div className="adminItemPanelFlexContainer">
         <div className="adminItemsHeader">
             <h1>Seams Strange</h1>
@@ -224,7 +231,7 @@ const AdminItemPanel = () => {
                     <p className="editButtonsPrompt">To reset the all changes you made you can utilize the reset button.<br/>To delete an item from the shop press the delete button.</p>  
                     <div className="editOptionButtons">
                         <button className="itemResetButton" onClick={onReset}>Reset</button>
-                        <button className="itemDeleteButton" onClick={onDeleteItem}>DELETE</button>
+                        <button className="itemDeleteButton" onClick={() => setOpenModal(openModal + 1)}>DELETE</button>
                     </div>
                         </>: ''
                 }
@@ -252,6 +259,7 @@ const AdminItemPanel = () => {
             <TagFilter purpose="Attach a " filterFunction={handleTagChange} tags={allTags} currentSelection={currentTags}/>
         </div>
     </div>
+    </> 
     )
 }
 export default AdminItemPanel;
