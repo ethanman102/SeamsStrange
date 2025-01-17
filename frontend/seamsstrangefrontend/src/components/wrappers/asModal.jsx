@@ -4,7 +4,7 @@ import "../../styles/asModal.css"
 const asModal = (WrappedComponent) => {
     const modalfiedComponent = (props) =>{
         const handleClose = () =>{
-            props.modalSwitch(0);
+            if (props.modalSwitch) props.modalSwitch(0);
         }
 
 
@@ -12,7 +12,7 @@ const asModal = (WrappedComponent) => {
         <div className="modal" style={{display: "block" ,position: "fixed"}}>
             <div className="modalContent">
                 <WrappedComponent {...props}/>
-                <button onClick={handleClose} className="modalCloseButton">Close</button>
+                {props.closeable && <button onClick={handleClose} className="modalCloseButton">Close</button>}
             </div>
         </div>
         );

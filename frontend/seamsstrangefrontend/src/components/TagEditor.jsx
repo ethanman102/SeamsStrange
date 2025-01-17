@@ -130,7 +130,7 @@ const TagEditor = ({onSubmit,onDelete,tag}) =>{
     return(
 
     <>
-    {openModal !== 0 && <ModalDelete deleteObject="Tag" deleteCallback={onRemove} modalSwitch={setOpenModal} />}  
+    {openModal !== 0 && <ModalDelete deleteObject="Tag" deleteCallback={onRemove} modalSwitch={setOpenModal} closeable={true}/>}  
     <h2 className="tagEditorMode">Mode: {viewMode === View.VIEW ? "Create" : "Edit"}</h2>
     {viewMode === View.EDIT ? <button className="disableModeButton" onClick={() => onDisableEdit()}>Disable Edit Mode</button> : ''}
     <p className="tagEditorDisclaimer">Ensure that tags names are concise and as descriptive as possible.<br/> Customers should be prompted with the main idea of the item that the tag is associated with through it's name.<br/>

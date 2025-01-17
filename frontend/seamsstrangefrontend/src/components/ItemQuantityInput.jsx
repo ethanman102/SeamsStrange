@@ -2,10 +2,10 @@ import { useState,useEffect } from "react";
 import "../styles/ItemQuantityInput.css"
 
 const ItemQuantityInput = ({itemQuantity,handleQuantity}) => {
-    const [quantity,setQuantity] = useState(itemQuantity);
+    const [quantity,setQuantity] = useState(itemQuantity || 0);
 
     useEffect(() => {
-        setQuantity(itemQuantity);
+        setQuantity(itemQuantity || 0);
     },[itemQuantity]);
 
     const handleQuantityChange = (amount) =>{

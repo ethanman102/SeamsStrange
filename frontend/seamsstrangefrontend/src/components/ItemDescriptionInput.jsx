@@ -3,12 +3,12 @@ import "../styles/ItemDescriptionInput.css"
 
 const ItemDescriptionInput = ({description,handleDescription}) =>{
     const MAXLENGTH = 1000;
-    const [count,setCount] = useState(description.length);
-    const [text,setText] = useState(description);
+    const [count,setCount] = useState(description.length || 0);
+    const [text,setText] = useState(description || "");
 
     useEffect(()=>{
-       setText(description);
-       setCount(description.length); 
+       setText(description || "");
+       setCount(description.length || 0); 
     },[description]);
 
 
