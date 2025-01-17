@@ -42,7 +42,6 @@ class ItemSerializer(serializers.ModelSerializer):
         }
     
     def create(self, validated_data):
-        print('hi')
         tags_data = validated_data.pop('tags',[])
         item = Item.objects.create(**validated_data)
         for tag in tags_data:

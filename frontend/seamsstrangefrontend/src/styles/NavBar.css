@@ -1,28 +1,35 @@
 .navigationBar{
     background-color:  #17503f;
     margin: 0;
+    height: 7ch;
 }
 
 .navigationList{
     display: flex;
     list-style-type: none;
-    height: 100%;  
     margin-top: 0;
     margin-bottom: 0;
-    padding-left: 2ch;
-    
+    padding-left: 0;
+    height: 100%;
 }
 
 .navigationList > li{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding-left: 2ch;
     padding-right: 2ch;
     padding-top: 1ch;
     padding-bottom: 1ch;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, scale 0.3s ease;
+    align-self: center;
+    margin: 0;
+    height: 100%;
 }
 
 .navigationList > li:hover{
     background-color: #0D313A;
+    scale: 1.2;
     
 }
 
@@ -32,3 +39,11 @@
     font-size: larger;
 }
 
+.homepageNav{
+    color: white;
+}
+
+.strangeNavText{
+    padding-left: 1ch;
+    color: #17c783;
+}

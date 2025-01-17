@@ -197,3 +197,7 @@
     margin-left: auto;
     margin-right: auto;
 }
+
+.contactFormSection{
+    border-top: solid white 1px;
+}

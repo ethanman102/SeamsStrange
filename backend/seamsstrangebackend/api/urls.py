@@ -20,6 +20,7 @@ urlpatterns = [
     path('authenticated/',ProvideAuthenticationStateView.as_view(),name='authenticated'),
     path('email/',EmailView.as_view(),name="email"),
     path('images/', ImageView.as_view(),name='images'),
+    path('images/<int:id>/',ImageView.as_view(),name="images-delete"),
     # item api routes
     path('',include(router.urls)),
     path('items/<int:id>/recommendations/',ItemRecommendationView.as_view(),name="recommendations")

@@ -82,3 +82,8 @@
 .recaptcha{
     margin-top: 2ch;
 }
+
+.contactNameLabel,.contactEmailLabel{
+    color: white;
+    font-weight: bold;
+}

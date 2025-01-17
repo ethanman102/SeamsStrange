@@ -1,0 +1,59 @@
+.deletePromptContainer{
+    background-color: rgb(241, 241, 241);
+    border-top-left-radius: 3ch;
+    border-top-right-radius: 3ch;
+    border-bottom-right-radius: 2ch;
+    border-bottom-left-radius: 2ch;
+    overflow: hidden;
+    width: 50ch;
+    background: rgb(23,199,131);
+    background: linear-gradient(90deg, rgba(23,199,131,1) 0%, rgba(54,117,131,1) 100%);
+    border: 2px solid white;
+}
+
+.deletePromptHeader{
+    margin: 0;
+    text-align: center;
+    padding-left: 4ch;
+    padding-right: 4ch;
+    padding-top: 1ch;
+    padding-bottom: 0.5ch;
+    color: white;
+    font-size: 250%;
+
+    border-top-left-radius: 1ch;
+    border-top-right-radius: 1ch;
+    border: none;
+    border-bottom: solid white;
+}
+
+.deletePromptText{
+    text-align: center;
+    color: white;
+}
+
+.deletePromptButton{
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    margin-bottom: 2ch;
+    margin-top: 2ch;
+    border: none;
+    background-color: transparent;
+    color: white;
+    font-size: 175%;
+    border-radius: 2ch;
+    padding-top: 0.25ch;
+    padding-bottom: 0.25ch;
+    border: 2px solid white;
+    padding-left: 3ch;
+    padding-right: 3ch;
+    transition: background-color 0.5s ease, scale 0.5s ease;
+}
+
+.deletePromptButton:hover{
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.349);
+    scale: 1.1;
+}
+

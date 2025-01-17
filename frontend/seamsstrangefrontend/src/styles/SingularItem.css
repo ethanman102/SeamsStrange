@@ -170,4 +170,23 @@
     scale: 1;
     cursor: pointer;
 }
+
+.editItemButton{
+    vertical-align: middle;
+    font-size: 50%;
+    background-color:#0a7c5a;
+    border: none;
+    padding-left: 1ch;
+    padding-right: 1ch;
+    border-radius: 2ch;
+    color: white;
+    transition: background-color 0.5s ease, scale 0.5s ease;
+}
+
+.editItemButton:hover{
+    cursor: pointer;
+    background-color: #074734;
+    scale: 1.1;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
 /*Item Card shrinking for recommendation section specifics*/

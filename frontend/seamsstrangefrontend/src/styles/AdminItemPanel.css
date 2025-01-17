@@ -85,3 +85,73 @@
 .attachedTagsHeader{
     color:#17c783;
 }
+
+.itemViewMode{
+    display: inline;
+    color: #17c783;
+}
+
+.disableModeButton{
+    margin-left: 2ch;
+    border: none;
+    color: white;
+    background-color: red;
+    font-size: 100%;
+    border-radius: 2ch;
+    display: inline;
+    padding-top: 0.5ch;
+    padding-left: 1ch;
+    padding-right: 1ch;
+    padding-bottom: 0.5ch;
+    transition: background-color 0.5s ease, scale 0.5s ease;
+    display: inline;
+
+}
+
+.disableModeButton:hover{
+    cursor: pointer;
+    background-color: rgb(177, 0, 0);
+    scale:1.1;
+}
+
+.editOptionButtons{
+    display:flex;
+    justify-content: center;
+    margin-top: 4ch;
+    margin-bottom: 4ch;
+    flex-wrap: wrap;
+}
+
+.itemResetButton,.itemDeleteButton{
+    padding-left: 2ch;
+    padding-right: 2ch;
+    font-size: 125%;
+    margin-left: 2ch;
+    margin-right: 2ch;
+    border-radius: 2ch;
+    border: none;
+    transition: scale 0.5s ease, background-color 0.5s ease;
+}
+
+.itemResetButton:hover,.itemDeleteButton:hover{
+    cursor: pointer;
+    scale: 1.1;
+}
+
+.itemDeleteButton:hover{
+    background-color: rgb(177, 0, 0);
+}
+
+.editButtonsPrompt{
+    color: white;
+}
+
+.itemResetButton{
+    color: white;
+    background-color: #17c783;
+}
+
+.itemDeleteButton{
+    color: white;
+    background-color: red;
+}

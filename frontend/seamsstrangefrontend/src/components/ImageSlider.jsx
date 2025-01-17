@@ -12,6 +12,7 @@ const ImageSlider = ({images,mode,handleRemove}) => {
         setPage(newPage);
     }
 
+
     useEffect(() =>{
             if (mode === View.EDIT){
                 setPage(images.length);
@@ -19,9 +20,10 @@ const ImageSlider = ({images,mode,handleRemove}) => {
         },[images]
     )
 
+
     const onDelete = () =>{
         handleRemove(page - 1);
-        setPage(page - 1)
+        setPage(page ===1 ? 1 : page - 1);
     }
 
     return(
