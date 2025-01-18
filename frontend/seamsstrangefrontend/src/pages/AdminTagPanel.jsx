@@ -68,7 +68,7 @@ const AdminTagPanel = () => {
                 <TagEditor onSubmit={handleSubmit} onDelete={handleDelete} tag={singleTag}/>
             </div>
             <div className="currentTagsSection">
-                <h1 className="currentHeader">Current Tags 🏷️</h1>
+                <h2 id="currentHeader">Current Tags 🏷️</h2>
                 <p className="currentTagsMessage">These are all of the current tags currently created for the website! <br/>
                 to edit a tag click on the edit icon on the tag, from there you can change text, color, or delete the tag entirely!</p>
                 <div className="adminPanelFrame">

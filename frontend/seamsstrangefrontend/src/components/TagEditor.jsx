@@ -149,7 +149,7 @@ const TagEditor = ({onSubmit,onDelete,tag}) =>{
             <div className="tagEditorButtons">
                 <button className="tagEditorButton" onClick={() => onConfirm()}>{viewMode === View.VIEW ? "Create" : "Update"}</button>
                 <button className="tagEditorButton" onClick={() => onReset()}>Reset</button>
-                {viewMode === View.EDIT && <button className="tagEditorButton" onClick={() => setOpenModal(openModal + 1)}>Delete</button>}
+                {viewMode === View.EDIT && <button className="tagDeleteButton" onClick={() => setOpenModal(openModal + 1)}>Delete</button>}
             </div>
             <p className="tagEditorMessage">{message}</p>
         </div>

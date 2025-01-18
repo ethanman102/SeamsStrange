@@ -30,7 +30,7 @@
 }
 
 .nameLabel,.colorLabel{
-    color: #17c783;
+    color: white;
     width: fit-content;
     margin-bottom: 0;
     display: block;
@@ -47,6 +47,7 @@
     align-items: center;
     padding-bottom: 5ch;
     flex-wrap: wrap;
+    background: none;
 }
 
 .tagEditorDisclaimer{
@@ -55,7 +56,7 @@
 }
 
 .currentTagDesignHeader{
-    color: #17c783;
+    color: white;
     margin-top: 0;
     text-decoration: underline;
     
@@ -68,8 +69,8 @@
 
 .tagEditorButton{
     color: white;
-    background-color: #17c783;
-    border: none;
+    border: 2px solid white;
+    background:none;
     border-radius: 2ch;
     margin-left: 0ch;
     margin-right: 2ch;
@@ -79,9 +80,28 @@
     transition: background-color 0.5s ease;
 }
 
+.tagDeleteButton{
+    color: white;
+    border-radius: 2ch;
+    background-color: red; 
+    margin-left: 0ch;
+    margin-right: 2ch;
+    padding-left: 2ch;
+    padding-right: 2ch;
+    font-size: 100%; 
+    border: none;
+    transition: background-color 0.5s ease, scale 0.5s ease;
+}
+
+.tagDeleteButton:hover{
+    cursor: pointer;
+    background-color: rgb(177, 0, 0);
+    scale:1.1;
+}
+
 .tagEditorButton:hover{
     cursor: pointer;
-    background-color: #083a2a;
+    background-color: rgba(255, 255, 255, 0.349);
 }
 
 .tagEditorMessage{
@@ -91,7 +111,7 @@
 
 .tagEditorMode{
     margin-left: 1ch;
-    color: #17c783;
+    color: white;
     margin-bottom: 0.25ch;
     display: inline;
 }
