@@ -4,8 +4,7 @@
     flex-direction: column;
     list-style-type: none;
     height: 100%;  
-    width: fit-content;
-    
+    min-width: 15ch;
     padding-top: 1ch;
     padding-left: 2ch;
     padding-right: 2ch;
@@ -56,4 +55,19 @@
 
 .adminNavHeader1{
     color: #17c783;
+}
+
+.adminLogout{
+    text-decoration: none;
+    color: #17c783;
+    font-size: larger;
+    transition: background-color 0.5s ease;
+    width: fit-content;
+    padding: 0;
+}
+
+.adminLogout:hover{
+    background-color: #17c783;
+    color: white;
+    cursor: pointer;
 }

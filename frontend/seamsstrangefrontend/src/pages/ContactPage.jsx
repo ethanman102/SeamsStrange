@@ -1,5 +1,5 @@
 import "../styles/ContactPage.css"
-import noImage from "../assets/seamsstrangelogindesign.jpg"
+import image1 from "../assets/image1.jpg"
 import ContactForm from "../components/ContactForm";
 import ContactCard from "../components/ContactCard";
 
@@ -12,7 +12,7 @@ const ContactPage = () =>{
     </div>
         <div className="contactPageContainer">
             <div className="imageContainer">
-                <img className="contactImageOne" src={noImage}/>
+                <img className="contactImageOne" src={image1}/>
                 <p className="buyerTextOne">Hi, I saw you had a some flower designs.<br/>
                 Do you have any with roses?<br/>
                 <span className="textTimestamp">Wednesday 5:47pm</span></p>

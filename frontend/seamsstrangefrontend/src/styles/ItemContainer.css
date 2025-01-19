@@ -120,7 +120,11 @@
     padding: 0;
 }
 }
-
+@media only screen and (min-width: 767px) and (max-width: 1024px) {
+    .itemPageContainer .itemCard{
+        flex-basis: 50%;
+    }
+    }
 
 
 

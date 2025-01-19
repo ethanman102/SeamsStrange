@@ -1,7 +1,14 @@
 import { Link } from "react-router-dom";
 import "../styles/AdminNavbar.css"
+import { useNavigate } from "react-router-dom";
+import instance from "../api";
 
 const AdminNavBar = () =>{
+
+    const navigate = useNavigate();
+    const handleLogout = () =>{
+        instance.post('/api/logout/').then(()=> navigate('/')).catch((error) => navigate('/admin'));}
+
 
 
     return(
@@ -12,6 +19,8 @@ const AdminNavBar = () =>{
             <ul className="adminNavigationList">
                 <li><Link to="/admin/items/" className="adminNavLink">My Items</Link></li>
                 <li><Link to="/admin/tags/" className="adminNavLink">My Tags</Link></li>
+                <li><Link to="/admin/socials/" className="adminNavLink">My Socials</Link></li>
+                <li className="adminLogout" onClick={handleLogout}>Logout</li>
             </ul>
         </nav>
     </div>
