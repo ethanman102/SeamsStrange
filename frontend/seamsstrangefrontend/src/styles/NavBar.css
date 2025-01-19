@@ -1,5 +1,4 @@
 .navigationBar{
-    background-color:  #17503f;
     margin: 0;
     height: 7ch;
 }
@@ -40,7 +39,7 @@
 }
 
 .homepageNav{
-    color: white;
+    color: rgb(255, 255, 122);
 }
 
 .strangeNavText{

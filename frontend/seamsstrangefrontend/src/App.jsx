@@ -18,7 +18,7 @@ function App() {
       <div className='contentWrap'>
       <NavBar/>
       <Routes>
-        <Route path="/" element={<h1>HEY</h1>}/>
+        <Route path="/" element={<Homepage/>}/>
         <Route path="/login/" element={<Login/>}/>
         <Route path="/items/" element={<ItemContainer/>}/>
         <Route path="/items/:id/" element={<SingularItem/>}/>
