@@ -10,6 +10,7 @@ import {useState,useContext,useEffect} from "react";
 import instance from "../api";
 import { useNavigate,useLocation } from "react-router-dom";
 import { AuthContext } from "./Admin";
+import {ThreeDot} from 'react-loading-indicators';
 import ImageSlider from "../components/ImageSlider";
 import ImageUploader from "../components/ImageUploader";
 import View from "../constants";
@@ -27,6 +28,7 @@ const AdminItemPanel = () => {
     const [allTags, setAllTags] = useState([]);
     const [currentTags, setCurrentTags] = useState([]);
     const [currentImages,setCurrentImages] = useState([]);
+    const [loading,setLoading] = useState(false);
 
     const [viewMode,setViewMode] = useState(View.VIEW);
 
@@ -39,6 +41,7 @@ const AdminItemPanel = () => {
     const navigate = useNavigate();
 
     const ModalDelete = asModal(DeletePrompt);
+    const ModalLoader = asModal(ThreeDot);
 
     // case when navigating to edit the item.
     useEffect(() =>{
@@ -117,9 +120,12 @@ const AdminItemPanel = () => {
     }
 
     const onDeleteItem = () => {
+        setOpenModal(0);
+        setLoading(true);
         instance.delete(`http://localhost:8000/api/items/${state.id}/`).then(() => {
             navigate('/items/');
         }).catch((error)=>{
+            setLoading(false);
             return;
         })
     }
@@ -132,7 +138,6 @@ const AdminItemPanel = () => {
         if (quantity < 0) return;
         data.quantity = Number(quantity);
         if (price < 0) return;
-        console.log(price);
         data.price = parseFloat(price).toFixed(2); // this line gives error december 31 8pm
         if (!title) return;
         data.title = title;
@@ -142,20 +147,22 @@ const AdminItemPanel = () => {
         data.etsy_url = link;
         data.tags = currentTags;
 
+        setLoading(true);
+
         let formData = new FormData();
         let alreadyUploadedImages = []
-        if (viewMode == View.VIEW){
+        if (viewMode === View.VIEW){
             currentImages.forEach(({ file }, index) => {
                 formData.append('images', file);  // Append each file individually
             });
         }else{
             // case where we have both new images and files.
             for(let img of currentImages){
-                if (img.constructor && (img.constructor === Blob || img.constructor == File)){
-                    formData.append('images',img);
+                if (img.file){
+                    formData.append('images',img.file);
                 }else{
                     // get the list of already added urls.
-                    alreadyUploadedImages = [...alreadyUploadedImages,img.url]; 
+                    alreadyUploadedImages.push(img.url); 
                 }
             }
         }
@@ -176,6 +183,7 @@ const AdminItemPanel = () => {
                 navigate(`/items/${id}/`);
             })
             .catch((error) => {
+                setLoading(false);
                 authenticationStateHandler(false);
                 navigate('/admin');
             });
@@ -201,6 +209,7 @@ const AdminItemPanel = () => {
                 navigate(`/items/${state.id}/`);
             })
             .catch((error) => {
+                setLoading(false);
                 authenticationStateHandler(false);
                 navigate('/admin');
             });
@@ -211,7 +220,8 @@ const AdminItemPanel = () => {
 
     return(
     <>
-    {openModal !== 0 && <ModalDelete deleteObject="Item" deleteCallback={onDeleteItem} modalSwitch={setOpenModal}/>}  
+    {loading && <ModalLoader color="#ffffff" size="medium" closeable={false}/>}
+    {openModal !== 0 && <ModalDelete deleteObject="Item" deleteCallback={onDeleteItem} modalSwitch={setOpenModal} closeable={true} className="loader"/>}  
     <div className="adminItemPanelFlexContainer">
         <div className="adminItemsHeader">
             <h1>Seams Strange</h1>
@@ -244,6 +254,7 @@ const AdminItemPanel = () => {
                     <ItemQuantityInput itemQuantity={quantity} handleQuantity={handleQuantityChange}/>
                 </div>
                 <h2 className="attachedTagsHeader">Attached Tags 🏷️</h2>
+                <TagFilter purpose="Attach a " filterFunction={handleTagChange} tags={allTags} currentSelection={currentTags}/>
                 <p className="itemCreationInputPrompt">
                 These are the attached tags you have currently applied to the item.<br/>
                 Note that if you click on the edit tag at the time all progress for creating the item will be lost!
@@ -257,7 +268,6 @@ const AdminItemPanel = () => {
                 <ItemLinkInput itemLink={link} handleLink={handleLinkChange}/>
                 <button className="createItemButton" onClick={createItem}>Save</button>
             </div>
-            <TagFilter purpose="Attach a " filterFunction={handleTagChange} tags={allTags} currentSelection={currentTags}/>
         </div>
     </div>
     </> 

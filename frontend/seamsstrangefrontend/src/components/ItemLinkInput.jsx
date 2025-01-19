@@ -2,10 +2,10 @@ import { useState,useEffect } from "react";
 import "../styles/ItemLinkInput.css"
 
 const ItemLinkInput = ({itemLink,handleLink}) => {
-    const [link,setLink] = useState(itemLink);
+    const [link,setLink] = useState(itemLink || "");
 
     useEffect(()=>{
-        setLink(itemLink);
+        setLink(itemLink || "");
     },[itemLink]);
 
     const handleType = (text) =>{

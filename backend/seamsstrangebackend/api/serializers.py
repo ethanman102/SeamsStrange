@@ -49,8 +49,8 @@ class ItemSerializer(serializers.ModelSerializer):
                 continue
             tag_obj = Tag.objects.get_or_create(**tag)[0]
             item.tags.add(tag_obj)
-        
-        print(item)
+
+        item.save()
         return item
     
     def update(self, instance, validated_data):
@@ -65,6 +65,8 @@ class ItemSerializer(serializers.ModelSerializer):
         instance.quantity = validated_data.get('quantity',0)
         instance.sold_out = validated_data.get('sold_out',True)
         instance.etsy_url = validated_data.get('etsy_url','')
+
+        instance.save()
 
 
         return instance

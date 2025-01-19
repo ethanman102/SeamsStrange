@@ -4,6 +4,7 @@ import ItemCard from "./ItemCard";
 import "../styles/ItemContainer.css"
 import Paginator from "./Paginator";
 import TagFilter from "./TagFilter";
+import {ThreeDot} from 'react-loading-indicators';
 
 
 const ItemContainer = () => {

@@ -9,16 +9,19 @@ How to create a modal box with html and css*/
     overflow: auto; /* Enable scroll if needed */
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0, 0, 0, 0.815); /* Black w/ opacity */
+    overflow: hidden;
+    position: relative;
   }
 
   .modalContent{
-    margin-right: auto;
-    margin-left: auto;
-    width: fit-content;
-    margin-top: 5ch;
     animation-name: fadeIn;
     animation-duration: 1s;
-    position: relative;
+    position:relative; 
+    top:50%; 
+    left:50%; 
+    transform:translate(-50%, -50%); 
+    width: fit-content; 
+    
   }
 
   .modalCloseButton{

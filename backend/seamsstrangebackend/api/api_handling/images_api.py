@@ -34,6 +34,8 @@ class ImageView(APIView):
             image_url = f"https://{settings.AWS_STORAGE_BUCKET_NAME}.s3.{settings.AWS_REGION}.amazonaws.com/{file_name}"
             Image.objects.create(item=item,url=image_url)
 
+        
+
 
         return Response({'success':'yay'})
     

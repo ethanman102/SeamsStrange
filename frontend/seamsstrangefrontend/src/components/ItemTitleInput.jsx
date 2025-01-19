@@ -4,12 +4,12 @@ import "../styles/ItemTitleInput.css";
 const ItemTitleInput = ({ titleText, handleTitle }) => {
     const MAXLENGTH = 100;
 
-    const [title, setTitle] = useState(titleText);
-    const [count, setCount] = useState(titleText.length);
+    const [title, setTitle] = useState(titleText || "");
+    const [count, setCount] = useState(titleText.length || 0);
 
     useEffect(() => {
-        setTitle(titleText);
-        setCount(titleText.length);
+        setTitle(titleText || "");
+        setCount(titleText.length || 0);
     }, [titleText]);
 
     const handleType = (title) => {
@@ -19,7 +19,7 @@ const ItemTitleInput = ({ titleText, handleTitle }) => {
     };
 
     return (
-        <div>
+        <div className="inputContainer">
             <label className="itemTitleLabel">Item Title</label>
             <input type="text" value={title} placeholder="Item Title"  onChange={(event) => handleType(event.target.value)} maxLength={MAXLENGTH}/>
             <p>{count}/{MAXLENGTH}</p>
