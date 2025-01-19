@@ -9,6 +9,7 @@ import AdminItemPanel from "./AdminItemPanel";
 import instance from "../api";
 import { ThreeDot } from "react-loading-indicators";
 import asModal from "../components/wrappers/asModal";
+import AdminSocialPanel from "./AdminSocialPanel";
 
 export const AuthContext = createContext();
 
@@ -42,6 +43,7 @@ return(
             <Routes>
                     <Route path="items/" element={<AdminItemPanel />}/>
                     <Route path="tags/" element={<AdminTagPanel />}/>
+                    <Route path="socials/" element={<AdminSocialPanel/>}/>
             </Routes>
         </AuthContext.Provider>
     </div>)
