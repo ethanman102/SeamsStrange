@@ -254,6 +254,7 @@ const AdminItemPanel = () => {
                     <ItemQuantityInput itemQuantity={quantity} handleQuantity={handleQuantityChange}/>
                 </div>
                 <h2 className="attachedTagsHeader">Attached Tags 🏷️</h2>
+                <TagFilter purpose="Attach a " filterFunction={handleTagChange} tags={allTags} currentSelection={currentTags}/>
                 <p className="itemCreationInputPrompt">
                 These are the attached tags you have currently applied to the item.<br/>
                 Note that if you click on the edit tag at the time all progress for creating the item will be lost!
@@ -267,7 +268,6 @@ const AdminItemPanel = () => {
                 <ItemLinkInput itemLink={link} handleLink={handleLinkChange}/>
                 <button className="createItemButton" onClick={createItem}>Save</button>
             </div>
-            <TagFilter purpose="Attach a " filterFunction={handleTagChange} tags={allTags} currentSelection={currentTags}/>
         </div>
     </div>
     </> 
