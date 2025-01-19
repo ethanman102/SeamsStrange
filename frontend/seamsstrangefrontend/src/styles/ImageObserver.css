@@ -4,7 +4,8 @@
     width: 100%;
     position: absolute;
     z-index: 0;
-    animation: fadeIn 1s;
+    animation: fadeIn 0.5s;
+    background-color: white;
 }
 
 @keyframes fadeIn {

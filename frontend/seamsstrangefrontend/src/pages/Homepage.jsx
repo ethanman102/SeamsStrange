@@ -33,7 +33,7 @@ const Homepage = () =>{
     <button className="homepageShop" onClick={()=>navigate('/items')}>Shop Now</button>
     </div>
     </div>
-
+    
     <ImageObserver images={[{url:image1},{url:image2}]}/>
     <div className="left">
     <div>

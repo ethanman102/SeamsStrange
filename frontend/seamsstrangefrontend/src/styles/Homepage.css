@@ -92,7 +92,7 @@
 .operateHeader{
     font-size: 300%;
     margin-bottom: 2ch;
-    color: #17c783;
+    color: rgb(255, 255, 122);
    
 }
 
@@ -134,10 +134,12 @@ width: fit-content;
 
 .newestItemsContainer{
     border-top: 2px solid white;
+
+    
 }
 
 .newest{
-    color: #17c783;
+    color: rgb(255, 255, 122);
     font-size: 300%;
     margin-left: auto;
     margin-right: auto;
@@ -161,3 +163,4 @@ width: fit-content;
     display: block;
     margin-left: 8ch;
 }
+
