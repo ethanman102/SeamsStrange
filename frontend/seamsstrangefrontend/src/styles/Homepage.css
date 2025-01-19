@@ -11,7 +11,7 @@
 
 .homepageTitle{
     color: white;
-    font-size: 500%;
+    font-size: 450%;
     padding: 0%;
     width: fit-content;
     display: block;
@@ -163,4 +163,46 @@ width: fit-content;
     display: block;
     margin-left: 8ch;
 }
+@media only screen and (min-width: 481px) and (max-width: 768px) {
+.homepageTitle{
+    font-size: 175%;
+}
+.homepageSnag{
+    font-size: 100%;
+}
+}
 
+
+@media only screen and (max-width: 481px) {
+    .homepageTitle{
+        font-size: 150%;
+    }
+    .homepageSnag{
+        font-size: 80%;
+    }
+    .newest{
+        font-size: 200%;
+    }
+    .ownPieceHeader,.operateHeader,.aboutHeader{
+        font-size: 200%;
+    }
+
+    .aboutHeader{
+        margin-top: 45ch;
+    }
+    .logo{
+        width: 20ch;
+    }
+    .homepageShop{
+        font-size: 100%;
+    }
+
+    .homepage .imageObserver{
+        height: 50ch;
+    }
+}
+@media only screen and (min-width: 767px) and (max-width: 1024px) {
+.homepageTitle{
+    font-size: 230%;
+}
+}

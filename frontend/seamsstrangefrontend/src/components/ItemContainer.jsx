@@ -65,7 +65,7 @@ const ItemContainer = () => {
         <h2>Embroidery</h2>
     </div>
     <div className="itemPageContainer">
-    <TagFilter filterFunction={editFilteredTags} purpose="Filter By " currentSelection={[]}/>
+    <TagFilter filterFunction={editFilteredTags} purpose="Filter By " currentSelection={filterTags}/>
         <div className="itemBox">
             <div className="itemContainer">
                 {items.length > 0 ? items : <h2 className="noResultsHeader">No Results</h2>}
