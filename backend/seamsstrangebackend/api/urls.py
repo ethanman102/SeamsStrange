@@ -4,7 +4,7 @@ from .api_handling.item_api import ItemViewSet, ItemRecommendationView
 from .api_handling.tag_api import TagViewSet
 from .api_handling.email_api import EmailView
 from .api_handling.images_api import ImageView
-from .api_handling.social_api import SocialView
+from .api_handling.social_api import SocialView,SocialGetView
 from rest_framework.routers import DefaultRouter
 
 
@@ -23,8 +23,9 @@ urlpatterns = [
     path('images/', ImageView.as_view(),name='images'),
     path('images/<int:id>/',ImageView.as_view(),name="images-delete"),
     path('socials/',SocialView.as_view(),name="socials"),
+    path('socials/all/',SocialGetView.as_view(),name="socialsall"),
     # item api routes
     path('',include(router.urls)),
-    path('items/<int:id>/recommendations/',ItemRecommendationView.as_view(),name="recommendations")
+    path('items/<int:id>/recommendations/',ItemRecommendationView.as_view(),name="recommendations"),
     
 ]

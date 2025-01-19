@@ -71,6 +71,8 @@
 
 .adminSocialPrompt{
     color: white;
+    overflow-wrap: break-word;
+    margin-right: 5%;
 }
 
 .socialInputHeader{
