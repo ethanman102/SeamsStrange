@@ -7,6 +7,7 @@ import { Route, Routes } from "react-router-dom";
 import "../styles/Admin.css"
 import AdminItemPanel from "./AdminItemPanel";
 import instance from "../api";
+import { ThreeDot } from "react-loading-indicators";
 
 export const AuthContext = createContext();
 
@@ -30,9 +31,9 @@ const handleAuthenticationState = (authBool) => setAuthenticated(authBool)
 
 return(
     <> 
-    {authenticated ? 
-    <>
-    <div className="adminPageFlexContainer">
+    {authenticated === null ? <ThreeDot size="medium" color="#ffffff"/> : 
+    
+      authenticated ? (<div className="adminPageFlexContainer">
         <AdminNavBar/>
         <AuthContext.Provider value={handleAuthenticationState}>
             <Routes>
@@ -40,8 +41,8 @@ return(
                     <Route path="tags/" element={<AdminTagPanel />}/>
             </Routes>
         </AuthContext.Provider>
-    </div>
-    </> : <Login authenticationStateHandler={handleAuthenticationState}/>}
+    </div>)
+     : (<Login authenticationStateHandler={handleAuthenticationState}/>)}
     </>
 )
 
