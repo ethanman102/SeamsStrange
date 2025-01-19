@@ -8,6 +8,7 @@
     border-radius: 1ch;
     padding-right: 1ch;
     padding-left: 1ch;
+    margin-left: 1ch;
     overflow-wrap: break-word;
     transition: background-color 0.3s ease;
     

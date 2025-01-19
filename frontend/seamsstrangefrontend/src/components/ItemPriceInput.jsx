@@ -16,7 +16,7 @@ const ItemPriceInput = ({itemPrice,handlePrice}) =>{
     }
 
     return(
-        <div className="itemPriceInputContainer">
+        <div className="inputContainer">
             <label className="itemPriceLabel">Price</label>
             $<input placeholder="0.00" value={price} onChange={(event) => handlePriceChange(event.target.value)}  type="number" step={0.01} min={0} className="priceInput"/>
         </div>

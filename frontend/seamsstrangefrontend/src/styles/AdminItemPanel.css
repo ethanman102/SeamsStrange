@@ -6,6 +6,7 @@
 
 .adminItemPanelFlexContainer{
     padding-bottom: 10ch;
+    
 }
 
 .adminItemsHeader > h2{
@@ -36,8 +37,8 @@
 }
 
 .adminItemsTextualInputs{
-    flex-basis: 50%;
-    width: 100%;
+
+
     margin-left: 2ch;
     border-radius: 2ch;
     background: rgb(23,199,131);
@@ -55,7 +56,7 @@
 }
 
 .imagesHeader{
-    color: #17c783;
+    color: white;
 }
 
 .createItemButton{
@@ -87,7 +88,7 @@
     color: white;
 }
 .attachedTagsHeader{
-    color:#17c783;
+    color:white;
 }
 
 .itemViewMode{
@@ -162,4 +163,42 @@
 .itemDeleteButton{
     color: white;
     background-color: red;
+}
+
+
+/*
+Specific Tag Filter Admin Panel Restyling
+*/
+.tagAndInputContainer .tagFilter{
+    margin-left: 0;
+    background: none;
+    border: solid 2px white;
+}
+
+.tagAndInputContainer .tagLabel{
+    margin-left: 1ch;
+    border: solid 1px white;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.tagAndInputContainer .tagFilter > h3{
+    color: white;
+    border-bottom: 2px white solid;
+}
+
+.tagAndInputContainer .tagFilter .buttonSection{
+    border-top: solid white 2px;
+}
+
+.tagAndInputContainer .tagFilter .buttonSection > button{
+    background: none;
+    border: solid white 2px;
+    width: 30%;
+    transition: background-color 0.5s ease;
+}
+
+.tagAndInputContainer .tagFilter .buttonSection > button:hover{
+    background-color: rgba(255, 255, 255, 0.349);
 }

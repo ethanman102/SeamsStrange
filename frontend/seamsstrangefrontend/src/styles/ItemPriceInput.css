@@ -1,9 +1,9 @@
 .itemPriceLabel{
     display: block;
-    color: #17c783;
+    color: white;
     font-size: 3ch;
 }
 
 .priceInput{
-    max-width: 40%;
+    width: 40%;
 }

@@ -1,6 +1,7 @@
 .adminPageFlexContainer{
     display: flex;
-    flex-direction: row;
+    
+
 }
 
 .adminTagsPage{
@@ -14,6 +15,7 @@
 .adminItemPanelFlexContainer{
     margin-left: 5%;
     width: 100%;
+
 }
 
 

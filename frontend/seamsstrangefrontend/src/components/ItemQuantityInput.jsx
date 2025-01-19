@@ -14,7 +14,7 @@ const ItemQuantityInput = ({itemQuantity,handleQuantity}) => {
     }
 
     return(
-        <div className="itemQuantityInputContainer">
+        <div className="inputContainer">
             <label className="itemQuantityLabel">Quantity</label>
             <input placeholder="0" onChange={(event) => handleQuantityChange(event.target.value)} value={quantity} type="number" step={1} min={0} className="quantityInput"/>
         </div>
