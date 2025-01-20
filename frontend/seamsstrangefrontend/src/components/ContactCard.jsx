@@ -1,7 +1,6 @@
 import "../styles/ContactCard.css"
-import noImage from "../assets/seamsstrangelogindesign.jpg"
 
-const ContactCard = ({firstName,lastName,role,email,phoneNumber,picture}) => {
+const ContactCard = ({firstName,lastName,role,email,phoneNumber,profile}) => {
 
     return(
         <div className="contactCardFullContainer">
@@ -11,7 +10,7 @@ const ContactCard = ({firstName,lastName,role,email,phoneNumber,picture}) => {
                 <h2 className="lastNameContact">{lastName}</h2>
                 <h3 className="roleContact">{role}</h3>
             </div>
-            <img className="contactHeadshot" src={noImage}/>
+            <img className="contactHeadshot" src={profile}/>
         </div>
         <div className="contactCardBody">
             <h2 className="contactCardDetailHeader">Phone</h2>

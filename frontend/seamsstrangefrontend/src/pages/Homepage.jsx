@@ -1,7 +1,10 @@
 import logo from "../assets/logo.png"
 import "../styles/Homepage.css"
-import image1 from "../assets/image2.jpg"
-import image2 from "../assets/image1.jpg"
+import image1 from "../assets/image1.jpg"
+import image2 from "../assets/image2.jpg"
+import image3 from "../assets/image3.jpg"
+import image4 from "../assets/image4.jpg"
+import image5 from "../assets/image5.jpg"
 import { useState,useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import ImageObserver from "../components/ImageObserver"
@@ -34,7 +37,7 @@ const Homepage = () =>{
     </div>
     </div>
     
-    <ImageObserver images={[{url:image1},{url:image2}]}/>
+    <ImageObserver images={[{url:image1},{url:image2},{url:image3},{url:image4},{url:image5}]}/>
     <div className="left">
     <div>
     <h2 className="aboutHeader">Who we are</h2>

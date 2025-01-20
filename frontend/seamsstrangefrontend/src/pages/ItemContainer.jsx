@@ -1,9 +1,9 @@
 import React, { useState,useEffect } from "react";
 import axios from "axios";
-import ItemCard from "./ItemCard";
+import ItemCard from "../components/ItemCard";
 import "../styles/ItemContainer.css"
-import Paginator from "./Paginator";
-import TagFilter from "./TagFilter";
+import Paginator from "../components/Paginator";
+import TagFilter from "../components/TagFilter";
 
 const ItemContainer = () => {
 
