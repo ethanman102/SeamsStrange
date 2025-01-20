@@ -4,8 +4,6 @@ import ItemCard from "./ItemCard";
 import "../styles/ItemContainer.css"
 import Paginator from "./Paginator";
 import TagFilter from "./TagFilter";
-import {ThreeDot} from 'react-loading-indicators';
-
 
 const ItemContainer = () => {
 
@@ -48,7 +46,7 @@ const ItemContainer = () => {
 
         getItems().then( (fetchedItems) =>{
             setItems(fetchedItems.map((item) =>{
-                return <ItemCard title={item.title} price={item.price} tags={item.tags} key={item.id} id={item.id} images={item.images}/>
+                return <ItemCard title={item.title} price={item.price} tags={item.tags} key={item.id} id={item.id} images={item.images} soldOut={item.sold_out}/>
             } ));
             }
         );

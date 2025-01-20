@@ -30,7 +30,7 @@ const Homepage = () =>{
         Seams <span className="titleStrange">Strange</span> Embroidery
     </h1>
     <h2 className="homepageSnag">The place for all your custom embroidery</h2>
-    <button className="homepageShop" onClick={()=>navigate('/items')}>Shop Now</button>
+    <button className="homepageShop" onClick={()=>navigate('/items/')}>Shop Now</button>
     </div>
     </div>
     
@@ -60,7 +60,7 @@ const Homepage = () =>{
     <h2 className="newest">Newest Creations</h2>
     <div className="recommendationsContainer">
                 {recommendations.map((item) =>{
-                    return <ItemCard title={item.title} price={item.price} tags={item.tags} key={item.id} id={item.id} images={item.images}/>
+                    return <ItemCard title={item.title} price={item.price} tags={item.tags} key={item.id} id={item.id} images={item.images} soldOut={item.sold_out}/>
                 })}
     </div>
     </div></>}

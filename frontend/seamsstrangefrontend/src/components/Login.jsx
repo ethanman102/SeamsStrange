@@ -29,7 +29,7 @@ const Login = ({authenticationStateHandler}) => {
 
     return(
         (<div className="card">
-            <h1 className="loginHeader">Seams Strange Embroidary
+            <h1 className="loginHeader">Seams Strange Embroidery
                 <div>Admin Login</div>
             </h1>
             <form onSubmit={handleSubmit}>

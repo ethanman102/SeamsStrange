@@ -17,12 +17,14 @@ import View from "../constants";
 import axios from "axios";
 import asModal from "../components/wrappers/asModal";
 import DeletePrompt from "../components/DeletePrompt";
+import ItemAvailabilityInput from "../components/ItemAvailabilityInput";
 
 const AdminItemPanel = () => {
 
     const [title,setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [price,setPrice] = useState(0.00);
+    const [soldOut,setSoldOut] = useState(false);
     const [link,setLink] = useState("");
     const [quantity,setQuantity] = useState(0);
     const [allTags, setAllTags] = useState([]);
@@ -53,6 +55,7 @@ const AdminItemPanel = () => {
             setQuantity(state.quantity);
             setCurrentImages(state.images);
             setCurrentTags(state.tags);
+            setSoldOut(state.sold_out);
             setViewMode(View.EDIT);
         }else{
             setTitle('');
@@ -62,6 +65,7 @@ const AdminItemPanel = () => {
             setQuantity(0);
             setCurrentImages([]);
             setCurrentTags([]);
+            setSoldOut(false);
             setViewMode(View.VIEW);
         }
     },[state]);
@@ -94,6 +98,10 @@ const AdminItemPanel = () => {
         setCurrentTags(tagList);
     }
 
+    const handleAvailbility = (boolVal) =>{
+        setSoldOut(boolVal);
+    }
+
     const onUpload = (imageFile) => {
         setCurrentImages([...currentImages,imageFile]);
     }
@@ -117,6 +125,7 @@ const AdminItemPanel = () => {
         setQuantity(state.quantity);
         setCurrentImages(state.images);
         setCurrentTags(state.tags);
+        setSoldOut(state.sold_out);
     }
 
     const onDeleteItem = () => {
@@ -146,6 +155,7 @@ const AdminItemPanel = () => {
         if (!link) setLink("");
         data.etsy_url = link;
         data.tags = currentTags;
+        data.sold_out = soldOut;
 
         setLoading(true);
 
@@ -252,6 +262,7 @@ const AdminItemPanel = () => {
                 <div className="priceLinkAvailabilityContainer">
                     <ItemPriceInput itemPrice={price} handlePrice={handlePriceChange}/>
                     <ItemQuantityInput itemQuantity={quantity} handleQuantity={handleQuantityChange}/>
+                    <ItemAvailabilityInput itemAvailability={soldOut} handleAvailbility={handleAvailbility}/>
                 </div>
                 <h2 className="attachedTagsHeader">Attached Tags 🏷️</h2>
                 <TagFilter purpose="Attach a " filterFunction={handleTagChange} tags={allTags} currentSelection={currentTags}/>

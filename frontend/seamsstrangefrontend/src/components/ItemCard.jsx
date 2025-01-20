@@ -6,7 +6,7 @@ import ticker from "../ticker.js"
 
 import noImage from "../assets/no-image-available8.jpg"
 
-const ItemCard = ({title,price,tags,id,images}) => {
+const ItemCard = ({title,price,tags,id,images,soldOut}) => {
 
     let navigate = useNavigate();
     const [image,setCurrentImage] = useState(images.length > 0 ? images[0] : noImage);
@@ -35,7 +35,7 @@ const ItemCard = ({title,price,tags,id,images}) => {
     <div className="itemCard" onClick={handleNavigate}>
         <div className="itemCardHeader">
             <h1 className="itemTitle">{title}</h1>
-            <p className="itemPrice"><span className="itemDollarSign">$</span>{price}</p>
+            <p className="itemPrice"><span className="itemDollarSign">$</span>{price} {soldOut && <span className="soldOutPill">Sold Out</span>}</p>
         </div>
         <img className="cardItemImage" src={images && images.length > 0 ? image.url : noImage}/>
         <h4 className="tagListTitle">Tags 🏷️</h4>
