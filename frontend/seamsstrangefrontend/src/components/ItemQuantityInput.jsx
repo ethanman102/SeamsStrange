@@ -15,7 +15,7 @@ const ItemQuantityInput = ({itemQuantity,handleQuantity}) => {
 
     return(
         <div className="inputContainer">
-            <label className="itemQuantityLabel">Quantity</label>
+            <label className="itemQuantityLabel">Quantity <span className="requiredTick">*</span></label>
             <input placeholder="0" onChange={(event) => handleQuantityChange(event.target.value)} value={quantity} type="number" step={1} min={0} className="quantityInput"/>
         </div>
     )

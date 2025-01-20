@@ -75,7 +75,7 @@
 .informationContainer .tagList{
     margin-left: 2ch;
     padding: 0;
-    width: fit-content;
+    width: 100%;
     padding-bottom: 2ch;
 
 }
@@ -189,4 +189,13 @@
     scale: 1.1;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
-/*Item Card shrinking for recommendation section specifics*/
+
+.soldOutPillSingular{
+    color: white;
+    background-color: red;
+    border-radius: 2ch;
+    font-size: 90%;
+    border: 2px solid white;
+    padding-left: 1ch;
+    padding-right: 1ch;
+}

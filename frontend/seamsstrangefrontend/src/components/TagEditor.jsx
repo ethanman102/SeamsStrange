@@ -11,7 +11,7 @@ import asModal from "./wrappers/asModal";
 const TagEditor = ({onSubmit,onDelete,tag}) =>{
     
     const [tagColor,setTagColor] = useState(tag.color ? tag.color : "#000000" );
-    const [tagText,setTagText] = useState(tag.name);
+    const [tagText,setTagText] = useState(tag.name || "");
     const [message,setMessage] = useState('');
     const [viewMode,setViewMode] = useState(View.VIEW);
 
@@ -139,9 +139,9 @@ const TagEditor = ({onSubmit,onDelete,tag}) =>{
     <div className="tagEditorFlexContainer">
         <div className="tagCreationInput">
             <label className="nameLabel">Name</label>
-            <input type="text" value={tagText} defaultValue={tagText} onChange={(event) =>{onTextChange(event.target.value)}} className="tagNameInput"/>
+            <input type="text" value={tagText} onChange={(event) =>{onTextChange(event.target.value)}} className="tagNameInput"/>
             <label className="colorLabel">Color</label>
-            <input type="color" value={tagColor} defaultValue={tag.color ? tag.color : "#000000"} onChange={(event) => {onColorChange(event.target.value)}} maxLength="30" className="tagColorInput"/>
+            <input type="color" value={tagColor}  onChange={(event) => {onColorChange(event.target.value)}} maxLength="30" className="tagColorInput"/>
         </div>
         <div className="tagCreationOutput">
             <h3 className="currentTagDesignHeader">Current Design</h3>

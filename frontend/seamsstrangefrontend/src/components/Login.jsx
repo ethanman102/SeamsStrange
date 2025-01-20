@@ -1,15 +1,21 @@
 import React, { useState } from "react";
 import "../styles/Login.css";
 import instance from "../api";
+import { ThreeDot } from "react-loading-indicators";
+import asModal from "./wrappers/asModal";
 
-const Login = ({authenticationStateHandler}) => {
+const Login = ({authenticationStateHandler,appAuthHandler}) => {
 
     const [username,setEmail] = useState('');
     const [password,setPassword] = useState('');
     const [errorMessage,setErrorMessage] = useState('');
+    const [loading,setLoading] = useState(false);
+
+    const ModalLoader = asModal(ThreeDot);
 
     const handleSubmit = async (event) =>{
         event.preventDefault();
+        setLoading(true);
         try{
         var response = await instance.post('http://localhost:8000/api/login/',
             {
@@ -19,17 +25,21 @@ const Login = ({authenticationStateHandler}) => {
         );
         if (response.status === 200){
             authenticationStateHandler(true);
+            appAuthHandler(true);
+            setLoading(false);
         }
         }catch (error){
             if (error.response.status === 404){
                 setErrorMessage("Incorrect Email or Password");
             }
+            setLoading(false);
         }
     }
 
     return(
         (<div className="card">
-            <h1 className="loginHeader">Seams Strange Embroidary
+            {loading && <ModalLoader size="medium" color="#ffffff" closeable={false}/>}
+            <h1 className="loginHeader">Seams Strange Embroidery
                 <div>Admin Login</div>
             </h1>
             <form onSubmit={handleSubmit}>

@@ -2,6 +2,7 @@
     display: block;
     color: white;
     font-size: 3ch;
+    text-decoration: underline;
 }
 
 .priceInput{

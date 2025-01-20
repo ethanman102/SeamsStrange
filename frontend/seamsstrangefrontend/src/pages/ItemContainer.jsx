@@ -1,11 +1,9 @@
 import React, { useState,useEffect } from "react";
 import axios from "axios";
-import ItemCard from "./ItemCard";
+import ItemCard from "../components/ItemCard";
 import "../styles/ItemContainer.css"
-import Paginator from "./Paginator";
-import TagFilter from "./TagFilter";
-import {ThreeDot} from 'react-loading-indicators';
-
+import Paginator from "../components/Paginator";
+import TagFilter from "../components/TagFilter";
 
 const ItemContainer = () => {
 
@@ -15,11 +13,14 @@ const ItemContainer = () => {
     const [items,setItems] = useState([]);
     const [totalPages,setTotalPages] = useState(null);
     const [filterTags,setFilterTags] = useState([]);
+    const [authenticated,setAuthenticated] = useState(false);
 
     const editFilteredTags = (tags) =>{
         setFilterTags(tags);
         setPage(1);
     }
+
+    
 
     const handlePage = (pageNum) => {
         setPage(pageNum);
@@ -48,7 +49,7 @@ const ItemContainer = () => {
 
         getItems().then( (fetchedItems) =>{
             setItems(fetchedItems.map((item) =>{
-                return <ItemCard title={item.title} price={item.price} tags={item.tags} key={item.id} id={item.id} images={item.images}/>
+                return <ItemCard title={item.title} price={item.price} tags={item.tags} key={item.id} id={item.id} images={item.images} soldOut={item.sold_out}/>
             } ));
             }
         );
@@ -65,7 +66,7 @@ const ItemContainer = () => {
         <h2>Embroidery</h2>
     </div>
     <div className="itemPageContainer">
-    <TagFilter filterFunction={editFilteredTags} purpose="Filter By " currentSelection={[]}/>
+    <TagFilter filterFunction={editFilteredTags} purpose="Filter By " currentSelection={filterTags}/>
         <div className="itemBox">
             <div className="itemContainer">
                 {items.length > 0 ? items : <h2 className="noResultsHeader">No Results</h2>}

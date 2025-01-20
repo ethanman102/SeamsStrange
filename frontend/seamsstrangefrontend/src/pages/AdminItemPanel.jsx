@@ -17,18 +17,22 @@ import View from "../constants";
 import axios from "axios";
 import asModal from "../components/wrappers/asModal";
 import DeletePrompt from "../components/DeletePrompt";
+import ItemAvailabilityInput from "../components/ItemAvailabilityInput";
 
 const AdminItemPanel = () => {
 
     const [title,setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [price,setPrice] = useState(0.00);
+    const [soldOut,setSoldOut] = useState(false);
     const [link,setLink] = useState("");
     const [quantity,setQuantity] = useState(0);
     const [allTags, setAllTags] = useState([]);
     const [currentTags, setCurrentTags] = useState([]);
     const [currentImages,setCurrentImages] = useState([]);
     const [loading,setLoading] = useState(false);
+
+    const [error,setError] = useState('');
 
     const [viewMode,setViewMode] = useState(View.VIEW);
 
@@ -53,6 +57,7 @@ const AdminItemPanel = () => {
             setQuantity(state.quantity);
             setCurrentImages(state.images);
             setCurrentTags(state.tags);
+            setSoldOut(state.sold_out);
             setViewMode(View.EDIT);
         }else{
             setTitle('');
@@ -62,6 +67,7 @@ const AdminItemPanel = () => {
             setQuantity(0);
             setCurrentImages([]);
             setCurrentTags([]);
+            setSoldOut(false);
             setViewMode(View.VIEW);
         }
     },[state]);
@@ -94,6 +100,10 @@ const AdminItemPanel = () => {
         setCurrentTags(tagList);
     }
 
+    const handleAvailbility = (boolVal) =>{
+        setSoldOut(boolVal);
+    }
+
     const onUpload = (imageFile) => {
         setCurrentImages([...currentImages,imageFile]);
     }
@@ -117,6 +127,7 @@ const AdminItemPanel = () => {
         setQuantity(state.quantity);
         setCurrentImages(state.images);
         setCurrentTags(state.tags);
+        setSoldOut(state.sold_out);
     }
 
     const onDeleteItem = () => {
@@ -135,17 +146,34 @@ const AdminItemPanel = () => {
     const createItem = () => {
         // Validate here to reduce round trip time.
         var data = {}
-        if (quantity < 0) return;
+        if (quantity < 0){ 
+            setError('Invalid Quantity. Please ensure it is a whole number and non-negative');
+            window.scrollTo({top:0,left:0,behavior:"smooth"});
+            return;
+        };
         data.quantity = Number(quantity);
-        if (price < 0) return;
+        if (price < 0){
+            setError('Invalid Price. Please ensure it is non-negative and a valid decimal');
+            window.scrollTo({top:0,left:0,behavior:"smooth"});
+            return;
+        }
         data.price = parseFloat(price).toFixed(2); // this line gives error december 31 8pm
-        if (!title) return;
+        if (!title){
+            setError('Invalid Title. Please ensure that the title is not blank.');
+            window.scrollTo({top:0,left:0,behavior:"smooth"});
+            return;
+        }
         data.title = title;
-        if (!description) return;
+        if (!description){
+            setError('Invalid Description. Please ensure your item has a meaningful description');
+            window.scrollTo({top:0,left:0,behavior:"smooth"});
+            return;
+        }
         data.description = description;
         if (!link) setLink("");
         data.etsy_url = link;
         data.tags = currentTags;
+        data.sold_out = soldOut;
 
         setLoading(true);
 
@@ -229,7 +257,7 @@ const AdminItemPanel = () => {
         </div>
         <h2 className="createItemHeader">{viewMode === View.VIEW ? "Create" : "Edit"} Item</h2>
         <p className="itemCreatePrompt">Follow the process below to {viewMode === View.VIEW ? "create" : "edit"} a new item for the shop!<br/>
-        Please note that anything labelled with a is a required input for the item!<br/>
+        Please note that anything labelled <span className="requiredTick">*</span> with a is a required input for the item!<br/>
         <br/>
         IMPORTANT: If you want to create a new tag for the item during this process, do not switch tabs as your work will not be saved!<br/>
         You can always create the item then attach a tag afterwards in edit mode. </p>
@@ -246,12 +274,14 @@ const AdminItemPanel = () => {
                     </div>
                         </>: ''
                 }
+                {error && <p className="itemErrorMessage">{error}</p>}
                 <ItemTitleInput titleText={title} handleTitle={handleTitleChange}/>
 
                 <ItemDescriptionInput description={description} handleDescription={handleDescriptionChange}/>
                 <div className="priceLinkAvailabilityContainer">
                     <ItemPriceInput itemPrice={price} handlePrice={handlePriceChange}/>
                     <ItemQuantityInput itemQuantity={quantity} handleQuantity={handleQuantityChange}/>
+                    <ItemAvailabilityInput itemAvailability={soldOut} handleAvailbility={handleAvailbility}/>
                 </div>
                 <h2 className="attachedTagsHeader">Attached Tags 🏷️</h2>
                 <TagFilter purpose="Attach a " filterFunction={handleTagChange} tags={allTags} currentSelection={currentTags}/>
@@ -274,3 +304,4 @@ const AdminItemPanel = () => {
     )
 }
 export default AdminItemPanel;
+

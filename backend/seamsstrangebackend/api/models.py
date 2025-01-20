@@ -6,6 +6,8 @@ from django.utils import timezone
 
 # Create your models here.
 
+SOCIAL_CHOICES = {'INSTAGRAM': 'INSTAGRAM','ETSY':'ETSY','FACEBOOK':'FACEBOOK'}
+
 # Custom User Model, user will most likely only be made through createsuperuser manage.py command.
 class User(AbstractUser):
     name = models.CharField(max_length=30,validators=[MinLengthValidator(3)])
@@ -40,6 +42,9 @@ class Tag(models.Model):
     color = ColorField(default='#FF000')
     created_on = models.DateTimeField(auto_now_add=True)
     
+class Social(models.Model):
+    type = models.CharField(choices=SOCIAL_CHOICES,max_length=50)
+    link = models.URLField()
 
 
 

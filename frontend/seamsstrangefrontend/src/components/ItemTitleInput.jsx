@@ -20,7 +20,7 @@ const ItemTitleInput = ({ titleText, handleTitle }) => {
 
     return (
         <div className="inputContainer">
-            <label className="itemTitleLabel">Item Title</label>
+            <label className="itemTitleLabel">Item Title <span className="requiredTick">*</span></label>
             <input type="text" value={title} placeholder="Item Title"  onChange={(event) => handleType(event.target.value)} maxLength={MAXLENGTH}/>
             <p>{count}/{MAXLENGTH}</p>
         </div>

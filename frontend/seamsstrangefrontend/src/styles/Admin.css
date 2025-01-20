@@ -15,8 +15,46 @@
 .adminItemPanelFlexContainer{
     margin-left: 5%;
     width: 100%;
+    margin-right: 5%;
 
 }
+
+.socialPage{
+    margin-left: 5%;
+    width: 100%;
+
+}
+
+@media only screen and (min-width: 481px) and (max-width: 768px) {
+    .adminPageFlexContainer{
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
+    .adminItemPanelFlexContainer{
+        width: 90%;
+    }
+
+    .adminNavigationBar .adminNavContainer{
+        border-right: none;
+    }
+}
+
+
+@media only screen and (max-width: 481px) {
+    .adminPageFlexContainer{
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
+    .adminItemPanelFlexContainer{
+        width: 90%;
+    }
+
+    .adminNavigationBar .adminNavContainer{
+        border-right: none;
+    }
+
+}
+
 
 
 

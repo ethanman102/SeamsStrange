@@ -12,11 +12,11 @@ html,body{
 }
 
 .contentWrap{
-    padding-bottom: 20ch;
+    padding-bottom: 25ch;
 }
 
 .pageContainer .footer{
     position: absolute;
-    height: 20ch;
+    height: 25ch;
     bottom: 0;
 }

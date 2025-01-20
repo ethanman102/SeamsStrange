@@ -1,0 +1,208 @@
+.logo{
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    margin-bottom: 0;
+    padding: 0;
+    width: 30ch;
+    margin-top: 5%;
+    object-fit: contain;
+}
+
+.homepageTitle{
+    color: white;
+    font-size: 450%;
+    padding: 0%;
+    width: fit-content;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    padding: 0;
+    margin-bottom: 0;
+
+    padding-top: 0.5ch;
+    padding-bottom: 0.5ch;
+    padding-left: 1ch;
+    padding-right: 1ch;
+    border-radius: 2ch;
+  
+
+}
+
+.titleStrange{
+    color: rgb(255, 255, 122);
+    font-family:cursive;
+}
+
+.homepageSnag{
+    color: white;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    width: fit-content;
+    margin-top: 1ch;
+}
+
+.homepageShop{
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    margin-top: 5ch;
+    color: white;
+    background: none;
+    border: 2px solid white;
+    margin-bottom: 5ch;
+    font-size: 150%;
+    padding-left: 2ch;
+    padding-right: 2ch;
+    padding-top: 0.5ch;
+    padding-bottom: 0.5ch;
+    border-radius: 2ch;
+    margin-bottom: 20ch;
+    transition: background-color 0.5s ease, box-shadow 0.5s ease;
+}
+.homepageShop:hover{
+    cursor: pointer;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    background-color: rgba(255, 255, 255, 0.349);
+}
+
+.aboutHeader{
+    margin-top:50ch;
+    font-size: 300%;
+    margin-bottom: 2ch;
+    color: #17c783;
+    padding-left: 2ch;
+}
+
+.aboutParagraph{
+    color: white;
+    font-size: 125%;
+    margin-bottom: 10ch;
+    margin-left: 8ch;
+    width: fit-content;
+    display: block;
+    max-width: 75%;
+}
+
+
+
+
+.operateHeader{
+    font-size: 300%;
+    margin-bottom: 2ch;
+    color: rgb(255, 255, 122);
+   
+}
+
+.operateParagraph{
+    color: white;
+    margin-right: 2ch;
+    font-size: 125%;
+    margin-bottom: 10ch;
+    width: fit-content;
+    display: block;
+    margin-left: 8ch;
+}
+
+
+.homepageImageSlider{
+    width: 60ch;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+
+
+.overlayContent{
+    position: relative;
+}
+
+.homepage .imageObserver{
+    border-bottom: solid white 2px;
+    border-top: solid white 2px;
+}
+
+.right{
+margin-top: 25ch;
+margin-left: auto;
+display: block;
+width: fit-content;
+}
+
+.newestItemsContainer{
+    border-top: 2px solid white;
+
+    
+}
+
+.newest{
+    color: rgb(255, 255, 122);
+    font-size: 300%;
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+}
+
+.ownPieceHeader{
+    margin-top: 8ch;
+    font-size: 300%;
+    margin-bottom: 2ch;
+    color: #17c783;
+    margin-left: 2ch;
+}
+
+.ownPieceParagraph{
+    color: white;
+    margin-right: 2ch;
+    font-size: 125%;
+    margin-bottom: 10ch;
+    width: fit-content;
+    display: block;
+    margin-left: 8ch;
+}
+@media only screen and (min-width: 481px) and (max-width: 768px) {
+.homepageTitle{
+    font-size: 175%;
+}
+.homepageSnag{
+    font-size: 100%;
+}
+}
+
+
+@media only screen and (max-width: 481px) {
+    .homepageTitle{
+        font-size: 150%;
+    }
+    .homepageSnag{
+        font-size: 80%;
+    }
+    .newest{
+        font-size: 200%;
+    }
+    .ownPieceHeader,.operateHeader,.aboutHeader{
+        font-size: 200%;
+    }
+
+    .aboutHeader{
+        margin-top: 45ch;
+    }
+    .logo{
+        width: 20ch;
+    }
+    .homepageShop{
+        font-size: 100%;
+    }
+
+    .homepage .imageObserver{
+        height: 50ch;
+    }
+}
+@media only screen and (min-width: 767px) and (max-width: 1024px) {
+.homepageTitle{
+    font-size: 230%;
+}
+}

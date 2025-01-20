@@ -2,6 +2,7 @@ import axios from "axios";
 import "../styles/ContactForm.css"
 import { useState,useRef } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
+import { ThreeDot } from "react-loading-indicators";
 
 const ContactForm = ({page}) => {
 
@@ -37,6 +38,7 @@ const ContactForm = ({page}) => {
         );
         if (response.status === 200){
             setSent(true);
+            setLoading(false);
         }
         else{
             setLoading(false);
@@ -54,6 +56,7 @@ const ContactForm = ({page}) => {
             <h2 className="contactSentConfirmation">Your message has been sent</h2>
             <p className="contactSentMessage">Someone will get back to you shortly</p>
             </>}
+            {loading && <ThreeDot size="medium" color="#ffffff"/>}
             {!sent && <><form action="">
                 <h2 className="contactHeader">Get in touch</h2>
                 <label className="contactNameLabel">Name</label>

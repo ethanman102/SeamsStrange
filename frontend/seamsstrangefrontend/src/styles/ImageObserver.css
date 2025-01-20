@@ -1,0 +1,15 @@
+.imageObserver{
+    height:1000px;
+    object-fit: cover;
+    width: 100%;
+    position: absolute;
+    z-index: 0;
+    animation: fadeIn 0.5s;
+    background-color: white;
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+  
