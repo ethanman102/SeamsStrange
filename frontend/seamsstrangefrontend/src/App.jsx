@@ -26,7 +26,11 @@ function App() {
     }).catch((error) => {
       setAppAuth(false);
     });
-  });
+  },[]);
+
+  useEffect(() => {
+    document.title = "Seams Strange Embroidery";
+  },[]);
 
   return(
     <>
