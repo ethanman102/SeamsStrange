@@ -20,7 +20,7 @@ const ItemDescriptionInput = ({description,handleDescription}) =>{
 
     return(
         <div>
-            <label className="itemDescriptionLabel">Item Description</label>
+            <label className="itemDescriptionLabel">Item Description <span className="requiredTick">*</span></label>
             <textarea className="descriptionInput" value={text} placeholder="Item Description"  rows={15} onChange={(event) => handleChange(event.target.value)} maxLength={1000}></textarea>
             <p>{count}/{MAXLENGTH}</p>
         </div>
