@@ -7,9 +7,9 @@ import { ThreeDot } from "react-loading-indicators";
 const AdminSocialPanel = () => {
 
     const [loading,setLoading] = useState(false);
-    const [facebook,setFaceBook] = useState(null);
-    const [etsy,setEtsy] = useState(null);
-    const [instagram,setInstagram] = useState(null);
+    const [facebook,setFaceBook] = useState('');
+    const [etsy,setEtsy] = useState('');
+    const [instagram,setInstagram] = useState('');
 
     const ModalLoader = asModal(ThreeDot);
 
@@ -38,11 +38,11 @@ const AdminSocialPanel = () => {
     useEffect(() => {
         instance.get('/api/socials/all/').then((response) =>{
             let data = response.data;
-            setInstagram(data.INSTAGRAM);
-            setEtsy(data.ETSY);
-            setFaceBook(data.FACEBOOK);
+            setInstagram(data.INSTAGRAM || '');
+            setEtsy(data.ETSY || '');
+            setFaceBook(data.FACEBOOK || '');
         })
-    })
+    },[])
 
     return(
         <div className="socialPage">
@@ -59,11 +59,11 @@ const AdminSocialPanel = () => {
                 <h2 className="socialInputHeader">Current Socials</h2>
                 <form action=""  onSubmit={(event) => handleUpdate(event)}>
                     <label className="instagramLabel">Instagram</label>
-                    <input className="instagramInput" type="url" name="instagram" value={instagram} placeholder="Instagram Link" disabled={loading}/>
+                    <input className="instagramInput" type="url" name="instagram" value={instagram} placeholder="Instagram Link" onChange={(event) => setInstagram(event.target.value)} disabled={loading}/>
                     <label className="etsyLabel">Etsy</label>
-                    <input className="etsyInput" type="url" name="etsy" value={etsy} placeholder="Etsy Link" disabled={loading}/>
+                    <input className="etsyInput" type="url" name="etsy" value={etsy} placeholder="Etsy Link" onChange={(event) => setEtsy(event.target.value)} disabled={loading}/>
                     <label className="facebookLabel">Facebook</label>
-                    <input className="facebookInput" type="url" name="facebook" value={facebook} placeholder="Facebook Link" disabled={loading}/>
+                    <input className="facebookInput" type="url" name="facebook" value={facebook} placeholder="Facebook Link" onChange={(event) => setFaceBook(event.target.value)} disabled={loading}/>
                     <button className="socialSubmit" type="submit" disabled={loading}>Submit</button>
                 </form>
             </div>

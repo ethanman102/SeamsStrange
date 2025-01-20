@@ -1,16 +1,14 @@
 import React from "react";
 import "../styles/TagList.css";
-import { useLocation,useNavigate } from "react-router-dom";
-import { useEffect,useState } from "react";
-import instance from "../api";
+import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
 import {v4 as uuidv4} from 'uuid';
+import { AppAuthenticated } from "../App";
 
 const TagList = ({tags}) => {
 
-    const [authenticated,setAuthenticated] = useState(null);
     
-
-    const location = useLocation();
+    const appAuth = useContext(AppAuthenticated);
     const navigate = useNavigate();
 
     const handleTagEditClick = (event,id) => {
@@ -18,19 +16,11 @@ const TagList = ({tags}) => {
         navigate('/admin/tags/',{state:{id:id}})
     }
 
-    useEffect(() =>{
-        instance.get('http://localhost:8000/api/authenticated/').then((response) =>{
-            if (response.status === 200) setAuthenticated(true);
-            else setAuthenticated(false);
-        }).catch((error)=> {setAuthenticated(false);}
-    );
-
-    },[]);
     
     const tagListItems = tags.map((tag,i) => {
         return(<li key={uuidv4()} style={{backgroundColor: tag.color}} className="tagItem">
             {tag.name}
-            {authenticated && <button className="tagEditButton" onClick={(event) => handleTagEditClick(event,tag.id)}>✏️</button>}
+            {appAuth && <button className="tagEditButton" onClick={(event) => handleTagEditClick(event,tag.id)}>✏️</button>}
         </li>);
     });
 

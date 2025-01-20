@@ -3,11 +3,17 @@ import "../styles/AdminNavbar.css"
 import { useNavigate } from "react-router-dom";
 import instance from "../api";
 
-const AdminNavBar = () =>{
+const AdminNavBar = ({appAuthHandler}) =>{
 
     const navigate = useNavigate();
     const handleLogout = () =>{
-        instance.post('/api/logout/').then(()=> navigate('/')).catch((error) => navigate('/admin'));}
+        instance.post('/api/logout/').then(()=>{ 
+            appAuthHandler(false);
+            navigate('/')
+        }).catch((error) => {
+            appAuthHandler(false);
+            navigate('/admin')
+        });}
 
 
 

@@ -13,7 +13,7 @@ import AdminSocialPanel from "./AdminSocialPanel";
 
 export const AuthContext = createContext();
 
-const Admin = () =>{
+const Admin = ({appAuthHandler}) =>{
 
     // Check to see if the user is logged in, if so then render the admin page else render the login.
     const [authenticated,setAuthenticated] = useState(null);
@@ -22,9 +22,15 @@ const Admin = () =>{
 
     useEffect(() =>{
         instance.get('http://localhost:8000/api/authenticated/').then((response) =>{
-            if (response.status === 200) setAuthenticated(true);
-            else setAuthenticated(false);
-        }).catch((error)=> {setAuthenticated(false);}
+            if (response.status === 200){ setAuthenticated(true);
+                appAuthHandler(true);
+            }
+            else{ setAuthenticated(false);
+                appAuthHandler(false);
+            }
+        }).catch((error)=> {setAuthenticated(false);
+            appAuthHandler(false);
+        }
     );
 
     },
@@ -38,7 +44,7 @@ return(
     {authenticated === null ? <ModalLoader color="#ffffff" size="medium" closeable={false}/> : 
     
       authenticated ? (<div className="adminPageFlexContainer">
-        <AdminNavBar/>
+        <AdminNavBar appAuthHandler={appAuthHandler}/>
         <AuthContext.Provider value={handleAuthenticationState}>
             <Routes>
                     <Route path="items/" element={<AdminItemPanel />}/>
@@ -47,7 +53,7 @@ return(
             </Routes>
         </AuthContext.Provider>
     </div>)
-     : (<Login authenticationStateHandler={handleAuthenticationState}/>)}
+     : (<Login authenticationStateHandler={handleAuthenticationState} appAuthHandler={appAuthHandler}/>)}
     </>
 )
 

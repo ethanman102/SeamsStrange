@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "../styles/Login.css";
 import instance from "../api";
 
-const Login = ({authenticationStateHandler}) => {
+const Login = ({authenticationStateHandler,appAuthHandler}) => {
 
     const [username,setEmail] = useState('');
     const [password,setPassword] = useState('');
@@ -19,6 +19,7 @@ const Login = ({authenticationStateHandler}) => {
         );
         if (response.status === 200){
             authenticationStateHandler(true);
+            appAuthHandler(true);
         }
         }catch (error){
             if (error.response.status === 404){

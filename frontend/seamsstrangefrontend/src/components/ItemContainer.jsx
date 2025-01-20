@@ -13,11 +13,14 @@ const ItemContainer = () => {
     const [items,setItems] = useState([]);
     const [totalPages,setTotalPages] = useState(null);
     const [filterTags,setFilterTags] = useState([]);
+    const [authenticated,setAuthenticated] = useState(false);
 
     const editFilteredTags = (tags) =>{
         setFilterTags(tags);
         setPage(1);
     }
+
+    
 
     const handlePage = (pageNum) => {
         setPage(pageNum);
