@@ -19,6 +19,7 @@ const AdminSocialPanel = () => {
         let formData = new FormData(event.target);
         let object = Object.fromEntries(formData);
         let json = JSON.stringify(object);
+        try{
         let response = await instance.post('/api/socials/',
             json,
             {
@@ -31,6 +32,9 @@ const AdminSocialPanel = () => {
             setLoading(false);
         }
         else{
+            setLoading(false);
+        }
+        }catch (error){
             setLoading(false);
         }
     }
