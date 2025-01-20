@@ -81,3 +81,10 @@
     padding-left: 3ch;
     padding-right: 3ch;
 }
+
+@media only screen and (max-width: 535px) {
+.adminSocialPrompt{
+    font-size: 70%;
+}
+
+}
