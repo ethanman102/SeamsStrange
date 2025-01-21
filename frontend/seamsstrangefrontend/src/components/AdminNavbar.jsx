@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import "../styles/AdminNavbar.css"
+import "../styles/AdminNavBar.css"
 import { useNavigate } from "react-router-dom";
 import instance from "../api";
 
