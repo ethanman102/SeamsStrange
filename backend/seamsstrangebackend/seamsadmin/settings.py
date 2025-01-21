@@ -80,7 +80,7 @@ CORS_ALLOW_CREDENTIALS = True
 
 REST_FRAMEWORK = {
   'DEFAULT_AUTHENTICATION_CLASSES': (
-      'api.authenticate.JWTCookieAuthentication',
+      'seamsstrangebackend.api.authenticate.JWTCookieAuthentication',
   ),
 }
 
@@ -176,7 +176,7 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AUTH_USER_MODEL = 'api.User'
+AUTH_USER_MODEL = 'seamsstrangebackend.api.User'
 
 EMAIL_HOST = env("EMAIL_HOST")
 EMAIL_PORT = env("EMAIL_PORT")
