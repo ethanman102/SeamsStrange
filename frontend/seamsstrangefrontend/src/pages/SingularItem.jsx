@@ -9,6 +9,7 @@ import asModal from "../components/wrappers/asModal"
 import ImageSlider from "../components/ImageSlider";
 import View from "../constants";
 import instance from "../api";
+import NotFound from "./NotFound";
 
 const SingularItem = () =>{
 
@@ -24,6 +25,7 @@ const SingularItem = () =>{
     const [recommendations,setRecommendations] = useState([]);
     const [images,setImages] = useState([]);
     const [soldOut,setSoldOut] = useState(false);
+    const [notFound,setNotFound] = useState(false);
 
     const [authenticated,setAuthenticated] = useState(null);
 
@@ -43,11 +45,13 @@ const SingularItem = () =>{
             setTags(data.tags);
             setImages(data.images);
             setSoldOut(data.sold_out);
-        });
+        }).catch((error) => {
+            setNotFound(true);
+        })
         axios.get(`http://localhost:8000/api/items/${params.id}/recommendations/`).then((response) => {
             var data = response.data;
             setRecommendations(data.items);
-        })
+        });
     },[params.id]);
 
     useEffect(() =>{
@@ -76,7 +80,10 @@ const SingularItem = () =>{
         navigate('/admin/items/',{state:itemData});
     }
 
+    if (notFound) return <NotFound/>;
+
     return(
+        
         <>
         {openModal !== 0  && <ModalContact page={title} modalSwitch={setOpenModal} closeable={true} />}
         <div className="singleItemContainer">
@@ -110,7 +117,7 @@ const SingularItem = () =>{
             <h2 className="newestCreations">You May Also Like</h2>
             <div className="recommendationsContainer">
                 {recommendations.map((item) =>{
-                    return <ItemCard title={item.title} price={item.price} tags={item.tags} key={item.id} id={item.id} images={item.images} soldOut={item.soldOut}/>
+                    return <ItemCard title={item.title} price={item.price} tags={item.tags} key={item.id} id={item.id} images={item.images} soldOut={item.sold_out}/>
                 })}
             </div>
         </>

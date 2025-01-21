@@ -10,6 +10,7 @@ import SingularItem from './pages/SingularItem';
 import Footer from './components/Footer';
 import ContactPage from './pages/ContactPage';
 import instance from './api';
+import NotFound from './pages/NotFound';
 
 
 export const AppAuthenticated = createContext();
@@ -45,6 +46,7 @@ function App() {
         <Route path="/items/:id/" element={<SingularItem/>}/>
         <Route path="/admin/*" element={<Admin appAuthHandler={handleAppAuth}/>}/>
         <Route path="/contact/" element={<ContactPage/>}/>
+        <Route path="*" element={<NotFound/>}/>
       </Routes>
       </AppAuthenticated.Provider>
       </div>

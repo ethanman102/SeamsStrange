@@ -1,0 +1,22 @@
+.tagLine404{
+    font-size: 200%;
+    color: white;
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+}
+
+.errorCode404{
+    color: white;
+    font-size: 150%;
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+}
+
+.container404{
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20ch;
+}
