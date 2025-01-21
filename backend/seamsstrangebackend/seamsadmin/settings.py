@@ -36,7 +36,7 @@ DEBUG = True
 
 PRODUCTION_MODE = env.bool('PRODUCTION_MODE',default=False)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://seams-strange-backend-0a907ddb72aa.herokuapp.com/']
 
 
 # Application definition
