@@ -103,7 +103,7 @@ SIMPLE_JWT = {
     'AUTH_COOKIE_SAMESITE': 'Lax',
 }
 
-ROOT_URLCONF = 'seamsstrangebackend.urls'
+ROOT_URLCONF = 'seamsstrangebackend.seamsadmin.urls'
 
 TEMPLATES = [
     {
@@ -121,7 +121,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'seamsstrangebackend.wsgi.application'
+WSGI_APPLICATION = 'seamsstrangebackend.seamsadmin.wsgi.application'
 
 
 # Database
