@@ -1,4 +1,4 @@
-import "../styles/AdminSocialPanel.CSS"
+import "../styles/AdminSocialPanel.css"
 import { useState,useEffect } from "react";
 import instance from "../api";
 import asModal from "../components/wrappers/asModal";
