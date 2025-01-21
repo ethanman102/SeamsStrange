@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 env = environ.Env()
 environ.Env.read_env(BASE_DIR / '.env')
-PRODUCTION_MODE = env('PRODUCTION_MODE',default=False)
+PRODUCTION_MODE = env.bool('PRODUCTION_MODE',default=False)
 
 
 urlpatterns = [

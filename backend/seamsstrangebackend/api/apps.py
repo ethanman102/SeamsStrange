@@ -5,7 +5,7 @@ import environ
 env = environ.Env()
 environ.Env.read_env()
 
-PRODUCTION_MODE = env('PRODUCTION_MODE', default=False)  # Default to False if not set
+PRODUCTION_MODE = env.bool('PRODUCTION_MODE', default=False) 
 
 class ApiConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
