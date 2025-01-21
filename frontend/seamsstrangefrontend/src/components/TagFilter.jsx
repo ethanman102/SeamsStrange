@@ -1,6 +1,7 @@
 import React, {useEffect,useState} from "react";
 import "../styles/TagFilter.css"
 import axios from "axios";
+import { apiUrl } from "../constants";
 
 
 const TagFilter = ({filterFunction,purpose,currentSelection}) => {
@@ -10,7 +11,7 @@ const TagFilter = ({filterFunction,purpose,currentSelection}) => {
     const [applied,setApplied] = useState(false);
 
     useEffect(() => {
-            axios.get('http://localhost:8000/api/tags/').then((response) => response.data).then((fetchedTags) => setTagChecks(fetchedTags.tags)).then(setSelected(currentSelection)).then(()=>{
+            axios.get(`${apiUrl}/api/tags/`).then((response) => response.data).then((fetchedTags) => setTagChecks(fetchedTags.tags)).then(setSelected(currentSelection)).then(()=>{
                 if (currentSelection.length > 0){
                     setApplied(true);
                 }

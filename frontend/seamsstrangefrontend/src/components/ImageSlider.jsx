@@ -1,7 +1,7 @@
 import "../styles/ImageSlider.css";
 import Paginator from "./Paginator";
 import { useState,useEffect } from "react";
-import View from "../constants";
+import {View} from "../constants";
 
 
 const ImageSlider = ({images,mode,handleRemove}) => {

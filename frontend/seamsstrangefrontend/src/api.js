@@ -1,9 +1,10 @@
 import axios from "axios";
 import Cookies from "js-cookie";
+import { apiUrl } from "./constants";
 
 const instance = axios.create({
     withCredentials: true,
-    baseURL: 'http://localhost:8000'
+    baseURL: apiUrl
 });
 
 instance.interceptors.request.use(

@@ -11,6 +11,7 @@ import { ThreeDot } from "react-loading-indicators";
 import asModal from "../components/wrappers/asModal";
 import AdminSocialPanel from "./AdminSocialPanel";
 import NotFound from "./NotFound";
+import { apiUrl } from "../constants";
 
 export const AuthContext = createContext();
 
@@ -22,7 +23,7 @@ const Admin = ({appAuthHandler}) =>{
     const ModalLoader = asModal(ThreeDot);
 
     useEffect(() =>{
-        instance.get('http://localhost:8000/api/authenticated/').then((response) =>{
+        instance.get(`${apiUrl}/api/authenticated/`).then((response) =>{
             if (response.status === 200){ setAuthenticated(true);
                 appAuthHandler(true);
             }

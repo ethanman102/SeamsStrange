@@ -13,7 +13,7 @@ import { AuthContext } from "./Admin";
 import {ThreeDot} from 'react-loading-indicators';
 import ImageSlider from "../components/ImageSlider";
 import ImageUploader from "../components/ImageUploader";
-import View from "../constants";
+import {View,apiUrl} from "../constants";
 import axios from "axios";
 import asModal from "../components/wrappers/asModal";
 import DeletePrompt from "../components/DeletePrompt";
@@ -73,7 +73,7 @@ const AdminItemPanel = () => {
     },[state]);
 
     useEffect(()=>{
-        axios.get('http://localhost:8000/api/tags/').then((response) => response.data).then((fetchedTags) => setAllTags(fetchedTags.tags));
+        axios.get(`${apiUrl}/api/tags/`).then((response) => response.data).then((fetchedTags) => setAllTags(fetchedTags.tags));
     },[]);
 
     const handleTitleChange = (titleText) =>{
@@ -133,7 +133,7 @@ const AdminItemPanel = () => {
     const onDeleteItem = () => {
         setOpenModal(0);
         setLoading(true);
-        instance.delete(`http://localhost:8000/api/items/${state.id}/`).then(() => {
+        instance.delete(`${apiUrl}/api/items/${state.id}/`).then(() => {
             navigate('/items/');
         }).catch((error)=>{
             setLoading(false);

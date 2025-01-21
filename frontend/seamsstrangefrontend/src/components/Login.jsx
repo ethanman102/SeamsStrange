@@ -3,6 +3,7 @@ import "../styles/Login.css";
 import instance from "../api";
 import { ThreeDot } from "react-loading-indicators";
 import asModal from "./wrappers/asModal";
+import { apiUrl } from "../constants";
 
 const Login = ({authenticationStateHandler,appAuthHandler}) => {
 
@@ -17,7 +18,7 @@ const Login = ({authenticationStateHandler,appAuthHandler}) => {
         event.preventDefault();
         setLoading(true);
         try{
-        var response = await instance.post('http://localhost:8000/api/login/',
+        var response = await instance.post(`${apiUrl}/api/login/`,
             {
                 email: username,
                 password: password

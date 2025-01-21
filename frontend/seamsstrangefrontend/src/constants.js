@@ -4,4 +4,5 @@ const View = Object.freeze(
         EDIT: 1
     }
 )
-export default View;
+const apiUrl = import.meta.env.VITE_API_URL;
+export {View,apiUrl};

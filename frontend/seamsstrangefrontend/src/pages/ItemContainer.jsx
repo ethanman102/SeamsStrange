@@ -4,6 +4,7 @@ import ItemCard from "../components/ItemCard";
 import "../styles/ItemContainer.css"
 import Paginator from "../components/Paginator";
 import TagFilter from "../components/TagFilter";
+import { apiUrl } from "../constants";
 
 const ItemContainer = () => {
 
@@ -41,7 +42,7 @@ const ItemContainer = () => {
             for (var tag of filterTags){
                 params.append('tag',tag.name);
             }
-            var response = await axios.get('http://localhost:8000/api/items/',{params:params});
+            var response = await axios.get(`${apiUrl}/api/items/`,{params:params});
             var fetchedItems = await response.data;
             setTotalPages(fetchedItems.total_pages === 0 ? 1 : fetchedItems.total_pages)
             return fetchedItems.items;

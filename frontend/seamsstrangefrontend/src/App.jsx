@@ -11,6 +11,7 @@ import Footer from './components/Footer';
 import ContactPage from './pages/ContactPage';
 import instance from './api';
 import NotFound from './pages/NotFound';
+import { apiUrl } from './constants';
 
 
 export const AppAuthenticated = createContext();
@@ -21,7 +22,7 @@ function App() {
   const handleAppAuth = (boolVal) => setAppAuth(boolVal);
 
   useEffect(() =>{
-    instance.get('http://localhost:8000/api/authenticated/').then((response) =>{
+    instance.get(`${apiUrl}/api/authenticated/`).then((response) =>{
       if (response.status === 200) setAppAuth(true);
       else setAppAuth(false);
     }).catch((error) => {

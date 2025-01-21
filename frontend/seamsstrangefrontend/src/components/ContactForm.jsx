@@ -3,6 +3,7 @@ import "../styles/ContactForm.css"
 import { useState,useRef } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import { ThreeDot } from "react-loading-indicators";
+import { apiUrl } from "../constants";
 
 const ContactForm = ({page}) => {
 
@@ -28,7 +29,7 @@ const ContactForm = ({page}) => {
         let object = Object.fromEntries(formData);
         let json = JSON.stringify(object);
 
-        let response = await axios.post('http://localhost:8000/api/email/',
+        let response = await axios.post(`${apiUrl}/api/email/`,
             json,
             {
                 headers:{

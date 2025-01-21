@@ -7,7 +7,7 @@ import ContactForm from "../components/ContactForm";
 import "../styles/SingularItem.css"
 import asModal from "../components/wrappers/asModal"
 import ImageSlider from "../components/ImageSlider";
-import View from "../constants";
+import {View,apiUrl} from "../constants";
 import instance from "../api";
 import NotFound from "./NotFound";
 
@@ -35,7 +35,7 @@ const SingularItem = () =>{
 
     useEffect(() => {
         setOpenModal(0);
-        axios.get(`http://localhost:8000/api/items/${params.id}`).then((response) => {
+        axios.get(`${apiUrl}/api/items/${params.id}`).then((response) => {
             var data = response.data;
             setTitle(data.title);
             setPrice(data.price);
@@ -48,14 +48,14 @@ const SingularItem = () =>{
         }).catch((error) => {
             setNotFound(true);
         })
-        axios.get(`http://localhost:8000/api/items/${params.id}/recommendations/`).then((response) => {
+        axios.get(`${apiUrl}/api/items/${params.id}/recommendations/`).then((response) => {
             var data = response.data;
             setRecommendations(data.items);
         });
     },[params.id]);
 
     useEffect(() =>{
-        instance.get('http://localhost:8000/api/authenticated/').then((response) =>{
+        instance.get(`${apiUrl}/api/authenticated/`).then((response) =>{
             if (response.status === 200) setAuthenticated(true);
             else setAuthenticated(false);
         }).catch((error)=> {setAuthenticated(false);}

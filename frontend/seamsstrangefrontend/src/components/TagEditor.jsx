@@ -3,7 +3,7 @@ import "../styles/TagEditor.css"
 import { AuthContext } from "../pages/Admin";
 import { useNavigate } from "react-router-dom";
 import instance from "../api";
-import View from "../constants";
+import {View} from "../constants";
 import DeletePrompt from "./DeletePrompt";
 import asModal from "./wrappers/asModal";
 
