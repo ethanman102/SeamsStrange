@@ -48,6 +48,7 @@ return(
         <AdminNavBar appAuthHandler={appAuthHandler}/>
         <AuthContext.Provider value={handleAuthenticationState}>
             <Routes>
+                    <Route path="/"/>
                     <Route path="items/" element={<AdminItemPanel />}/>
                     <Route path="tags/" element={<AdminTagPanel />}/>
                     <Route path="socials/" element={<AdminSocialPanel/>}/>
