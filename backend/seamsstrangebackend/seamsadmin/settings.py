@@ -32,7 +32,7 @@ environ.Env.read_env(BASE_DIR / '.env')
 SECRET_KEY = 'django-insecure-c(63v17m9l*^x&c$38a+hniznqy(p^kxtn0v1vl=_kzi=+&#2$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env('PRODUCTION_MODE')
 
 PRODUCTION_MODE = env.bool('PRODUCTION_MODE',default=False)
 
@@ -52,9 +52,14 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt.token_blacklist',
     'corsheaders',
     'colorfield',
-    'seamsstrangebackend.api',
     'storages',
 ]
+
+if PRODUCTION_MODE:
+    INSTALLED_APPS.append('seamsstrangebackend.api')
+else:
+    INSTALLED_APPS.append('api')
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -78,11 +83,19 @@ CSRF_TRUSTED_ORIGINS = [
 
 CORS_ALLOW_CREDENTIALS = True
 
-REST_FRAMEWORK = {
-  'DEFAULT_AUTHENTICATION_CLASSES': (
-      'seamsstrangebackend.api.authenticate.JWTCookieAuthentication',
-  ),
-}
+if PRODUCTION_MODE:
+    REST_FRAMEWORK = {
+        'DEFAULT_AUTHENTICATION_CLASSES': (
+            'seamsstrangebackend.api.authenticate.JWTCookieAuthentication',
+        ),
+    }
+else:
+    REST_FRAMEWORK = {
+        'DEFAULT_AUTHENTICATION_CLASSES': (
+            'api.authenticate.JWTCookieAuthentication',
+        ),
+    }
+
 
 
 
@@ -103,7 +116,10 @@ SIMPLE_JWT = {
     'AUTH_COOKIE_SAMESITE': 'Lax',
 }
 
-ROOT_URLCONF = 'seamsstrangebackend.seamsadmin.urls'
+if PRODUCTION_MODE:
+    ROOT_URLCONF = 'seamsstrangebackend.seamsadmin.urls'
+else:
+    ROOT_URLCONF = 'seamsadmin.urls'
 
 TEMPLATES = [
     {
@@ -121,7 +137,10 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'seamsstrangebackend.seamsadmin.wsgi.application'
+if PRODUCTION_MODE:
+    WSGI_APPLICATION = 'seamsstrangebackend.seamsadmin.wsgi.application'
+else: 
+    WSGI_APPLICATION = 'seamsadmin.wsgi.application'
 
 
 # Database
@@ -169,8 +188,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = 'static/'
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
@@ -199,3 +216,5 @@ DEFAULT_FILE_STORAGE = 'storages.backend.s3boto3.S3Boto3Storage'
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+print(STATIC_ROOT)
+print('BOTTTOM')

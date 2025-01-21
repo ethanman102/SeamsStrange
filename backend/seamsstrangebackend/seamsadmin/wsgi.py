@@ -8,10 +8,25 @@ https://docs.djangoproject.com/en/5.0/howto/deployment/wsgi/
 """
 
 import os
+from pathlib import Path
+import environ
+
+
+
+
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+env = environ.Env()
+environ.Env.read_env(BASE_DIR / '.env')
+PRODUCTION_MODE = env('PRODUCTION_MODE')
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'seamsstrangebackend.seamsadmin.settings')
+if PRODUCTION_MODE:
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'seamsstrangebackend.seamsadmin.settings')
+else:
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'seamsadmin.settings')
 
 application = get_wsgi_application()
 
