@@ -3,7 +3,38 @@ Welcome to SeamsStrange, a Djano backend with a PostgresSQL database, and React 
 
 This github contains a Django Rest Framework backend to allow my mother to update posts with images, commonmark syntax, and edit/delete/create listings for her embroidary items! All of this functionality for unsafe HTTP methods is protected by JWT Cookie Auth overriden from DRF's simplejwt package! 
 
-### To view the complete REST documentation please follow this link to the projects wiki:
+# Screenshots from SeamsStrange
+
+# How to run 
+This site is currently deployed on heroku! To see the running webpage you can visit: https://www.seamsstrange.com/
+
+To run the application locally you can do the following:
+
+Django Backend:
+open up a terminal and navigate to the seamsstrangebackend folder from the root directory:
+
+first you must install the dependencies in requirements.txt
+
+cd backend
+pip install -r requirements.txt
+
+Next run the server
+
+cd ./backend/seamsstrangebackend
+python manage.py runserver
+
+Your backend should be at the link: http://localhost:8000
+
+To run the frontend do the following:
+
+from the root of the repository: You must have node.js installed on your machine.
+
+cd ./frontend/seamsstrangefrontend
+npm install (this will install the required dependencies)
+npm run dev
+
+Viola, you're now up and running!
+
 
 # Notes from Ethanman102
  - Thanks for checking out my github repository for my mother's website. This project helped me to better my understanding of HTTP protocols and authentcation methods available to us currently, especially their implementation to create a secure website!
