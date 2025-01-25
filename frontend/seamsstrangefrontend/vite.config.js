@@ -7,6 +7,6 @@ export default defineConfig({
   server: {
     port: process.env.PORT || 4173, // Use Heroku's $PORT or default to 4173
     host: true, // Expose Vite to the public network
-    https: true
+    https: process.env.VITE_HTTPS_PROTOCOL === "true"
   },
 })
