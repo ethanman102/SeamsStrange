@@ -10,6 +10,8 @@ import SingularItem from './pages/SingularItem';
 import Footer from './components/Footer';
 import ContactPage from './pages/ContactPage';
 import instance from './api';
+import NotFound from './pages/NotFound';
+import { apiUrl } from './constants';
 
 
 export const AppAuthenticated = createContext();
@@ -20,7 +22,7 @@ function App() {
   const handleAppAuth = (boolVal) => setAppAuth(boolVal);
 
   useEffect(() =>{
-    instance.get('http://localhost:8000/api/authenticated/').then((response) =>{
+    instance.get(`${apiUrl}/api/authenticated/`).then((response) =>{
       if (response.status === 200) setAppAuth(true);
       else setAppAuth(false);
     }).catch((error) => {
@@ -45,6 +47,7 @@ function App() {
         <Route path="/items/:id/" element={<SingularItem/>}/>
         <Route path="/admin/*" element={<Admin appAuthHandler={handleAppAuth}/>}/>
         <Route path="/contact/" element={<ContactPage/>}/>
+        <Route path="*" element={<NotFound/>}/>
       </Routes>
       </AppAuthenticated.Provider>
       </div>

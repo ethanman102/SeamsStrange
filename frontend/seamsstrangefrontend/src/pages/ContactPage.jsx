@@ -40,8 +40,8 @@ const ContactPage = () =>{
         Don't hesitate to send us your inquiry, visit us in our office, or give us a phone call"</h2>
         <h2 className="ourTeamHeader">Our Team</h2>
         <div className="companyDetailsContact">
-            <ContactCard firstName="Debbie" lastName="Keys" role="Emroider" profile={image1} phoneNumber="780-340-5397" email="SeamsStrange@gmail.com"/>
-            <ContactCard firstName="Ron" lastName="Keys" profile={image2} role="Designer" phoneNumber="780-297-4792" email="SeamsStrange@gmail.com"/>
+            <ContactCard firstName="Debbie" lastName="Keys" role="Emroider" profile={image1} phoneNumber="780-340-5397" email="deb@seamsstrange.com"/>
+            <ContactCard firstName="Ron" lastName="Keys" profile={image2} role="Designer" phoneNumber="780-297-4792" email="deb@seamsstrange.com"/>
         </div>
         <h2 className="contactPageInquiryLeft">"We aim to respond to all inquires within 1 - 2 business days<br/> For a faster response please phone us."</h2>
         <div className="contactFormSection">

@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 from pathlib import Path
 from datetime import timedelta
 import environ
+import os
+import dj_database_url
 
 
 
@@ -28,14 +30,14 @@ environ.Env.read_env(BASE_DIR / '.env')
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-c(63v17m9l*^x&c$38a+hniznqy(p^kxtn0v1vl=_kzi=+&#2$'
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env.bool('DEBUG')
 
 PRODUCTION_MODE = env.bool('PRODUCTION_MODE',default=False)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['seams-strange-backend-0a907ddb72aa.herokuapp.com','localhost']
 
 
 # Application definition
@@ -51,12 +53,18 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt.token_blacklist',
     'corsheaders',
     'colorfield',
-    'api',
     'storages',
 ]
 
+if PRODUCTION_MODE:
+    INSTALLED_APPS.append('seamsstrangebackend.api')
+else:
+    INSTALLED_APPS.append('api')
+
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -68,19 +76,33 @@ MIDDLEWARE = [
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
+    "https://seamsstrange.com",
+    "https://www.seamsstrange.com",
+    "http://localhost:4173",
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     'http://localhost:5173',  
+    "https://seamsstrange.com",
+    "https://www.seamsstrange.com",
+    "http://localhost:4173",
 ]
 
 CORS_ALLOW_CREDENTIALS = True
 
-REST_FRAMEWORK = {
-  'DEFAULT_AUTHENTICATION_CLASSES': (
-      'api.authenticate.JWTCookieAuthentication',
-  ),
-}
+if PRODUCTION_MODE:
+    REST_FRAMEWORK = {
+        'DEFAULT_AUTHENTICATION_CLASSES': (
+            'seamsstrangebackend.api.authenticate.JWTCookieAuthentication',
+        ),
+    }
+else:
+    REST_FRAMEWORK = {
+        'DEFAULT_AUTHENTICATION_CLASSES': (
+            'api.authenticate.JWTCookieAuthentication',
+        ),
+    }
+
 
 
 
@@ -91,7 +113,7 @@ SIMPLE_JWT = {
     'BLACKLIST_AFTER_ROTATION' : True,
     'UPDATE_LAST_LOGIN' : False,
     'ALGORITHM' : 'HS256',
-    'SIGNING_KEY' : SECRET_KEY,
+    'SIGNING_KEY' : env('SIGNING_KEY'),
     'VERIFYING_KEY' : None,
     'AUDIENCE' : None,
     'ISSUER' : None,
@@ -101,7 +123,10 @@ SIMPLE_JWT = {
     'AUTH_COOKIE_SAMESITE': 'Lax',
 }
 
-ROOT_URLCONF = 'seamsstrangebackend.urls'
+if PRODUCTION_MODE:
+    ROOT_URLCONF = 'seamsstrangebackend.seamsadmin.urls'
+else:
+    ROOT_URLCONF = 'seamsadmin.urls'
 
 TEMPLATES = [
     {
@@ -119,18 +144,32 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'seamsstrangebackend.wsgi.application'
+if PRODUCTION_MODE:
+    WSGI_APPLICATION = 'seamsstrangebackend.seamsadmin.wsgi.application'
+else: 
+    WSGI_APPLICATION = 'seamsadmin.wsgi.application'
 
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+if os.environ.get("DATABASE_URL") != None:
+    # Running on Heroku
+    DATABASES = {
+        "default": dj_database_url.config(
+            conn_max_age=600,
+            conn_health_checks=True,
+            ssl_require=True
+        )
     }
-}
+else:
+    # Running locally.
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
+    }
 
 
 # Password validation
@@ -167,8 +206,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = 'static/'
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
@@ -194,3 +231,6 @@ AWS_REGION = env('AWS_REGION')
 AWS_S3_FILE_OVERWRITE = False
 AWS_DEFAULT_ACL = None
 DEFAULT_FILE_STORAGE = 'storages.backend.s3boto3.S3Boto3Storage'
+
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')

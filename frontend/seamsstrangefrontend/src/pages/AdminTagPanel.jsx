@@ -4,7 +4,7 @@ import TagEditor from "../components/TagEditor";
 import "../styles/AdminTagPanel.css"
 import { useLocation } from "react-router-dom";
 import instance from "../api";
-import View from "../constants";
+import {View} from "../constants";
 
 
 const AdminTagPanel = () => {

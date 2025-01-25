@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom"
 import ImageObserver from "../components/ImageObserver"
 import ItemCard from "../components/ItemCard"
 import axios from "axios"
+import { apiUrl } from "../constants"
 
 
 const Homepage = () =>{
@@ -18,7 +19,7 @@ const Homepage = () =>{
 
      useEffect(() => {
 
-        axios.get(`http://localhost:8000/api/items/99999/recommendations/`).then((response) => {
+        axios.get(`${apiUrl}/api/items/99999/recommendations/`).then((response) => {
             var data = response.data;
             setRecommendations(data.items);
         })
