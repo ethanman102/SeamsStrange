@@ -15,8 +15,22 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path,include
+from pathlib import Path
+import environ
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+env = environ.Env()
+environ.Env.read_env(BASE_DIR / '.env')
+PRODUCTION_MODE = env.bool('PRODUCTION_MODE',default=False)
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 ]
+
+if PRODUCTION_MODE != False:
+    urlpatterns.append(path('api/',include('seamsstrangebackend.api.urls')))
+else:
+    urlpatterns.append(path('api/',include('api.urls')))

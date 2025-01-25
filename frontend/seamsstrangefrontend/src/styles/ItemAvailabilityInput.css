@@ -1,0 +1,11 @@
+.itemAvailabilityLabel{
+    color: white;
+    font-size: 3ch;
+    text-decoration: underline;
+    display: inline;
+}
+
+.availabilityInput{
+    margin-left: 2ch;
+    display: inline;
+}

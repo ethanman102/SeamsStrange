@@ -1,0 +1,10 @@
+.itemQuantityLabel{
+    display: block;
+    color: white;
+    text-decoration: underline;
+    font-size: 3ch;
+}
+
+.quantityInput{
+    width: 40%;
+}

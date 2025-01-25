@@ -1,0 +1,52 @@
+/*CSS Modal styling taken from Geeks for Geeks Article https://www.w3schools.com/howto/howto_css_modals.asp
+How to create a modal box with html and css*/
+.modal {
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.815); /* Black w/ opacity */
+    overflow: hidden;
+    position: relative;
+  }
+
+  .modalContent{
+    animation-name: fadeIn;
+    animation-duration: 1s;
+    position:relative; 
+    top:50%; 
+    left:50%; 
+    transform:translate(-50%, -50%); 
+    width: fit-content; 
+    
+  }
+
+  .modalCloseButton{
+    margin-top: 1ch;
+    border: none;
+    font-size: 125%;
+    border-radius: 2ch;
+    color: white;
+    background-color: black;
+    transition: background-color 0.3s ease;
+    padding-left: 1ch;
+    padding-right: 1ch;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-right: 1ch;
+    transition: scale 0.5s ease;
+}
+
+.modalCloseButton:hover{
+    cursor: pointer;
+    scale: 1.1;
+}
+
+@keyframes fadeIn {
+    from {opacity: 0}
+    to {opacity: 1}
+}

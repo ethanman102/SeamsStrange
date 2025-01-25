@@ -1,0 +1,90 @@
+.contactFormContainer{
+    background: rgb(23,199,131);
+    background: linear-gradient(90deg, rgba(23,199,131,1) 0%, rgba(54,117,131,1) 100%);
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    width: max-content;
+    min-width: 30%;
+    padding-left: 3ch;
+    padding-right: 3ch;
+    padding-top: 1ch;
+    border-radius: 2ch;
+    padding-bottom: 2ch;
+}
+
+.contactName{
+    display: block;
+    border-radius: 1ch;
+    width: 100%;
+    margin-bottom: 1ch;
+    height: 3ch;
+}
+
+.contactEmail{
+    display: block;
+    border-radius: 1ch;
+    width: 100%;
+    margin-bottom: 5ch;
+    height: 3ch;
+}
+
+.contactMessage{
+    resize: inherit;
+    display: block;
+    width: 100%;
+    border-radius: 1ch;
+    height: 30ch;
+}
+
+.contactSubmit{
+    background-color:  #0a7c5a;;
+    width: 100%;
+    font-size: 150%;
+    border: solid white 2px;
+    margin-top: 1ch;
+    color: white;
+    border-radius: 1ch;
+}
+
+.contactSubmit:enabled:hover{
+    background-color:  #17885c;
+    cursor: pointer;
+}
+
+.contactSubmit:disabled{
+    background-color:  #09291d86;
+}
+
+.contactHeader{
+    text-align: center;
+    color: white;
+    width: 100%;
+}
+
+.contactSentCheck{
+    text-align: center;
+    font-size: 300%;
+    transition: scale ease 0.3s;
+}
+
+.contactSentCheck:hover{
+    scale: 1.2;
+}
+
+.contactSentConfirmation{
+    text-align: center;
+    color: #17c783;
+}
+
+.contactSentMessage{
+    text-align: center;
+    color: white;
+}
+
+.recaptcha{
+    margin-top: 2ch;
+}
+
+.contactNameLabel,.contactEmailLabel{
+    color: white;
+    font-weight: bold;
+}

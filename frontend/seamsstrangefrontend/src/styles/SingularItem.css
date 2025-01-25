@@ -1,0 +1,201 @@
+.singleItemContainer{
+    display: flex;
+    justify-content:space-evenly;
+    flex-wrap: wrap;
+    padding-bottom: 5ch;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    border-bottom: 1px solid white;
+
+}
+
+.singleItemTitle{
+    color: #17c783;
+    width: fit-content;
+}
+
+.singleItemTags{
+    color: #0a7c5a ;
+    margin-left: 1ch;
+    background-color: rgba(255, 255, 255, 0.712);
+    width: fit-content;
+    padding-left: 1ch;
+    padding-right: 1ch;
+    border-radius: 2ch;
+}
+
+.singleItemPrice{
+    color: #0a7c5a;
+    width: fit-content;
+
+}
+
+.singleItemDescription{
+    color: white;
+    padding-left: 2ch;
+    padding-right: 2ch;
+    padding-bottom: 3ch;
+    overflow-wrap: break-word;
+    max-height: 50ch;
+    overflow-y: auto;
+    white-space: pre-wrap;
+}
+
+.newestCreations{
+    color: white    ;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;  
+}
+
+.singleItemContent{
+    margin-left: 2ch;
+    width: fit-content;
+    margin-right: 2ch;
+}
+
+
+.descriptionContainer{
+    background: rgb(23,199,131);
+    background: linear-gradient(90deg, rgba(23,199,131,1) 0%, rgba(54,117,131,1) 100%);
+    border-radius: 2ch;
+    margin-top: 2ch;
+    margin-left: 2ch;
+    min-width: 30%;
+    margin-right: 2ch;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+.descriptionContainer > h1{
+    color: white;
+    text-align: center;
+    padding-left: 2ch;
+    padding-right: 2ch;
+}
+
+.informationContainer .tagList{
+    margin-left: 2ch;
+    padding: 0;
+    width: 100%;
+    padding-bottom: 2ch;
+
+}
+
+.informationContainer{
+    min-width: 30%;
+    max-width: 75ch;
+}
+
+.singleDescriptionLabel, .singleURLLabel{
+    color: white;
+    text-decoration: underline;
+    margin-left: 2ch;
+    margin-right: 2ch;
+    display: block;
+}
+
+.contactSellerButton{
+    color: white;
+    border: none;
+    background: rgb(23,199,131);
+    font-size: 125%;
+    padding-left: 1ch;
+    padding-right: 1ch;
+    border-radius: 2ch;
+    transition: scale 0.3s ease, background-color 0.3s ease;
+}
+
+.contactSellerButton:hover{
+    cursor: pointer;
+    scale: 1.1;
+    background-color: #0a7c5a;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.contactSellerTitle{
+    color: white;
+}
+
+.contactSellerContainer{
+    text-align: center;
+}
+
+.singleItemURL{
+    padding-left: 2ch;
+    margin-top: 1ch;
+    display: block;
+}
+
+.singleItemQuantity{
+    color: #0a7c5a;
+}
+
+.recommendationsContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    margin-bottom: 10ch;
+}
+
+/*Item Card shrinking for recommendation section specifics*/
+.recommendationsContainer .itemCard{
+    transition: scale 0.5s ease;
+    margin-right: 2ch;
+    scale: 0.9;
+    min-width: 40ch;
+}
+
+.recommendationsContainer .itemPrice{
+    font-size: 125%;
+}
+
+.recommendationsContainer .itemTitle{
+    font-size: 150%;
+}
+
+.recommendationsContainer .tagListTitle{
+    font-size: 125%;
+}
+
+.recommendationsContainer .tagItem{
+    font-size: 75%;
+}
+
+.recommendationsContainer .cardItemImage{
+    object-fit: cover;
+
+}
+
+.recommendationsContainer .itemCard:hover{
+    scale: 1;
+    cursor: pointer;
+}
+
+.editItemButton{
+    vertical-align: middle;
+    font-size: 50%;
+    background-color:#0a7c5a;
+    border: none;
+    padding-left: 1ch;
+    padding-right: 1ch;
+    border-radius: 2ch;
+    color: white;
+    transition: background-color 0.5s ease, scale 0.5s ease;
+}
+
+.editItemButton:hover{
+    cursor: pointer;
+    background-color: #074734;
+    scale: 1.1;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.soldOutPillSingular{
+    color: white;
+    background-color: red;
+    border-radius: 2ch;
+    font-size: 90%;
+    border: 2px solid white;
+    padding-left: 1ch;
+    padding-right: 1ch;
+}

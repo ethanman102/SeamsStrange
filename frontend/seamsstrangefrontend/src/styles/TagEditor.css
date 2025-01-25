@@ -1,0 +1,144 @@
+.tagPill{
+    padding-left: 5ch;
+    padding-right: 5ch;
+    padding-top: 2ch;
+    padding-bottom: 2ch;
+    border-radius: 2ch;
+    color: white;
+    font-size: 150%;
+    width: fit-content;
+    display: block;
+    overflow-wrap: break-word;
+}
+
+
+
+.tagNameInput{
+    background-color: white;
+    margin-bottom: 2ch;
+}
+
+.tagColorInput{
+    height: 10ch;
+    width: 10ch;
+}
+
+
+.tagColorInput:hover{
+    cursor: pointer;
+    scale: 1.1;
+}
+
+.nameLabel,.colorLabel{
+    color: white;
+    width: fit-content;
+    margin-bottom: 0;
+    display: block;
+    font-size: 150%;
+}
+
+.tagCreationInput{
+    margin-right: 20%;
+}
+
+.tagEditorFlexContainer{
+    display: flex;
+    padding-left: 2ch;
+    align-items: center;
+    padding-bottom: 5ch;
+    flex-wrap: wrap;
+    background: none;
+}
+
+.tagEditorDisclaimer{
+    color: white;
+    margin-left: 2ch;
+}
+
+.currentTagDesignHeader{
+    color: white;
+    margin-top: 0;
+    text-decoration: underline;
+    
+}
+
+.tagEditorButtons{
+    margin-top: 1.5ch;
+    
+}
+
+.tagEditorButton{
+    color: white;
+    border: 2px solid white;
+    background:none;
+    border-radius: 2ch;
+    margin-left: 0ch;
+    margin-right: 2ch;
+    padding-left: 2ch;
+    padding-right: 2ch;
+    font-size: 100%;
+    transition: background-color 0.5s ease;
+}
+
+.tagDeleteButton{
+    color: white;
+    border-radius: 2ch;
+    background-color: red; 
+    margin-left: 0ch;
+    margin-right: 2ch;
+    padding-left: 2ch;
+    padding-right: 2ch;
+    font-size: 100%; 
+    border: none;
+    transition: background-color 0.5s ease, scale 0.5s ease;
+}
+
+.tagDeleteButton:hover{
+    cursor: pointer;
+    background-color: rgb(177, 0, 0);
+    scale:1.1;
+}
+
+.tagEditorButton:hover{
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.349);
+}
+
+.tagEditorMessage{
+    position: absolute;
+    color: rgb(255, 255, 255);
+}
+
+.tagEditorMode{
+    margin-left: 1ch;
+    color: white;
+    margin-bottom: 0.25ch;
+    display: inline;
+}
+
+.disableModeButton{
+    margin-left: 2ch;
+    border: none;
+    color: white;
+    background-color: red;
+    font-size: 100%;
+    border-radius: 2ch;
+    display: inline;
+    padding-top: 0.5ch;
+    padding-left: 1ch;
+    padding-right: 1ch;
+    padding-bottom: 0.5ch;
+    transition: background-color 0.5s ease, scale 0.5s ease;
+
+}
+
+.disableModeButton:hover{
+    cursor: pointer;
+    background-color: rgb(177, 0, 0);
+    scale:1.1;
+}
+
+
+
+
+

@@ -1,0 +1,10 @@
+.itemLinkLabel{
+    display: block;
+    color: white;
+    text-decoration: underline;
+    font-size: 3ch;
+}
+
+.linkInputPrompt{
+    color: white;
+}

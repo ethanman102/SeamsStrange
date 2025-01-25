@@ -1,0 +1,174 @@
+.footer{
+    background-color: rgb(241, 241, 241);
+    width: 100%;
+
+}
+
+.bottom{
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    left: 0; 
+    right: 0;
+    top: -4ch;
+    margin-left: 10%;
+    margin-right: 10%;
+    padding-bottom: 2ch;
+    background: rgb(23,199,131);
+    background: linear-gradient(90deg, rgba(23,199,131,1) 0%, rgba(54,117,131,1) 100%);
+    padding-left: 6ch;
+    padding-right: 6ch;
+    border-radius: 2ch;
+    height: fit-content;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    border: 1px solid white;
+    flex-direction: row;
+   
+}   
+
+.customPieceHeader{
+    color: white;
+    margin-top: 2ch;
+}
+
+.footerButtonDiv{
+    display: inline;
+    margin-top: 4ch;
+    margin-bottom: 2ch;
+}
+
+.learnMoreButton{
+    border-radius: 2ch;
+    border: none;
+    background-color: black;
+    color: white;
+    padding: 1ch;
+    font-size: 125%;
+    transition: scale 0.5s ease;
+}
+
+.contactButton{
+    border: white solid 1px;
+    font-size: 125%;
+    padding: 1ch;
+    background: none;
+    margin-right: 1ch;
+    margin-left: 2ch;
+    color: white;
+    border-radius: 2ch;
+    transition: background-color 0.5s ease;
+}
+
+.contactButton:hover{
+    background-color: rgba(255, 255, 255, 0.349);
+    cursor: pointer;
+}
+
+.learnMoreButton:hover{
+    cursor: pointer;
+    scale: 1.1;
+    color: rgb(206, 206, 206);
+    
+}
+
+.checkmarkText{
+    color: white;
+    display: inline;
+    padding-right: 1ch;
+}
+
+.socialsDiv{
+    margin-top: 15ch;
+    margin-left: auto;
+    margin-right: auto;
+    display: block; 
+    width: fit-content;
+}
+
+
+.socialIcon{
+    scale: 3;
+    margin-left: 4ch;
+    margin-right: 4ch;
+}
+
+.socialIcon:hover{
+    scale: 4;
+    cursor: pointer;
+}
+
+.socialsHeader{
+    display: block;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+/*Media Queries for devices*/
+
+@media only screen and (min-width: 767px) and (max-width: 1024px) {
+    .contactButton{
+        font-size: 100%;
+    }
+    .learnMoreButton{
+        font-size: 100%;
+    }
+
+    .checkmarkText{
+        font-size: 90%;
+    }
+}
+
+
+@media only screen and (min-width: 481px) and (max-width: 768px) {
+    .contactButton{
+        font-size: 80%;
+    }
+    .learnMoreButton{
+        font-size: 80%;
+    }
+
+    .checkmarkText{
+        font-size: 70%;
+        margin-bottom: 1ch;
+    }
+
+    .customPieceHeader{
+        font-size: 115%;
+        margin-top: 1ch;
+    }
+
+    .footerButtonDiv{
+        margin-bottom: 0.5ch;
+        margin-top: 1ch;
+    }
+}
+
+
+@media only screen and (max-width: 481px) {
+    .contactButton{
+        font-size: 70%;
+        margin-left: 0.5ch;
+        margin-right: 1ch;
+    }
+    .learnMoreButton{
+        font-size: 70%;
+        margin-right: 0ch;
+        margin-left: 0.25ch;
+    }
+
+    .checkmarkText{
+        font-size: 60%;
+        margin-bottom: 0.5ch;
+    }
+
+    .customPieceHeader{
+        font-size: 100%;
+        margin-top: 0.5ch;
+    }
+    .footerButtonDiv{
+        margin-bottom: 0.5ch;
+        margin-top: 0.5ch;
+    }
+}

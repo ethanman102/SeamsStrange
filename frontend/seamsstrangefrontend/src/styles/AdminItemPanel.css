@@ -1,0 +1,213 @@
+.adminItemsHeader > h1{
+    color: #17c783;
+    font-size: 250%;
+    margin-bottom: 0;
+}
+
+.adminItemPanelFlexContainer{
+    padding-bottom: 10ch;
+    
+}
+
+.adminItemsHeader > h2{
+    color: #0a7c5a;
+    font-size: 200%;
+    margin-top: 0;
+}
+
+.itemCreatePrompt{
+    color: white;
+    margin-left: 2ch;
+    overflow-wrap: break-word;
+}
+
+
+.tagAndInputContainer{
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 4ch;
+    padding-bottom: 4ch;
+    margin-right: 2ch;
+}
+
+.tagAndInputContainer > .tagFilter{
+    border: #0a7c5a solid 0.25ch;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    margin-right: 2ch;
+}
+
+.adminItemsTextualInputs{
+
+
+    margin-left: 2ch;
+    border-radius: 2ch;
+    background: rgb(23,199,131);
+    background: linear-gradient(90deg, rgba(23,199,131,1) 0%, rgba(54,117,131,1) 100%);
+    border: 2px solid white;
+    padding-left: 2ch;
+    padding-right: 2.5ch;
+    padding-top: 2ch;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.createItemHeader{
+    color: #17c783;
+    text-decoration: underline;
+}
+
+.imagesHeader{
+    color: white;
+}
+
+.createItemButton{
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    margin-top: 5ch;
+    color: white;
+    background: none;
+    border: 2px solid white;
+    margin-bottom: 5ch;
+    font-size: 150%;
+    padding-left: 2ch;
+    padding-right: 2ch;
+    padding-top: 0.5ch;
+    padding-bottom: 0.5ch;
+    border-radius: 2ch;
+    transition: background-color 0.5s ease, box-shadow 0.5s ease;
+}
+
+.createItemButton:hover{
+    cursor: pointer;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    background-color: rgba(255, 255, 255, 0.349);
+   
+}
+
+.itemCreationInputPrompt{
+    color: white;
+}
+.attachedTagsHeader{
+    color:white;
+}
+
+.itemViewMode{
+    display: inline;
+    color: white;
+    width: 100%;
+    border-bottom: solid white 2px;
+    padding-bottom: 2ch;
+    display: block;
+}
+
+.disableModeButton{
+    margin-left: 2ch;
+    border: none;
+    color: white;
+    background-color: red;
+    font-size: 100%;
+    border-radius: 2ch;
+    display: inline;
+    padding-top: 0.5ch;
+    padding-left: 1ch;
+    padding-right: 1ch;
+    padding-bottom: 0.5ch;
+    transition: background-color 0.5s ease, scale 0.5s ease;
+    display: inline;
+
+}
+
+.disableModeButton:hover{
+    cursor: pointer;
+    background-color: rgb(177, 0, 0);
+    scale:1.1;
+}
+
+.editOptionButtons{
+    display:flex;
+    justify-content: center;
+    margin-top: 4ch;
+    margin-bottom: 4ch;
+    flex-wrap: wrap;
+}
+
+.itemResetButton,.itemDeleteButton{
+    padding-left: 2ch;
+    padding-right: 2ch;
+    font-size: 125%;
+    margin-left: 2ch;
+    margin-right: 2ch;
+    border-radius: 2ch;
+    border: none;
+    transition: scale 0.5s ease, background-color 0.5s ease;
+}
+
+.itemResetButton:hover,.itemDeleteButton:hover{
+    cursor: pointer;
+    scale: 1.1;
+}
+
+.itemDeleteButton:hover{
+    background-color: rgb(177, 0, 0);
+}
+
+.editButtonsPrompt{
+    color: white;
+}
+
+.itemResetButton{
+    color: white;
+    background-color: #17c783;
+}
+
+.itemDeleteButton{
+    color: white;
+    background-color: red;
+}
+
+
+/*
+Specific Tag Filter Admin Panel Restyling
+*/
+.tagAndInputContainer .tagFilter{
+    margin-left: 0;
+    background: none;
+    border: solid 2px white;
+}
+
+.tagAndInputContainer .tagLabel{
+    margin-left: 1ch;
+    border: solid 1px white;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.tagAndInputContainer .tagFilter > h3{
+    color: white;
+    border-bottom: 2px white solid;
+}
+
+.tagAndInputContainer .tagFilter .buttonSection{
+    border-top: solid white 2px;
+}
+
+.tagAndInputContainer .tagFilter .buttonSection > button{
+    background: none;
+    border: solid white 2px;
+    width: 30%;
+    transition: background-color 0.5s ease;
+}
+
+.tagAndInputContainer .tagFilter .buttonSection > button:hover{
+    background-color: rgba(255, 255, 255, 0.349);
+}
+
+.requiredTick{
+    color: red;
+    text-decoration: none;
+}
+
+.itemErrorMessage{
+    color: red;
+}

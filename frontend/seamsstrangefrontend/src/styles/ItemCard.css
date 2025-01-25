@@ -1,0 +1,79 @@
+.itemCard{
+    width: 20%;
+    min-width: 20ch;
+    max-width: 45ch;
+    background-color: rgb(241, 241, 241);
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    border-radius: 2ch;
+    padding-bottom: 3ch;
+    margin: 2ch;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.itemPrice{
+    font-weight: bold;
+    font-size: 175%;
+    margin-top: 0;
+    margin-left: 1ch;
+    margin-right: 1ch;
+    color: #0d313a;
+    width: 100%;
+}
+
+.itemTitle{
+   margin-bottom: 0;
+   overflow-wrap: break-word;
+   font-size: 200%;
+   color: white;
+   margin-left: 1ch;
+   margin-right: 1ch;
+}
+
+.itemDollarSign{
+    font-size: 120%;
+}
+
+.tagListTitle{
+    margin-left: 1ch;
+    margin-right: 1ch;
+    font-size: 150%;
+    width: fit-content;
+    margin-bottom: 0;
+    color: white;
+    padding-left: 1ch;
+    padding-right: 1ch;
+    border-radius: 2ch;
+    background: #0a7c5a;
+}
+
+.cardItemImage{
+    width: 100%;
+    max-height: 200px;
+    object-fit: cover;
+    border-bottom:#17c783 solid;
+}
+
+.itemCard .tagList{
+    border-top: 0.25ch solid black;
+    padding-top: 1ch;
+}
+
+.itemCardHeader{
+    background: rgb(23,199,131);
+    background: linear-gradient(90deg, rgba(23,199,131,1) 0%, rgba(54,117,131,1) 100%);
+    border-top-left-radius: 2ch;
+    border-top-right-radius: 2ch;
+}
+
+.soldOutPill{
+    color: white;
+    background-color: red;
+    border-radius: 2ch;
+    font-size: 90%;
+    border: 2px solid white;
+    padding-left: 1ch;
+    padding-right: 1ch;
+    
+}

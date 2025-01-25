@@ -1,0 +1,11 @@
+.descriptionInput{
+    resize: inherit;
+    width: 100%;
+}
+
+.itemDescriptionLabel{
+    display: block;
+    color: white;
+    text-decoration: underline;
+    font-size: 3ch;
+}

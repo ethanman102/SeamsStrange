@@ -1,0 +1,131 @@
+
+.itemContainer{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content:center;
+    margin-right: 2ch;
+}
+
+.itemContainer .itemCard{
+    flex-shrink: 1;
+    flex-basis: 60%;
+    min-height: 25ch;
+    transition: scale 0.5s ease;
+    align-self: stretch;
+    scale: 0.8;
+    margin: 0;
+}
+
+.itemContainer .itemCard:hover{
+    scale: 0.9;
+    cursor: pointer;
+}
+
+.itemPageContainer{
+    display: flex;
+    flex-direction: row;
+    min-height: 100vh;
+
+}
+
+.tagFilter{
+    flex-basis: 10%;
+    flex-shrink: 1;
+    background-color: #0D313A;
+    
+    padding-right: 1ch;
+    margin-left: 2ch;
+    margin-right: 0;
+    border-right: #0a7c5a solid 0.25ch;
+    height: fit-content;
+}
+
+.itemBox{
+    width: 100%;
+    margin-right: 0;
+}
+
+.itemBox > .paginator{
+    
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 8ch;
+}
+
+.itemShopHeader{
+    width: fit-content;
+    margin-left: 2ch;
+}
+
+.itemShopHeader > h1,.currentHeader{
+    color: #17c783;
+    font-size: 250%;
+    margin-bottom: 0;
+}
+
+.itemShopHeader > h2{
+    color: #0a7c5a;
+    font-size: 200%;
+    margin-top: 0;
+}
+
+.noResultsHeader{
+    color: white;
+    font-size: 500%;
+    overflow-wrap: break-word;
+}
+
+/*Media Queries for devices*/
+
+
+
+@media only screen and (min-width: 481px) and (max-width: 768px) {
+    .itemPageContainer{
+        display: flex;
+        flex-direction: column;
+    }
+    .itemPageContainer .itemCard{
+        flex-basis: 80%;
+        width: auto;
+    }
+
+    .tagFilter{
+        margin-right: 2ch;
+        border-right: none;
+        border: #0a7c5a solid;
+    }
+}
+
+
+@media only screen and (max-width: 481px) {
+.itemPageContainer{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.tagFilter{
+    margin-right: 2ch;
+    border-right: none;
+    border: #0a7c5a solid;
+}
+.itemPageContainer .itemCard{
+    flex-basis: 100%;
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
+}
+}
+@media only screen and (min-width: 767px) and (max-width: 1024px) {
+    .itemPageContainer .itemCard{
+        flex-basis: 50%;
+    }
+    }
+
+
+
+
