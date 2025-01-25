@@ -17,7 +17,7 @@ This github contains a Django Rest Framework backend to allow my mother to updat
 
 ![AdminTags](https://cdn.discordapp.com/attachments/784654670181826570/1332596224796397578/image.png?ex=6795d472&is=679482f2&hm=98ad61c96aba8c406ff7a27e6f864b9dfcef0d74caadd8b8c8125ebf6fecc9b1&)
 
-![AdminDelete](https://cdn.discordapp.com/attachments/784654670181826570/1332597854962974763/image.png?ex=6795d5f7&is=67948477&hm=d9ab725bf98e1f2268deaf611a272e205636a6e646b047896b9356f6bb3112c0&)
+![AdminDelete](https://cdn.discordapp.com/attachments/784654670181826570/1332604533582594058/image.png?ex=6795dc2f&is=67948aaf&hm=ffc1af8c29cb3c5565b7ab858300d4a2d6a9ed131294df78481c90b7cf7618b2&)
 
 ![AdminSocials](https://cdn.discordapp.com/attachments/784654670181826570/1332596652338319432/image.png?ex=6795d4d8&is=67948358&hm=e4348a2debc7abc41e3c450848242b8539514ce1ac242316931131ecfa0bc0cb&)
 
