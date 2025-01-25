@@ -5,6 +5,22 @@ This github contains a Django Rest Framework backend to allow my mother to updat
 
 # Screenshots from SeamsStrange
 
+## Homepage
+![Homepage](https://cdn.discordapp.com/attachments/784654670181826570/1332594068064309361/image.png?ex=6795d270&is=679480f0&hm=7d3fcb39676fc311eeb77d1eaebbd7f77ba10456f9a85fdc201fb39096f20bf3&)
+
+## Admin
+![AdminHome](https://cdn.discordapp.com/attachments/784654670181826570/1332595769274011720/image.png?ex=6795d405&is=67948285&hm=285c8ba3bd89f329060c9ef3be127439577b6fb7d94e1ced45c1f77cb4aed5af&)
+![AdminItem1](https://cdn.discordapp.com/attachments/784654670181826570/1332596378529959936/image.png?ex=6795d497&is=67948317&hm=c5a7e977d16ea766cfc34cbc52219487f014a3cf2c2507ddd105635e956b6219&)
+![AdminItem2]https://cdn.discordapp.com/attachments/784654670181826570/1332596514572210218/image.png?ex=6795d4b7&is=67948337&hm=34d29b81e287cc710bb3399013de0a9ed2cac1c103cd45d931af377d9010cbc7&()
+![AdminTags](https://cdn.discordapp.com/attachments/784654670181826570/1332596224796397578/image.png?ex=6795d472&is=679482f2&hm=98ad61c96aba8c406ff7a27e6f864b9dfcef0d74caadd8b8c8125ebf6fecc9b1&)
+![AdminDelete(https://cdn.discordapp.com/attachments/784654670181826570/1332597854962974763/image.png?ex=6795d5f7&is=67948477&hm=d9ab725bf98e1f2268deaf611a272e205636a6e646b047896b9356f6bb3112c0&)
+![AdminSocials](https://cdn.discordapp.com/attachments/784654670181826570/1332596652338319432/image.png?ex=6795d4d8&is=67948358&hm=e4348a2debc7abc41e3c450848242b8539514ce1ac242316931131ecfa0bc0cb&)
+
+## Shop
+![ShopHome](https://cdn.discordapp.com/attachments/784654670181826570/1332601675289985075/image.png?ex=6795d985&is=67948805&hm=8b3a50c0934b8e2eb3dbba7b4536d0c85d27484ad9cb094cf158555cc5717ff4&)
+![SingularItem](https://cdn.discordapp.com/attachments/784654670181826570/1332600682406084629/image.png?ex=6795d899&is=67948719&hm=2277d7bc99c7784e6963a5b9ca99cfca1f479ad383a897912ac0d00d3a35a169&)
+![Recommended](https://cdn.discordapp.com/attachments/784654670181826570/1332600794800717855/image.png?ex=6795d8b4&is=67948734&hm=feb3a50dc231f1513c354d0ab1b60dfed3d8bda9adfa4f4d2fef51acae56cf3b&)
+
 # How to run 
 This site is currently deployed on heroku! To see the running webpage you can visit: https://www.seamsstrange.com/
 
