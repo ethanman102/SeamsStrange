@@ -10,10 +10,15 @@ This github contains a Django Rest Framework backend to allow my mother to updat
 
 ## Admin
 ![AdminHome](https://cdn.discordapp.com/attachments/784654670181826570/1332595769274011720/image.png?ex=6795d405&is=67948285&hm=285c8ba3bd89f329060c9ef3be127439577b6fb7d94e1ced45c1f77cb4aed5af&)
+
 ![AdminItem1](https://cdn.discordapp.com/attachments/784654670181826570/1332596378529959936/image.png?ex=6795d497&is=67948317&hm=c5a7e977d16ea766cfc34cbc52219487f014a3cf2c2507ddd105635e956b6219&)
-![AdminItem2]https://cdn.discordapp.com/attachments/784654670181826570/1332596514572210218/image.png?ex=6795d4b7&is=67948337&hm=34d29b81e287cc710bb3399013de0a9ed2cac1c103cd45d931af377d9010cbc7&()
+
+![AdminItem2](https://cdn.discordapp.com/attachments/784654670181826570/1332604126634442863/image.png?ex=6795dbce&is=67948a4e&hm=643644b1b84aed5f4fd9a7a72ca7e70b5c2f5e20a1d07fc709e68f26ccd89e3f&)
+
 ![AdminTags](https://cdn.discordapp.com/attachments/784654670181826570/1332596224796397578/image.png?ex=6795d472&is=679482f2&hm=98ad61c96aba8c406ff7a27e6f864b9dfcef0d74caadd8b8c8125ebf6fecc9b1&)
-![AdminDelete(https://cdn.discordapp.com/attachments/784654670181826570/1332597854962974763/image.png?ex=6795d5f7&is=67948477&hm=d9ab725bf98e1f2268deaf611a272e205636a6e646b047896b9356f6bb3112c0&)
+
+![AdminDelete](https://cdn.discordapp.com/attachments/784654670181826570/1332597854962974763/image.png?ex=6795d5f7&is=67948477&hm=d9ab725bf98e1f2268deaf611a272e205636a6e646b047896b9356f6bb3112c0&)
+
 ![AdminSocials](https://cdn.discordapp.com/attachments/784654670181826570/1332596652338319432/image.png?ex=6795d4d8&is=67948358&hm=e4348a2debc7abc41e3c450848242b8539514ce1ac242316931131ecfa0bc0cb&)
 
 ## Shop
