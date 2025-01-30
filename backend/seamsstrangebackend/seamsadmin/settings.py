@@ -235,3 +235,9 @@ DEFAULT_FILE_STORAGE = 'storages.backend.s3boto3.S3Boto3Storage'
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+
+# Redirect HTTP to HTTPS in production
+SECURE_SSL_REDIRECT = True  # Enforces HTTPS
