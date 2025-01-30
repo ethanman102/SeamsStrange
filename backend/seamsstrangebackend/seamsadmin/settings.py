@@ -121,8 +121,13 @@ SIMPLE_JWT = {
     'AUTH_HEADER_TYPES' : ('Bearer',),
     'AUTH_HEADER_NAME': 'HTTP_AUTHORIZATION',
     'USER_ID_FIELD': 'id',
-    'AUTH_COOKIE_SAMESITE': 'None',
 }
+
+if PRODUCTION_MODE:
+    SIMPLE_JWT['AUTH_COOKIE_SAMESITE'] = 'None'
+else:
+    SIMPLE_JWT['AUTH_COOKIE_SAMESITE'] = 'Lax'
+
 
 if PRODUCTION_MODE:
     ROOT_URLCONF = 'seamsstrangebackend.seamsadmin.urls'

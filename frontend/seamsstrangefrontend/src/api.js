@@ -25,7 +25,7 @@ instance.interceptors.response.use(
         return response;
     },
     async (error) =>{
-        if (error.response && error.response.status === 401){
+        if ((error.response && error.response.status === 401) || (error.response && error.response.status === 403)){
             // 1: check if there is a config and if the config has already been retried
             if (error.config && error.config.attemptedRefresh){
                 // case when we have already tried to refresh the token, time to fail

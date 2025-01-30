@@ -72,17 +72,9 @@ class LoginView(TokenObtainPairView):
             value=refresh_token,
             httponly=True,
             expires=timezone.now() + timedelta(hours=2),
-            secure=True,
+            secure=settings.PRODUCTION_MODE,
             samesite=settings.SIMPLE_JWT['AUTH_COOKIE_SAMESITE']
         )
-
-        # ensure the using logging in gets a valid csrf token for usage in state changing requests.
-        csrftoken = get_csrf_token(request)
-        response.set_cookie('csrftoken',
-                            csrftoken,
-                            secure=settings.PRODUCTION_MODE,
-                            samesite=settings.SIMPLE_JWT['AUTH_COOKIE_SAMESITE'],
-                            httponly=False)
 
         response.data['success'] = 'Logged in user'
         return response
@@ -158,7 +150,7 @@ class HttpCookieRefreshView(TokenRefreshView):
         response.set_cookie('csrftoken',
                             csrftoken,
                             secure=settings.PRODUCTION_MODE,
-                            samesite='None',
+                            samesite=settings.SIMPLE_JWT['AUTH_COOKIE_SAMESITE'],
                             httponly=False)
 
         response.data = {'Success': 'New access token obtained'}
@@ -166,7 +158,6 @@ class HttpCookieRefreshView(TokenRefreshView):
 
 class ProvideAuthenticationStateView(APIView):
     def get(self,request):
-        print(request.COOKIES)
         response = Response()
         if request.user.is_authenticated:
             data = {"Success":"User is Authenticated"}
