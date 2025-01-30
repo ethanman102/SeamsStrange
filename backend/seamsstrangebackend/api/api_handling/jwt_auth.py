@@ -165,8 +165,8 @@ class HttpCookieRefreshView(TokenRefreshView):
         return response
 
 class ProvideAuthenticationStateView(APIView):
-    permission_classes = [IsAuthenticated]
     def get(self,request):
+        print(request.COOKIES.get('access'))
         response = Response()
         if request.user.is_authenticated:
             data = {"Success":"User is Authenticated"}
