@@ -76,21 +76,14 @@ MIDDLEWARE = [
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
-    "https://seamsstrange.com",
-    "https://www.seamsstrange.com",
-    "http://localhost:4173",
-
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     'http://localhost:5173',  
-    "https://seamsstrange.com",
-    "https://www.seamsstrange.com",
-    "http://localhost:4173",
-    
 ]
 
 CORS_ALLOW_CREDENTIALS = True
+
 
 if PRODUCTION_MODE:
     REST_FRAMEWORK = {
@@ -115,7 +108,7 @@ SIMPLE_JWT = {
     'BLACKLIST_AFTER_ROTATION' : True,
     'UPDATE_LAST_LOGIN' : False,
     'ALGORITHM' : 'HS256',
-    'SIGNING_KEY' : env('SIGNING_KEY'),
+    'SIGNING_KEY' : SECRET_KEY,
     'VERIFYING_KEY' : None,
     'AUDIENCE' : None,
     'ISSUER' : None,
