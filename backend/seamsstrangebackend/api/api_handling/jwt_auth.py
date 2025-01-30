@@ -63,8 +63,8 @@ class LoginView(TokenObtainPairView):
             value=access_token,
             httponly=True,
             expires=timezone.now() + timedelta(minutes=10),
-            secure=settings.PRODUCTION_MODE,
-            samesite=settings.SIMPLE_JWT['AUTH_COOKIE_SAMESITE']
+            secure=True,
+            samesite=None
         )
 
         response.set_cookie(
@@ -73,7 +73,7 @@ class LoginView(TokenObtainPairView):
             httponly=True,
             expires=timezone.now() + timedelta(hours=2),
             secure=True,
-            samesite=settings.SIMPLE_JWT['AUTH_COOKIE_SAMESITE']
+            samesite=None
         )
 
         # ensure the using logging in gets a valid csrf token for usage in state changing requests.
@@ -81,7 +81,7 @@ class LoginView(TokenObtainPairView):
         response.set_cookie('csrftoken',
                             csrftoken,
                             secure=True,
-                            samesite='Lax',
+                            samesite='None',
                             httponly=False)
 
         response.data['success'] = 'Logged in user'
@@ -158,7 +158,7 @@ class HttpCookieRefreshView(TokenRefreshView):
         response.set_cookie('csrftoken',
                             csrftoken,
                             secure=settings.PRODUCTION_MODE,
-                            samesite='Lax',
+                            samesite='None',
                             httponly=False)
 
         response.data = {'Success': 'New access token obtained'}
