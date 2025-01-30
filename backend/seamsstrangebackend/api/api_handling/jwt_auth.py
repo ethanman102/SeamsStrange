@@ -72,7 +72,7 @@ class LoginView(TokenObtainPairView):
             value=refresh_token,
             httponly=True,
             expires=timezone.now() + timedelta(hours=2),
-            secure=settings.PRODUCTION_MODE,
+            secure=True,
             samesite=settings.SIMPLE_JWT['AUTH_COOKIE_SAMESITE']
         )
 
@@ -80,7 +80,7 @@ class LoginView(TokenObtainPairView):
         csrftoken = get_csrf_token(request)
         response.set_cookie('csrftoken',
                             csrftoken,
-                            secure=settings.PRODUCTION_MODE,
+                            secure=True,
                             samesite='Lax',
                             httponly=False)
 
@@ -149,7 +149,7 @@ class HttpCookieRefreshView(TokenRefreshView):
             value=access,
             httponly=True,
             expires=timezone.now() + timedelta(minutes=10),
-            secure=settings.PRODUCTION_MODE,
+            secure=True,
             samesite=settings.SIMPLE_JWT['AUTH_COOKIE_SAMESITE']
         )
 
