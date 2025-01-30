@@ -10,6 +10,8 @@ from rest_framework_simplejwt.exceptions import InvalidToken,TokenError
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.conf import settings
 from rest_framework.permissions import AllowAny,IsAuthenticated
+from django.utils import timezone
+from datetime import timedelta
 
 
 def get_csrf_token(request):
@@ -60,7 +62,7 @@ class LoginView(TokenObtainPairView):
             key='access',
             value=access_token,
             httponly=True,
-            expires=settings.SIMPLE_JWT['ACCESS_TOKEN_LIFETIME'],
+            expires=timezone.now() + timedelta(minutes=10),
             secure=settings.PRODUCTION_MODE,
             samesite=settings.SIMPLE_JWT['AUTH_COOKIE_SAMESITE']
         )
@@ -69,7 +71,7 @@ class LoginView(TokenObtainPairView):
             key='refresh',
             value=refresh_token,
             httponly=True,
-            expires=settings.SIMPLE_JWT['REFRESH_TOKEN_LIFETIME'],
+            expires=timezone.now() + timedelta(hours=2),
             secure=settings.PRODUCTION_MODE,
             samesite=settings.SIMPLE_JWT['AUTH_COOKIE_SAMESITE']
         )
@@ -146,7 +148,7 @@ class HttpCookieRefreshView(TokenRefreshView):
             key='access',
             value=access,
             httponly=True,
-            expires=settings.SIMPLE_JWT['ACCESS_TOKEN_LIFETIME'],
+            expires=timezone.now() + timedelta(minutes=10),
             secure=settings.PRODUCTION_MODE,
             samesite=settings.SIMPLE_JWT['AUTH_COOKIE_SAMESITE']
         )
