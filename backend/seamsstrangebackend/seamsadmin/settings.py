@@ -78,14 +78,14 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
     "https://www.seamsstrange.com",
     "http://localhost:4173",
-    "https://seamsstrange.com"
+    "https://seamsstrange.com",
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:5173",
     "https://www.seamsstrange.com",
     "http://localhost:4173",
-    "https://seamsstrange.com" 
+    "https://seamsstrange.com" ,
 ]
 
 CORS_ALLOW_CREDENTIALS = True
