@@ -10,8 +10,8 @@ from rest_framework.routers import DefaultRouter
 
 app_name = 'api'
 router = DefaultRouter()
-router.register(r'items',ItemViewSet)
-router.register(r'tags',TagViewSet)
+router.register(r'items',ItemViewSet,basename="items")
+router.register(r'tags',TagViewSet,basename="tags")
 urlpatterns = [
 
     # authentication urls with jwt tokens and http only cookies.
