@@ -2,7 +2,8 @@ name: Django CI
 
 on:
   push:
-    branches: [ "development" ]
+    branches: 
+      -'**'
   pull_request:
     branches: [ "development" ]
 
@@ -13,7 +14,7 @@ jobs:
     strategy:
       max-parallel: 4
       matrix:
-        python-version: [3.7, 3.8, 3.9]
+        python-version: [3.9,3.10,3.11]
 
     steps:
     - uses: actions/checkout@v4
@@ -27,4 +28,5 @@ jobs:
         pip install -r requirements.txt
     - name: Run Tests
       run: |
+        cd ./backend/seamsstrangebackend
         python manage.py test
