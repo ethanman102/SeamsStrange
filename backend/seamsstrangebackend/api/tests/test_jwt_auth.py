@@ -155,8 +155,13 @@ class JWTAuthTestCases(TestCase):
         self.assertEqual(response.status_code,200)
 
         request = HttpRequest()
+
         request.COOKIES['access'] = self.client.cookies.get('access').value
         request.COOKIES['refresh'] = self.client.cookies.get('refresh').value
+        request.COOKIES['csrftoken'] = self.client.cookies.get('csrftoken').value
+
+        # On December 16, 2024 asked OPENAI's ChatGpt why the csrf token could not be found and it stated that it needed to be sent like this in the header
+        request.META['HTTP_X_CSRFTOKEN'] = self.client.cookies.get('csrftoken').value
 
         
 

@@ -4,6 +4,7 @@ from rest_framework.test import APIClient
 from ..models import Item,User,Tag
 from django.urls import reverse
 import json
+from unittest.mock import patch
 
 
 # Create your tests here.
@@ -168,7 +169,9 @@ class ItemAPITestCases(TestCase):
         response = self.client.delete(reverse('api:items-detail',args=[4]))
         self.assertEqual(response.status_code,404)
     
-    def test_delete_item(self):
+    # https://stackoverflow.com/questions/57065702/how-to-properly-patch-boto3-calls-in-unit-test
+    @patch('api.api_handling.item_api.boto3.client')
+    def test_delete_item(self,mock_boto_client):
         # log in first.
         response = self.client.post(reverse('api:login'),{
             'email':'ethankeys@ualberta.ca',
@@ -176,6 +179,10 @@ class ItemAPITestCases(TestCase):
         })
         
         self.assertEqual(response.status_code,200)
+
+        mock_s3 = mock_boto_client.return_value
+        mock_s3.delete_object.return_value = {}
+
         response = self.client.delete(reverse('api:items-detail',args=[3]))
         self.assertEqual(response.status_code,204)
 
