@@ -60,7 +60,7 @@ const Homepage = () =>{
     <p className="ownPieceParagraph">If you're looking to get your own piece of embroidery, feel free to contact us <br/> You can directly call us or send us an email, where phone calls are more likely for a quick response<br/>
     Visit our contact section to get started!</p>
     </div>
-    {recommendations.length >0 &&<><div className="newestItemsContainer">
+    {(recommendations && recommendations.length > 0) &&<><div className="newestItemsContainer">
     <h2 className="newest">Newest Creations</h2>
     <div className="recommendationsContainer">
                 {recommendations.map((item) =>{
